@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block body %}
+	{% for i in directions %}
+	<p> {{ i|safe }} </p>
+	{% endfor %}
+{% endblock %}
