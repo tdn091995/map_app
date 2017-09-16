@@ -1,11 +1,12 @@
 import googlemaps
 from datetime import datetime
+from .key import getKey
 
 now = datetime.now()
 
 class GMaps():
 	def __init__(self, src1, src2):
-		self.gmaps = googlemaps.Client(key='AIzaSyAKcJa1FN-jN3GU4U5vv35Yvz-ptSfs9IA')
+		self.gmaps = googlemaps.Client(getKey())
 		self.li = []
 		self.directions = {}
 		self.directions = self.gmaps.directions(src1, src2, mode='walking', departure_time=now)
