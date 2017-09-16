@@ -8,7 +8,6 @@ class GMaps():
 	def __init__(self, src1, src2):
 		self.gmaps = googlemaps.Client(getKey())
 		self.li = []
-		self.directions = {}
 		self.directions = self.gmaps.directions(src1, src2, mode='walking', departure_time=now)
 
 	def getDirections(self):
