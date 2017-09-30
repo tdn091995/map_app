@@ -3,6 +3,7 @@ from flask import render_template
 from app import app
 from .gmaps import GMaps
 from .forms import WebForm
+from .location import getLocation
 
 @app.route('/')
 def test():
@@ -20,3 +21,7 @@ def test_post():
 		return render_template('empty.html')
 	else:
 		return render_template('gmaps.html', directions=directions)
+@app.route('/mapdemo')
+def mapdemo():
+    loc = getLocation()
+    return render_template('campusmap.html', loc=loc)
