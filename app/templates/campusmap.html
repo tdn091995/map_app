@@ -94,11 +94,6 @@ https://developers.google.com/maps/documentation/javascript/adding-a-legend
   <body>
 <!-- Add in the custom gps coordinates and POI on campus as start and end points -->
     <div id="floating-panel">
-      <select id="start">
-        <option value="{{ loc }}">Here</option>
-
-      </select>
-      <br>
       <strong>End:</strong>
       <select id="end">
         <option value="33.885970, -117.885020">Anderson Field</option>
@@ -111,14 +106,20 @@ https://developers.google.com/maps/documentation/javascript/adding-a-legend
     <div id="right-panel"></div>
     <div id="map"></div>
     <script>
-      function initMap() {
+    x = navigator.geolocation;
+    if(x){
+      x.getCurrentPosition(initMaps);
+    }  
+      function initMaps(position) {
         var directionsDisplay = new google.maps.DirectionsRenderer;
         var directionsService = new google.maps.DirectionsService;
+        var latlong = position.coords.latitude + "," + position.coords.longitude;
+
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 16,
           center: {lat: 33.882994, lng: -117.887076}
         });
-        directionsDisplay.setMap(map);
+        directionsDisplay.setMap(map); 
         directionsDisplay.setPanel(document.getElementById('right-panel'));
 
         var control = document.getElementById('floating-panel');
@@ -126,28 +127,27 @@ https://developers.google.com/maps/documentation/javascript/adding-a-legend
         map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
 
         var onChangeHandler = function() {
-          calculateAndDisplayRoute(directionsService, directionsDisplay);
+          calculateAndDisplayRoute(latlong, directionsService, directionsDisplay);
         };
-	document.getElementById('start').addEventListener('change', onChangeHandler);
         document.getElementById('end').addEventListener('change', onChangeHandler);
 	
 	//////////////////////////////////////////////////////////////
 	// how to add a custom marker. maybe we could use guide this to add some 
 	// markers and a legend for our campus map. 
 	// guide: https://developers.google.com/maps/documentation/javascript/adding-a-legend
-	var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
-	var marker = new google.maps.Marker({
-	   position: myLatlng,
-	   title:"Hello World!"
-	});
+      	var myLatlng = new google.maps.LatLng(33.877571, -117.883444);
+      	var marker = new google.maps.Marker({
+      	   position: myLatlng,
+      	   title:"Hello World!"
+      	});
 
 	// To add the marker to the map, call setMap();
 	// marker.setMap(map);
 	/////////////////////////////////////////////////////////////
       }
 
-      function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-        var start = document.getElementById('start').value;
+      function calculateAndDisplayRoute(latlong, directionsService, directionsDisplay) {
+        var start = latlong 
         var end = document.getElementById('end').value;
         directionsService.route({
           origin: start,
@@ -163,7 +163,7 @@ https://developers.google.com/maps/documentation/javascript/adding-a-legend
       }
     </script>
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAFNYYmoKbBvl8lmjer9Dko1p-WMHyiVo&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAFNYYmoKbBvl8lmjer9Dko1p-WMHyiVo&callback=initMaps">
     </script>
   </body>
 </html>

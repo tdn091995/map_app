@@ -21,6 +21,7 @@ def test_post():
 		return render_template('empty.html')
 	else:
 		return render_template('gmaps.html', directions=directions)
+		
 @app.route('/mapdemo')
 def mapdemo():
     loc = getLocation()
