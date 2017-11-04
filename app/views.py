@@ -23,4 +23,5 @@ def test_post():
 		
 @app.route('/mapdemo')
 def mapdemo():
+
     return render_template('campusmap.html')

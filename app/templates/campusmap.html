@@ -94,6 +94,9 @@ https://developers.google.com/maps/documentation/javascript/adding-a-legend
   <body>
 <!-- Add in the custom gps coordinates and POI on campus as start and end points -->
     <div id="floating-panel">
+      <input type="text" class="form-control" id="src1" name="src1" placeholder="">
+    	<button type="Submit" class="btn btn-success">Submit</button>
+	<hr>
 <strong>End:</strong>
       <select id="end">
         <option value="33.885970, -117.885020">Anderson Field</option>
@@ -161,6 +164,7 @@ https://developers.google.com/maps/documentation/javascript/adding-a-legend
         var onChangeHandler = function() {
           calculateAndDisplayRoute(latlong, directionsService, directionsDisplay);
         };
+        document.getElementById('submit').addEventListener('click', onChangeHandler);
         document.getElementById('end').addEventListener('change', onChangeHandler);
 	
 	//////////////////////////////////////////////////////////////
