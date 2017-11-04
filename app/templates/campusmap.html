@@ -95,7 +95,7 @@ https://developers.google.com/maps/documentation/javascript/adding-a-legend
 <!-- Add in the custom gps coordinates and POI on campus as start and end points -->
     <div id="floating-panel">
       <input type="text" class="form-control" id="src1" name="src1" placeholder="">
-    	<button type="Submit" class="btn btn-success">Submit</button>
+    	<button type="Submit" id="submit">Submit</button>
 	<hr>
 <strong>End:</strong>
       <select id="end">
@@ -164,8 +164,8 @@ https://developers.google.com/maps/documentation/javascript/adding-a-legend
         var onChangeHandler = function() {
           calculateAndDisplayRoute(latlong, directionsService, directionsDisplay);
         };
+  
         document.getElementById('submit').addEventListener('click', onChangeHandler);
-        document.getElementById('end').addEventListener('change', onChangeHandler);
 	
 	//////////////////////////////////////////////////////////////
 	// how to add a custom marker. maybe we could use guide this to add some 
@@ -184,7 +184,7 @@ https://developers.google.com/maps/documentation/javascript/adding-a-legend
 
       function calculateAndDisplayRoute(latlong, directionsService, directionsDisplay) {
         var start = latlong 
-        var end = document.getElementById('end').value;
+        var end = document.getElementById('src1').value;
         directionsService.route({
           origin: start,
           destination: end,
