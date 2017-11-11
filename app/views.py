@@ -26,8 +26,12 @@ def mapdemo():
 	
 @app.route('/mapdemo', methods=['POST'])
 def mapdemo_post():
-	return render_template('empty.html')
+	return render_template('directions.html')
 
 @app.route('/test')
 def testing():
+	return render_template('directions.html')
+
+@app.route('/test', methods=['POST'])
+def testing_post():
 	return render_template('directions.html')
