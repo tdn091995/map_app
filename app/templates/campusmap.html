@@ -1,316 +1,306 @@
 <!-- 
-
-html with some javascript. we could use flask/python to host this website. 
-
-this sample file was found at:
-https://developers.google.com/maps/documentation/javascript/examples/directions-panel
-
-we can change the direction points to match these:
-https://www.fullerton.edu/campusmap/
-
-we could also add in custom markers, maybe with a legend. for the parking lots and other poi (points of interest) on campus. something like this:
-https://developers.google.com/maps/documentation/javascript/adding-a-legend
-
- -->
-
+   html with some javascript. we could use flask/python to host this website. 
+   
+   this sample file was found at:
+   https://developers.google.com/maps/documentation/javascript/examples/directions-panel
+   
+   we can change the direction points to match these:
+   https://www.fullerton.edu/campusmap/
+   
+   we could also add in custom markers, maybe with a legend. for the parking lots and other poi (points of interest) on campus. something like this:
+   https://developers.google.com/maps/documentation/javascript/adding-a-legend
+   
+    -->
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <title>Displaying text directions with <code>setPanel()</code></title>
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      #floating-panel {
-        position: absolute;
-        top: 10px;
-        left: 25%;
-        z-index: 5;
-        background-color: #fff;
-        padding: 5px;
-        border: 1px solid #999;
-        text-align: center;
-        font-family: 'Roboto','sans-serif';
-        line-height: 30px;
-        padding-left: 10px;
-      }
-      #right-panel {
-        font-family: 'Roboto','sans-serif';
-        line-height: 30px;
-        padding-left: 10px;
-      }
-
-      #right-panel select, #right-panel input {
-        font-size: 15px;
-      }
-
-      #right-panel select {
-        width: 100%;
-      }
-
-      #right-panel i {
-        font-size: 12px;
-      }
-      #right-panel {
-        height: 100%;
-        float: right;
-        width: 390px;
-        overflow: auto;
-      }
-      #map {
-        margin-right: 400px;
-      }
-      #floating-panel {
-        background: #fff;
-        padding: 5px;
-        font-size: 14px;
-        font-family: Arial;
-        border: 1px solid #ccc;
-        box-shadow: 0 2px 2px rgba(33, 33, 33, 0.4);
-        display: none;
-      }
-      @media print {
-        #map {
-          height: 500px;
-          margin: 0;
-        }
-        #right-panel {
-          float: none;
-          width: auto;
-        }
-      }
-    </style>
-  </head>
-  <body>
-<!-- Add in the custom gps coordinates and POI on campus as start and end points -->
-    <div id="floating-panel">
-      <input type="text" class="form-control" id="src1" name="src1" placeholder="">
-    	<button type="Submit" id="submit">Submit</button>
-	<hr>
-<strong>End:</strong>
-      <select id="end">
-        <option value="33.885970, -117.885020">Anderson Field</option>
-        <option value="33.881897, -117.886883">Bookstore/Titan Shops</option>
-        <option value="33.881266, -117.887155">Becker Amphitheater</option>
-        <option value="33.885967, -117.888334">Children's Center</option>
-        <option value="33.877571, -117.883444">College Park</option>
-	<option value="33.880558, -117.886484">Clayes Performing Arts Center</option>
-	<option value="33.884064, -117.888833">Corporation Yard</option>
-	<option value="33.882344, -117.882656">Computer Science</option>
-	<option value="33.879206, -117.885859">Dan Black Hall</option>
-	<option value="33.882349, -117.883215">Engineering</option>
-	<option value="33.881300, -117.884347">Education Classroom</option>
-	<option value="33.880303, -117.881738">Eastside Parking Structure</option>
-	<option value="33.882203, -117.889384">Golleher Alumni House</option>
-	<option value="33.887141, -117.885311">Goodwin Field</option>
-	<option value="33.880442, -117.884170">Humanities-Social Sciences</option>
-	<option value="33.882671, -117.886104">Kinesiology & Health Science</option>
-	<option value="33.879029, -117.884345">Langsdorf Hall</option>
-	<option value="33.879668, -117.885583">McCarthy Hall</option>
-	<option value="33.884843, -117.889426">Parking and Transportation Office</option>
-	<option value="33.883653, -117.881776">Residence Halls</option>
-	<option value="33.881101, -117.885359">Pollak Library</option>
-	<option value="33.883895, -117.883272">Ruby Gerontology Center</option>
-	<option value="33.883189, -117.884151">Student Health and Counseling Center</option>
-	<option value="33.878706, -117.883293">Steven G. Mihaylo Hall</option>
-	<option value="33.884926, -117.882070">Student Housing</option>
-	<option value="33.883102, -117.887812">Student Rec Center</option>
-	<option value="33.883013, -117.885888">Titan Gymnasium</option>
-	<option value="33.880923, -117.890012">Titan Hall</option>
-	<option value="33.883856, -117.884162">Titan House</option>
-	<option value="33.886688, -117.886971">Titan Stadium</option>
-	<option value="33.881402, -117.887644">Titan Student Union</option>
-	<option value="33.879703, -117.884162">University Hall</option>
-	<option value="33.883047, -117.889370">University Police</option>
-	<option value="33.880127, -117.888643">Visual Arts</option>
-	<option value="33.879039, -117.888448">Nutwood Parking Structure</option>
-	<option value="33.883071, -117.888595">State College Parking Structure</option>
-	<option value="33.886846, -117.883152">Fullerton Arboretum</option>
-      </select>
-    </div>
-    <div id="right-panel"></div>
-    <div id="map"></div>
-    <script>
-    x = navigator.geolocation;
-    if(x){
-      x.getCurrentPosition(initMaps);
-    }  
-      function initMaps(position) {
-        var directionsDisplay = new google.maps.DirectionsRenderer;
-        var directionsService = new google.maps.DirectionsService;
-        var latlong = position.coords.latitude + "," + position.coords.longitude;
-
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 16,
-          center: {lat: 33.882994, lng: -117.885076},
-	  gestureHandling: "none",
-streetViewControl: false,
-zoomControl: false,
-mapTypeControl: false,
-styles: [
-    {
-        "featureType": "landscape",
-        "stylers": [
-            {
-                "hue": "#FFA800"
-            },
-            {
-                "saturation": 0
-            },
-            {
-                "lightness": 0
-            },
-            {
-                "gamma": 1
-            }
-        ]
-    },
-    {
-        "featureType": "road.highway",
-        "stylers": [
-            {
-                "hue": "#53FF00"
-            },
-            {
-                "saturation": -73
-            },
-            {
-                "lightness": 40
-            },
-            {
-                "gamma": 1
-            }
-        ]
-    },
-    {
-        "featureType": "road.arterial",
-        "stylers": [
-            {
-                "hue": "#FBFF00"
-            },
-            {
-                "saturation": 0
-            },
-            {
-                "lightness": 0
-            },
-            {
-                "gamma": 1
-            }
-        ]
-    },
-    {
-        "featureType": "road.local",
-        "stylers": [
-            {
-                "hue": "#00FFFD"
-            },
-            {
-                "saturation": 0
-            },
-            {
-                "lightness": 30
-            },
-            {
-                "gamma": 1
-            }
-        ]
-    },
-    {
-        "featureType": "water",
-        "stylers": [
-            {
-                "hue": "#00BFFF"
-            },
-            {
-                "saturation": 6
-            },
-            {
-                "lightness": 8
-            },
-            {
-                "gamma": 1
-            }
-        ]
-    },
-    {
-        "featureType": "poi",
-        "stylers": [
-            {
-                "hue": "#679714"
-            },
-            {
-                "saturation": 33.4
-            },
-            {
-                "lightness": -25.4
-            },
-            {
-                "gamma": 1
-            }
-        ]
-    }
-]
-
-
-        });
-        directionsDisplay.setMap(map); 
-        directionsDisplay.setPanel(document.getElementById('right-panel'));
-
-        var control = document.getElementById('floating-panel');
-        control.style.display = 'block';
-        map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
-
-        var onChangeHandler = function() {
-          calculateAndDisplayRoute(latlong, directionsService, directionsDisplay);
-        };
-  
-        document.getElementById('submit').addEventListener('click', onChangeHandler);
-	
-	//////////////////////////////////////////////////////////////
-	// how to add a custom marker. maybe we could use guide this to add some 
-	// markers and a legend for our campus map. 
-	// guide: https://developers.google.com/maps/documentation/javascript/adding-a-legend
-      	var myLatlng = new google.maps.LatLng(33.877571, -117.883444);
-      	var marker = new google.maps.Marker({
-      	   position: myLatlng,
-      	   title:"Hello World!"
-      	});
-
-	// To add the marker to the map, call setMap();
-	// marker.setMap(map);
-	/////////////////////////////////////////////////////////////
-      }
-
-      function calculateAndDisplayRoute(latlong, directionsService, directionsDisplay) {
-        var start = latlong 
-        var end = document.getElementById('src1').value;
-        directionsService.route({
-          origin: start,
-          destination: end,
-          travelMode: 'WALKING'
-        }, function(response, status) {
-          if (status === 'OK') {
-            directionsDisplay.setDirections(response);
-          } else {
-            window.alert('Directions request failed due to ' + status);
-          }
-        });
-      }
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAFNYYmoKbBvl8lmjer9Dko1p-WMHyiVo&callback=initMaps">
-    </script>
-  </body>
+   <head>
+      <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+      <meta charset="utf-8">
+      <title>Displaying text directions with <code>setPanel()</code></title>
+      <style>
+         /* Always set the map height explicitly to define the size of the div
+         * element that contains the map. */
+         #map {
+         height: 100%;
+         }
+         /* Optional: Makes the sample page fill the window. */
+         html, body {
+         height: 100%;
+         margin: 0;
+         padding: 0;
+         }
+         #floating-panel {
+         position: absolute;
+         top: 10px;
+         left: 25%;
+         z-index: 5;
+         background-color: #fff;
+         padding: 5px;
+         border: 1px solid #999;
+         text-align: center;
+         font-family: 'Roboto','sans-serif';
+         line-height: 30px;
+         padding-left: 10px;
+         }
+         #right-panel {
+         font-family: 'Roboto','sans-serif';
+         line-height: 30px;
+         padding-left: 10px;
+         }
+         #right-panel select, #right-panel input {
+         font-size: 15px;
+         }
+         #right-panel select {
+         width: 100%;
+         }
+         #right-panel i {
+         font-size: 12px;
+         }
+         #right-panel {
+         height: 100%;
+         float: right;
+         width: 390px;
+         overflow: auto;
+         }
+         #map {
+         margin-right: 400px;
+         }
+         #floating-panel {
+         background: #fff;
+         padding: 5px;
+         font-size: 14px;
+         font-family: Arial;
+         border: 1px solid #ccc;
+         box-shadow: 0 2px 2px rgba(33, 33, 33, 0.4);
+         display: none;
+         }
+         @media print {
+         #map {
+         height: 500px;
+         margin: 0;
+         }
+         #right-panel {
+         float: none;
+         width: auto;
+         }
+         }
+      </style>
+   </head>
+   <body>
+      <!-- Add in the custom gps coordinates and POI on campus as start and end points -->
+      <div id="floating-panel">
+         <input type="text" class="form-control" id="src1" name="src1" placeholder="">
+         <button type="Submit" id="submit">Submit</button>
+         <hr>
+         <strong>End:</strong>
+         <select id="end">
+            <option value="33.885970, -117.885020">Anderson Field</option>
+            <option value="33.881897, -117.886883">Bookstore/Titan Shops</option>
+            <option value="33.881266, -117.887155">Becker Amphitheater</option>
+            <option value="33.885967, -117.888334">Children's Center</option>
+            <option value="33.877571, -117.883444">College Park</option>
+            <option value="33.880558, -117.886484">Clayes Performing Arts Center</option>
+            <option value="33.884064, -117.888833">Corporation Yard</option>
+            <option value="33.882344, -117.882656">Computer Science</option>
+            <option value="33.879206, -117.885859">Dan Black Hall</option>
+            <option value="33.882349, -117.883215">Engineering</option>
+            <option value="33.881300, -117.884347">Education Classroom</option>
+            <option value="33.880303, -117.881738">Eastside Parking Structure</option>
+            <option value="33.882203, -117.889384">Golleher Alumni House</option>
+            <option value="33.887141, -117.885311">Goodwin Field</option>
+            <option value="33.880442, -117.884170">Humanities-Social Sciences</option>
+            <option value="33.882671, -117.886104">Kinesiology & Health Science</option>
+            <option value="33.879029, -117.884345">Langsdorf Hall</option>
+            <option value="33.879668, -117.885583">McCarthy Hall</option>
+            <option value="33.884843, -117.889426">Parking and Transportation Office</option>
+            <option value="33.883653, -117.881776">Residence Halls</option>
+            <option value="33.881101, -117.885359">Pollak Library</option>
+            <option value="33.883895, -117.883272">Ruby Gerontology Center</option>
+            <option value="33.883189, -117.884151">Student Health and Counseling Center</option>
+            <option value="33.878706, -117.883293">Steven G. Mihaylo Hall</option>
+            <option value="33.884926, -117.882070">Student Housing</option>
+            <option value="33.883102, -117.887812">Student Rec Center</option>
+            <option value="33.883013, -117.885888">Titan Gymnasium</option>
+            <option value="33.880923, -117.890012">Titan Hall</option>
+            <option value="33.883856, -117.884162">Titan House</option>
+            <option value="33.886688, -117.886971">Titan Stadium</option>
+            <option value="33.881402, -117.887644">Titan Student Union</option>
+            <option value="33.879703, -117.884162">University Hall</option>
+            <option value="33.883047, -117.889370">University Police</option>
+            <option value="33.880127, -117.888643">Visual Arts</option>
+            <option value="33.879039, -117.888448">Nutwood Parking Structure</option>
+            <option value="33.883071, -117.888595">State College Parking Structure</option>
+            <option value="33.886846, -117.883152">Fullerton Arboretum</option>
+         </select>
+      </div>
+      <div id="right-panel"></div>
+      <div id="map"></div>
+      <script>
+         x = navigator.geolocation;
+         if(x){
+           x.getCurrentPosition(initMaps);
+         }  
+           function initMaps(position) {
+             var directionsDisplay = new google.maps.DirectionsRenderer;
+             var directionsService = new google.maps.DirectionsService;
+             var latlong = position.coords.latitude + "," + position.coords.longitude;
+         
+             var map = new google.maps.Map(document.getElementById('map'), {
+               zoom: 16,
+               center: {lat: 33.882994, lng: -117.885076},
+         gestureHandling: "none",
+         streetViewControl: false,
+         zoomControl: false,
+         mapTypeControl: false,
+         styles: [
+         {
+             "featureType": "landscape",
+             "stylers": [
+                 {
+                     "hue": "#FFA800"
+                 },
+                 {
+                     "saturation": 0
+                 },
+                 {
+                     "lightness": 0
+                 },
+                 {
+                     "gamma": 1
+                 }
+             ]
+         },
+         {
+             "featureType": "road.highway",
+             "stylers": [
+                 {
+                     "hue": "#53FF00"
+                 },
+                 {
+                     "saturation": -73
+                 },
+                 {
+                     "lightness": 40
+                 },
+                 {
+                     "gamma": 1
+                 }
+             ]
+         },
+         {
+             "featureType": "road.arterial",
+             "stylers": [
+                 {
+                     "hue": "#FBFF00"
+                 },
+                 {
+                     "saturation": 0
+                 },
+                 {
+                     "lightness": 0
+                 },
+                 {
+                     "gamma": 1
+                 }
+             ]
+         },
+         {
+             "featureType": "road.local",
+             "stylers": [
+                 {
+                     "hue": "#00FFFD"
+                 },
+                 {
+                     "saturation": 0
+                 },
+                 {
+                     "lightness": 30
+                 },
+                 {
+                     "gamma": 1
+                 }
+             ]
+         },
+         {
+             "featureType": "water",
+             "stylers": [
+                 {
+                     "hue": "#00BFFF"
+                 },
+                 {
+                     "saturation": 6
+                 },
+                 {
+                     "lightness": 8
+                 },
+                 {
+                     "gamma": 1
+                 }
+             ]
+         },
+         {
+             "featureType": "poi",
+             "stylers": [
+                 {
+                     "hue": "#679714"
+                 },
+                 {
+                     "saturation": 33.4
+                 },
+                 {
+                     "lightness": -25.4
+                 },
+                 {
+                     "gamma": 1
+                 }
+             ]
+         }
+         ]
+             });
+             directionsDisplay.setMap(map); 
+             //directionsDisplay.setPanel(document.getElementById('right-panel'));
+         
+             var control = document.getElementById('floating-panel');
+             control.style.display = 'block';
+             map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
+         
+             var onChangeHandler = function() {
+               calculateAndDisplayRoute(latlong, directionsService, directionsDisplay);
+             };
+         
+             document.getElementById('submit').addEventListener('click', onChangeHandler);
+         
+         //////////////////////////////////////////////////////////////
+         // how to add a custom marker. maybe we could use guide this to add some 
+         // markers and a legend for our campus map. 
+         // guide: https://developers.google.com/maps/documentation/javascript/adding-a-legend
+           	var myLatlng = new google.maps.LatLng(33.877571, -117.883444);
+           	var marker = new google.maps.Marker({
+           	   position: myLatlng,
+           	   title:"Hello World!"
+           	});
+         
+         // To add the marker to the map, call setMap();
+         // marker.setMap(map);
+         /////////////////////////////////////////////////////////////
+           }
+           function calculateAndDisplayRoute(latlong, directionsService, directionsDisplay) {
+             var start = latlong 
+             var end = document.getElementById('src1').value;
+             directionsService.route({
+               origin: start,
+               destination: end,
+               travelMode: 'WALKING'
+             }, function(response, status) {
+               if (status === 'OK') {
+                 directionsDisplay.setDirections(response);
+               } else {
+                 window.alert('Directions request failed due to ' + status);
+               }
+             });
+           }        
+      </script>
+      <script async defer
+         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAFNYYmoKbBvl8lmjer9Dko1p-WMHyiVo&callback=initMaps"></script>
+   </body>
 </html>
-

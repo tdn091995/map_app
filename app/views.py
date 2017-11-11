@@ -6,8 +6,7 @@ from .forms import WebForm
 
 @app.route('/')
 def test():
-	form = WebForm(request.form)
-	return render_template('index.html', form=form)
+	return render_template('index.html')
                            	
 @app.route('/', methods=['POST'])
 def test_post():
@@ -23,5 +22,12 @@ def test_post():
 		
 @app.route('/mapdemo')
 def mapdemo():
+	return render_template('campusmap.html')
+	
+@app.route('/mapdemo', methods=['POST'])
+def mapdemo_post():
+	return render_template('empty.html')
 
-    return render_template('campusmap.html')
+@app.route('/test')
+def testing():
+	return render_template('directions.html')
