@@ -30,7 +30,8 @@ def mapdemo_post():
 	if request.method == 'POST':
 		src = request.form['src1']
 		cur = request.form['location']
-	gmaps = GMaps(cur, src)
+		gmaps = GMaps(cur, src)
 	directions = gmaps.getDirections()
-	return render_template('directions.html', src=src, coord=cur, directions=directions)
+	tl = gmaps.getTripLength()
+	return render_template('directions.html', src=src, coord=cur, directions=directions, tl = tl)
 

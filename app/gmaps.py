@@ -2,13 +2,11 @@ import googlemaps
 from datetime import datetime
 from .key import getKey
 
-now = datetime.now()
-
 class GMaps():
 	def __init__(self, src1, src2):
 		self.gmaps = googlemaps.Client(getKey())
 		self.li = []
-		self.directions = self.gmaps.directions(src1, src2, mode='walking', departure_time=now)
+		self.directions = self.gmaps.directions(src1, src2, mode='walking', departure_time=datetime.now())
 
 	def getDirections(self):
 		if not self.directions:
@@ -19,6 +17,9 @@ class GMaps():
 			self.li.append(self.directions[0]['legs'][0]['steps'][-1]['html_instructions'])
 			self.li.append('Total: ' + self.directions[0]['legs'][0]['duration']['text']+ ', ' + self.directions[0]['legs'][0]['distance']['text'])
 			return self.li
+
+	def getTripLength(self):
+		return self.directions[0]['legs'][0]['duration']['text']
 
 	def getDirectionsObj(self):
 		return self.directions
