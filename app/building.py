@@ -1,9 +1,23 @@
 def getBuilding(src):
-    abv = src[0] + src[1]
-    return abv
-#   return bdict[abv]
+	classdict = {
+	"CS" : "Computer Science Building",
+	"SGMH" : "Mihaylo",
+	"PL" : "Pollak Library",
+	"MH" : "McCarthy Hall",
+	"E" : "Engineering Building",
+	"H" : "Humanities-Social Sciences",
+	"KHS" : "Kinesiology & Health Science"
+	}
+	abv = ""
+	for i in src:
+		if i != "-":
+			abv = abv + i
+		else:
+		  break
+	building = classdict[abv]
+	return building
 
-print(getBuilding("hello"))
+
         
 
 

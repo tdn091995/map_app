@@ -4,6 +4,7 @@ from flask import jsonify
 from app import app
 from .gmaps import GMaps
 from .forms import WebForm
+from .building import getBuilding
 
 @app.route('/')
 def test():
@@ -30,8 +31,12 @@ def mapdemo_post():
 	if request.method == 'POST':
 		src = request.form['src1']
 		cur = request.form['location']
-		gmaps = GMaps(cur, src)
-	directions = gmaps.getDirections()
-	tl = gmaps.getTripLength()
-	return render_template('directions.html', src=src, coord=cur, directions=directions, tl = tl)
+		src = getBuilding(src)
+		gmaps = GMaps(cur, src+", Fullerton")
+		directions = gmaps.getDirections()
+		tl = gmaps.getTripLength()
+	if not directions:
+		return render_template('campusmap.html')
+	else:
+		return render_template('directions.html', src=src, directions=directions, tl = tl)
 
