@@ -1,5 +1,6 @@
 from flask import request
 from flask import render_template
+from flask import jsonify
 from app import app
 from .gmaps import GMaps
 from .forms import WebForm
@@ -26,12 +27,10 @@ def mapdemo():
 	
 @app.route('/mapdemo', methods=['POST'])
 def mapdemo_post():
-	return render_template('directions.html')
+	if request.method == 'POST':
+		src = request.form['src1']
+		cur = request.form['location']
+	gmaps = GMaps(cur, src)
+	directions = gmaps.getDirections()
+	return render_template('directions.html', src=src, coord=cur, directions=directions)
 
-@app.route('/test')
-def testing():
-	return render_template('directions.html')
-
-@app.route('/test', methods=['POST'])
-def testing_post():
-	return render_template('directions.html')
