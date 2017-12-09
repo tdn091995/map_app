@@ -6,27 +6,12 @@ from .gmaps import GMaps
 from .forms import WebForm
 from .building import getBuilding
 
+
 @app.route('/')
-def test():
-	return render_template('index.html')
-                           	
-@app.route('/', methods=['POST'])
-def test_post():
-	if request.method == 'POST':
-		src1 = request.form['src1']
-		src2 = request.form['src2']
-	gmaps = GMaps(src1, src2)	
-	directions = gmaps.getDirections()
-	if not directions:
-		return render_template('empty.html')
-	else:
-		return render_template('gmaps.html', directions=directions)
-		
-@app.route('/mapdemo')
 def mapdemo():
 	return render_template('campusmap.html')
 	
-@app.route('/mapdemo', methods=['POST'])
+@app.route('/', methods=['POST'])
 def mapdemo_post():
 	if request.method == 'POST':
 		src = request.form['src1']
