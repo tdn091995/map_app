@@ -14,7 +14,10 @@ def getBuilding(src):
 			abv = abv + i
 		else:
 		  break
-	building = classdict[abv]
+	if abv in classdict:
+		building = classdict[abv]
+	else:
+		building = ''
 	return building
 
 

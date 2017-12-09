@@ -97,41 +97,61 @@ https://developers.google.com/maps/documentation/javascript/adding-a-legend
         margin-top: 150px;
 
       }
-      #txt{
+       #txt{
         position: absolute;
-        font-size:60px;
+        font-size:50px;
         color:maroon;
-
         background: #fff;
         border: 1px solid #ccc;
         box-shadow: 0 2px 2px rgba(33, 33, 33, 0.4);
-        top: 130px;
+        top: 135px;
         right: 20%;
-
       }
-      #redwarning{
+     #redwarning{
         position: absolute;
-        font-size:40px;
+        font-size:22px;
         color:maroon;
-
         background: red;
         border: 1px solid #ccc;
         box-shadow: 0 2px 2px rgba(33, 33, 33, 0.4);
         top: 210px;
-        right: 24%;
-
+        right: 16%;
       }
       #orangewarning{
         position: absolute;
-        font-size:40px;
+        font-size:22px;
         color:maroon;
-
         background: orange;
         border: 1px solid #ccc;
         box-shadow: 0 2px 2px rgba(33, 33, 33, 0.4);
         top: 210px;
-        right: 24%;
-
+        right: 18%;
+      }
+      #panel{
+        position: absolute;
+        font-size:18px;
+        color:maroon;
+        background: #fff;
+        border: 1px solid #ccc;
+        box-shadow: 0 2px 2px rgba(33, 33, 33, 0.4);
+        top: 30px;
+        right: 2%;
+        display: inline-block;
+        cursor: pointer;
+      }
+      #popuptext {
+          visibility: hidden;
+          width: 160px;
+          background-color: #555;
+          color: #fff;
+          text-align: center;
+          border-radius: 6px;
+          padding: 8px 0;
+          position: absolute;
+          z-index: 1;
+          bottom: 125%;
+          left: 50%;
+          margin-left: -80px;
       }
 
 
@@ -160,6 +180,7 @@ https://developers.google.com/maps/documentation/javascript/adding-a-legend
   </form>
 </div>
 
+
 <div>
   <script>
   function startTime(){
@@ -170,21 +191,14 @@ https://developers.google.com/maps/documentation/javascript/adding-a-legend
     }
     var m=today.getMinutes();
     var s=today.getSeconds();
-
-
+    h = 7;
+    m = 29;
+    s = 0;
     h=checkTime(h);
     m=checkTime(m);
     s=checkTime(s);
-{{ tl }}
-    document.getElementById('txt').innerHTML=h+":"+m+":"+s;
-    if(m == 55){
-      document.getElementById('redwarning').innerHTML="RUN!";
-    }
-    if(m == 50){
-      document.getElementById('orangewarning').innerHTML="Hurry!";
-    }
-
-    t=setTimeout(function(){startTime()},500);
+    {% block time %}{% endblock %}
+    // t=setTimeout(function(){startTime()},500);
   }
   function checkTime(i){
     if(i<10){
@@ -212,6 +226,17 @@ https://developers.google.com/maps/documentation/javascript/adding-a-legend
       {% block display %}{% endblock %}
     </div>
     <div id="map"></div>
+        <div id="panel" onclick="myFunction()">
+        <span class="popuptext" id="myPopup"></span>
+        <center>Guide</center>
+        1. Enter class on left panel and click submit
+        <br>
+        2. Follow visual map and text directions
+        <br>
+        3. Time warning signs will appear
+
+      </div>
+    </div>
     <script>
     x = navigator.geolocation;
     if(x){
@@ -224,11 +249,11 @@ https://developers.google.com/maps/documentation/javascript/adding-a-legend
         document.getElementById('location').value = latlong;
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 16,
-          center: {lat: 33.882994, lng: -117.885076},
-          gestureHandling: "none",
+          center: {lat: 33.881994, lng: -117.885076},
+//          gestureHandling: "none",
           streetViewControl: false,
 //          zoomControl: false,
-//          mapTypeControl: false,
+          mapTypeControl: false,
           styles: [
     {
         "featureType": "landscape",
@@ -254,7 +279,7 @@ https://developers.google.com/maps/documentation/javascript/adding-a-legend
                 "hue": "#53FF00"
             },
             {
-                "saturation": -73
+                "saturation": 100
             },
             {
                 "lightness": 40
@@ -283,15 +308,16 @@ https://developers.google.com/maps/documentation/javascript/adding-a-legend
     },
     {
         "featureType": "road.local",
+        "elementType": "geometry",
         "stylers": [
             {
-                "hue": "#00FFFD"
+                "hue": "#FFFFFF"
             },
             {
-                "saturation": 0
+                "saturation": 100
             },
             {
-                "lightness": 30
+                "lightness": 100
             },
             {
                 "gamma": 1

@@ -12,7 +12,7 @@
 {% block script %}
       function calculateAndDisplayRoute(latlong, directionsService, directionsDisplay) {
         var start = latlong
-        var end =  "{{ src }} ,Fullerton";
+        var end =  "{{ src }}, Fullerton";
         directionsService.route({
           origin: start,
           destination: end,
@@ -26,3 +26,21 @@
         });
       }
 {% endblock %}
+
+{% block time %}
+    document.getElementById('txt').innerHTML=h+":"+m+":"+s;
+
+    var travelTime = parseInt("{{tl}}");
+    var timeLeft = 30 - m;
+    var arrival = timeLeft - travelTime
+
+    if(arrival < 0){
+      document.getElementById('redwarning').innerHTML="RUN! " + "You'll be there: " + arrival * -1 + " mins late!";
+    }
+    else if(arrival > 0 && arrival < 10){
+      document.getElementById('orangewarning').innerHTML="You'll be there: " + arrival + " mins early";
+    }
+    else{
+
+    }
+  {% endblock %}
