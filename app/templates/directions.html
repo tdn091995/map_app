@@ -7,8 +7,6 @@
       {% endfor %}
 {% endblock %}
 
-{% block call %} calculateAndDisplayRoute(latlong, directionsService, directionsDisplay) {% endblock %}
-
 {% block script %}
       function calculateAndDisplayRoute(latlong, directionsService, directionsDisplay) {
         var start = latlong
@@ -27,6 +25,8 @@
       }
 {% endblock %}
 
+{% block call %} calculateAndDisplayRoute(latlong, directionsService, directionsDisplay) {% endblock %}
+
 {% block time %}
     document.getElementById('txt').innerHTML=h+":"+m+":"+s;
 
@@ -43,4 +43,4 @@
     else{
 
     }
-  {% endblock %}
+{% endblock %}
