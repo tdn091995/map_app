@@ -2,7 +2,7 @@
 {% block display %}
       <h2> Destination: {{ src }} </h2>
       {% for i in directions %}
-      <p> {{ loop.index }}. {{ i|safe }} </p>
+      <p> {{ i|safe }} </p>
       <hr>
       {% endfor %}
 {% endblock %}
