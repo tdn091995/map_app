@@ -3,9 +3,7 @@ from flask import render_template
 from flask import jsonify
 from app import app
 from .gmaps import GMaps
-from .forms import WebForm
 from .building import getBuilding
-
 
 @app.route('/')
 def mapdemo():
