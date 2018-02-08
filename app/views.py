@@ -6,10 +6,14 @@ from .gmaps import GMaps
 from .building import getBuilding
 
 @app.route('/')
+def home():
+	return render_template('base.html')
+
+@app.route('/map')
 def mapdemo():
 	return render_template('campusmap.html')
 	
-@app.route('/', methods=['POST'])
+@app.route('/map', methods=['POST'])
 def mapdemo_post():
 	if request.method == 'POST':
 		src = request.form['src1']

@@ -8,7 +8,7 @@
       {% endfor %}
 {% endblock %}
 
-{% block script %}
+{% block maproute %}
       function calculateAndDisplayRoute(latlong, directionsService, directionsDisplay) {
         var start = latlong
         var end =  "{{ src }}, Fullerton";
@@ -24,9 +24,8 @@
           }
         });
       }
+      calculateAndDisplayRoute(latlong, directionsService, directionsDisplay);
 {% endblock %}
-
-{% block call %} calculateAndDisplayRoute(latlong, directionsService, directionsDisplay) {% endblock %}
 
 {% block time %}
     document.getElementById('txt').innerHTML=h+":"+m+":"+s;
@@ -40,8 +39,5 @@
     }
     else if(arrival > 0 && arrival < 10){
       document.getElementById('orangewarning').innerHTML="You'll be there: " + arrival + " mins early";
-    }
-    else{
-
     }
 {% endblock %}

@@ -1,43 +1,25 @@
 <html>
-  <head>
-    <title> Hello </title>
-      <style>
-      #txt{
-        font-size:85px;
-        color:maroon;
-        text-align:center;
-      }
-      </style>
-      <script>
-      function startTime(){
-        var today=new Date();
-        var h=today.getHours();
-        var m=today.getMinutes();
-        var s=today.getSeconds();
-        m=checkTime(m);
-        s=checkTime(s);
-        document.getElementById('txt').innerHTML=h+":"+m+":"+s;
-        t=setTimeout(function(){startTime()},500);
-      }
-      function checkTime(i){
-        if(i<10){
-          i="0"+i;
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Displaying text directions with <code>setPanel()</code></title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.6/components/menu.min.css"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        body {
+            background: url(static/img/university5.jpg);
+            background-size: cover;
+            background-size: 100%;
         }
-        return i;
-      }
-      </script>
-  </head>
-  <body onload="startTime()">
-    <div id="txt">
-    </div>
+  </style>
+</head>
 
-
-    <a href="/">Home</a>
-    <p></p>
-    <a href="/mapdemo">Map Demo</a>
-    <hr>
-    {% block body %}{% endblock %}
-  </body>
-
-
-</html>
+<body>
+  <div class="ui attached inverted menu">
+    <a class="item" href="/">Home</a>
+    <a class="item" href="/map">Map</a>
+    <a class="item">Contact</a>
+  </div>
+  {% block map %} {% endblock %}
+</body>

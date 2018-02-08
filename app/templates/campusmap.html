@@ -11,61 +11,15 @@
    https://developers.google.com/maps/documentation/javascript/adding-a-legend
    
     -->
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
 
-<head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <title>Displaying text directions with <code>setPanel()</code></title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <style>
-        body {
-            background: url(static/img/university5.jpg);
-            background-size: cover;
-            background-size: 100%;
-        }
-	</style>
-</head>
-
-<div>
-    <script>
-        function startTime() {
-            var today = new Date();
-            var h = today.getHours();
-            if (h > 12) {
-                h = h - 12;
-            }
-            else if (h == 0) {
-            	h = 12;
-            }
-            var m = today.getMinutes();
-            var s = today.getSeconds();
-            //h = 7;
-            //m = 29;
-            //s = 0;
-            h = checkTime(h);
-            m = checkTime(m);
-            s = checkTime(s); 
-            {% block time %} {% endblock %}
-            // t=setTimeout(function(){startTime()},500);
-        }
-        function checkTime(i) {
-            if (i < 10) {
-                i = "0" + i;
-            }
-            return i;
-        }
-    </script>
-</div>
-
-<body onload="startTime()">
+{% block map %}
 	<div id="floating-panel">
 	    <form id="geolocation" action="" method="POST">
 	        <a>Enter Class
-	         <input type="text" class="form-control" id="src1" name="src1" placeholder="">
-	         <input type="hidden" id = "location" name="location" value="" />  
-	         <button type="Submit" id="submit">Submit</button>
+	         <input type="text" id="src1" name="src1" placeholder="">
+	         <input type="hidden" id="location" name="location" value="">  
+	         <button class="button ui" type="Submit" id="submit">Submit</button>
 	         </a>
 	    </form>
 	</div>
@@ -92,12 +46,37 @@
 	<script type="text/javascript" src="{{url_for('static', filename='scripts/map.js')}}"></script>
 	-->
 	<script>
-		function start() {
-		    if (navigator.geolocation) {
+		function start() {	    
+	        function startTime() {	// Displays real time clock
+	            var today = new Date();
+	            var h = today.getHours();
+	            if (h > 12) {
+	                h = h - 12;
+	            }
+	            else if (h == 0) {
+	            	h = 12;
+	            }
+	            var m = today.getMinutes();
+	            var s = today.getSeconds();
+	            h = checkTime(h);
+	            m = checkTime(m);
+	            s = checkTime(s); 
+	            document.getElementById('txt').innerHTML=h+":"+m+":"+s;
+	            setTimeout(startTime, 500);
+	            {% block time %} {% endblock %}
+	        }
+	        function checkTime(i) {
+	            if (i < 10) {
+	                i = "0" + i;
+	            }
+	            return i;
+	        }
+	        startTime();
+		    if (navigator.geolocation) {	// Call geolocation to get user's current position; initMaps is called
 		        navigator.geolocation.getCurrentPosition(initMaps);
 		    } 
 		    {% block script %} {% endblock %}
-		    function initMaps(position) {
+		    function initMaps(position) {	// displays map on page, sets up variables for the directions service for use later
 		        var directionsDisplay = new google.maps.DirectionsRenderer;
 		        var directionsService = new google.maps.DirectionsService;
 		        var latlong = position.coords.latitude + "," + position.coords.longitude;
@@ -266,11 +245,9 @@
 		            });
 		        });
 		        document.getElementById('location').value = latlong; 
-		        {% block call %} {% endblock %}
+		        {% block maproute %} {% endblock %}	// calls function displaying route on the map
 		    }
 		}
 	</script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAFNYYmoKbBvl8lmjer9Dko1p-WMHyiVo&callback=start"></script>
-</body>
-
-</html>
+{% endblock %}
