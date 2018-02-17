@@ -35,11 +35,12 @@
     var arrival = timeLeft - travelTime
 
     if(arrival < 0){
+      document.getElementById('warning').style.background="red";
       document.getElementById('warning').innerHTML="RUN! " + "You'll be there: " + arrival * -1 + " mins late!";
-      document.getelementById('warning').style.background="red";
     }
     else if(arrival > 0 && arrival < 10){
+      document.getElementById('warning').style.background="orange";
       document.getElementById('warning').innerHTML="You'll be there: " + arrival + " mins early";
-      document.getelementById('warning').style.background="orange";
+      
     }
 {% endblock %}
