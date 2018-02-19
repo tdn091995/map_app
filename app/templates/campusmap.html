@@ -72,117 +72,28 @@
 		    } 
 		    {% block script %} {% endblock %}
 		    function initMaps(position) {	// displays map on page, sets up variables for the directions service for use later
+		        var csuflocation = {lat: 33.881994, lng: -117.885076};
 		        var directionsDisplay = new google.maps.DirectionsRenderer;
 		        var directionsService = new google.maps.DirectionsService;
 		        var latlong = position.coords.latitude + "," + position.coords.longitude;
-		        var map = new google.maps.Map(document.getElementById('map'), {
-		            zoom: 16,
-		            center: {
-		                lat: 33.881994,
-		                lng: -117.885076
-		            },
-		            streetViewControl: false,
-		            mapTypeControl: false,
-		            styles: [{
-		                    "featureType": "landscape",
-		                    "stylers": [{
-		                            "hue": "#FFA800"
-		                        },
-		                        {
-		                            "saturation": 0
-		                        },
-		                        {
-		                            "lightness": 0
-		                        },
-		                        {
-		                            "gamma": 1
-		                        }
-		                    ]
-		                },
-		                {
-		                    "featureType": "road.highway",
-		                    "stylers": [{
-		                            "hue": "#53FF00"
-		                        },
-		                        {
-		                            "saturation": 100
-		                        },
-		                        {
-		                            "lightness": 40
-		                        },
-		                        {
-		                            "gamma": 1
-		                        }
-		                    ]
-		                },
-		                {
-		                    "featureType": "road.arterial",
-		                    "stylers": [{
-		                            "hue": "#FBFF00"
-		                        },
-		                        {
-		                            "saturation": 0
-		                        },
-		                        {
-		                            "lightness": 0
-		                        },
-		                        {
-		                            "gamma": 1
-		                        }
-		                    ]
-		                },
-		                {
-		                    "featureType": "road.local",
-		                    "elementType": "geometry",
-		                    "stylers": [{
-		                            "hue": "#FFFFFF"
-		                        },
-		                        {
-		                            "saturation": 100
-		                        },
-		                        {
-		                            "lightness": 100
-		                        },
-		                        {
-		                            "gamma": 1
-		                        }
-		                    ]
-		                },
-		                {
-		                    "featureType": "water",
-		                    "stylers": [{
-		                            "hue": "#00BFFF"
-		                        },
-		                        {
-		                            "saturation": 6
-		                        },
-		                        {
-		                            "lightness": 8
-		                        },
-		                        {
-		                            "gamma": 1
-		                        }
-		                    ]
-		                },
-		                {
-		                    "featureType": "poi",
-		                    "stylers": [{
-		                            "hue": "#679714"
-		                        },
-		                        {
-		                            "saturation": 33.4
-		                        },
-		                        {
-		                            "lightness": -25.4
-		                        },
-		                        {
-		                            "gamma": 1
-		                        }
-		                    ]
-		                }
-		            ]
-		        });
+		        var csufmapfeatures = {
+    		        zoom: 16, 
+    		        center: csuflocation, 
+    		        streetViewControl: false, 
+    		        mapTypeControl: false,
+					styles: [
+						{"featureType": "landscape","stylers": [{"hue": "#FFA800"},{"saturation": 0},{"lightness": 0},{"gamma": 1}]},
+		                {"featureType": "road.highway","stylers": [{"hue": "#53FF00"},{"saturation": 100},{"lightness": 40},{"gamma": 1}]},
+		                {"featureType": "road.arterial","stylers": [{"hue": "#FBFF00"},{"saturation": 0},{"lightness": 0},{"gamma": 1}]},
+		                {"featureType": "road.local","elementType": "geometry","stylers": [{"hue": "#FFFFFF"},{"saturation": 100},{"lightness": 100},{"gamma": 1}]},
+		                {"featureType": "water","stylers": [{"hue": "#00BFFF"},{"saturation": 6},{"lightness": 8},{"gamma": 1}]},
+		                {"featureType": "poi","stylers": [{"hue": "#679714"},{"saturation": 33.4},{"lightness": -25.4},{"gamma": 1}]}
+					]
+				};
+				
+		        var map = new google.maps.Map(document.getElementById('map'),csufmapfeatures};		            
 		        directionsDisplay.setMap(map);
+		       
 		        var control = document.getElementById('floating-panel');
 		        control.style.display = 'block';
 		        // display the customized icons
