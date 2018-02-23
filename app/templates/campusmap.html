@@ -68,13 +68,15 @@
 	        }
 	        startTime();
 		    if (navigator.geolocation) {	// Call geolocation to get user's current position; initMaps is called
-		        navigator.geolocation.getCurrentPosition(initMaps);
+		        navigator.geolocation.watchPosition(initMaps);
 		    } 
-		    {% block script %} {% endblock %}
 		    function initMaps(position) {	// displays map on page, sets up variables for the directions service for use later
 		        var directionsDisplay = new google.maps.DirectionsRenderer;
 		        var directionsService = new google.maps.DirectionsService;
 		        var latlong = position.coords.latitude + "," + position.coords.longitude;
+		        function updateCurLoc() {
+
+		        }
 		        var map = new google.maps.Map(document.getElementById('map'), {
 		            zoom: 16,
 		            center: {
@@ -244,5 +246,5 @@
 		    }
 		}
 	</script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAFNYYmoKbBvl8lmjer9Dko1p-WMHyiVo&callback=start"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ key }}&callback=start"></script>
 {% endblock %}

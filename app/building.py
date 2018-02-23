@@ -1,6 +1,6 @@
 def getBuilding(src):
 	classdict = {
-	"CS" : "Computer Science Building",
+	"CS" : "Computer Science",
 	"SGMH" : "Mihaylo",
 	"PL" : "Pollak Library",
 	"MH" : "McCarthy Hall",

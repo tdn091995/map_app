@@ -29,18 +29,18 @@
 
 {% block time %}
     document.getElementById('txt').innerHTML=h+":"+m+":"+s;
-
     var travelTime = parseInt("{{tl}}");
     var timeLeft = 30 - m;
     var arrival = timeLeft - travelTime
-
-    if(arrival < 0){
-      document.getElementById('warning').style.background="red";
-      document.getElementById('warning').innerHTML="RUN! " + "You'll be there: " + arrival * -1 + " mins late!";
-    }
-    else if(arrival > 0 && arrival < 10){
-      document.getElementById('warning').style.background="orange";
-      document.getElementById('warning').innerHTML="You'll be there: " + arrival + " mins early";
-      
-    }
+    if(arrival < 10){
+      document.getElementById('warning').style.visibility="visible";
+      if(arrival < 0){
+        document.getElementById('warning').style.background="red";
+        document.getElementById('warning').innerHTML="RUN! " + "You'll be there: " + arrival * -1 + " mins late!";
+      }
+      else{
+        document.getElementById('warning').style.background="orange";
+        document.getElementById('warning').innerHTML="You'll be there: " + arrival + " mins early";
+      }
+    } 
 {% endblock %}
