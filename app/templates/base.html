@@ -6,13 +6,15 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.6/components/menu.min.css"/>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ key }}"></script>
+    <script src="{{ url_for('static', filename='scripts/geolocation-marker.js') }}"></script>
     <style>
         body {
             background: url(static/img/university5.jpg);
             background-size: cover;
             background-size: 100%;
         }
-  </style>
+    </style>
 </head>
 
 <body>
