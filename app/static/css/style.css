@@ -30,7 +30,7 @@
             font-family: Arial;
             border: 1px solid #ccc;
             box-shadow: 0 2px 2px rgba(33, 33, 33, 0.4);
-            display: none;
+            display: block;
             margin-top: 150px
         }
 
@@ -58,6 +58,7 @@
 
         #warning {
         	display: block;
+            visibility: hidden;
             position: absolute;
             font-size: 22px;
             color: maroon;

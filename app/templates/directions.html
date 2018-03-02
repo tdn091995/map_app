@@ -9,37 +9,42 @@
 {% endblock %}
 
 {% block maproute %}
-      function calculateAndDisplayRoute(latlong, directionsService, directionsDisplay) {
-        var start = latlong
-        var end =  "{{ src }}, Fullerton";
-        directionsService.route({
-          origin: start,
-          destination: end,
-          travelMode: 'WALKING'
-        }, function(response, status) {
-          if (status === 'OK') {
-            directionsDisplay.setDirections(response);
-          } else {
-            window.alert('Directions request failed due to ' + status);
-          }
-        });
-      }
-      calculateAndDisplayRoute(latlong, directionsService, directionsDisplay);
+      GeoMarker = new GeolocationMarker();
+      GeoMarker.setCircleOptions({visible: false});
+      google.maps.event.addListenerOnce(GeoMarker, 'position_changed', function() {
+        //map.setCenter(this.getPosition());
+        //map.fitBounds(this.getBounds());
+      });
+      GeoMarker.setMap(map)
+      var start = latlong
+      var end =  "{{ src }}, Fullerton";
+      directionsService.route({
+        origin: start,
+        destination: end,
+        travelMode: 'WALKING'
+      }, function(response, status) {
+        if (status === 'OK') {
+          directionsDisplay.setDirections(response);
+        } else {
+          window.alert('Directions request failed due to ' + status);
+        }
+      });
 {% endblock %}
 
 {% block time %}
     document.getElementById('txt').innerHTML=h+":"+m+":"+s;
-
     var travelTime = parseInt("{{tl}}");
     var timeLeft = 30 - m;
     var arrival = timeLeft - travelTime
-
-    if(arrival < 0){
-      document.getElementById('warning').innerHTML="RUN! " + "You'll be there: " + arrival * -1 + " mins late!";
-      document.getelementById('warning').style.background="red";
-    }
-    else if(arrival > 0 && arrival < 10){
-      document.getElementById('warning').innerHTML="You'll be there: " + arrival + " mins early";
-      document.getelementById('warning').style.background="orange";
-    }
+    if(arrival < 10){
+      document.getElementById('warning').style.visibility="visible";
+      if(arrival < 0){
+        document.getElementById('warning').style.background="red";
+        document.getElementById('warning').innerHTML="RUN! " + "You'll be there: " + arrival * -1 + " mins late!";
+      }
+      else{
+        document.getElementById('warning').style.background="orange";
+        document.getElementById('warning').innerHTML="You'll be there: " + arrival + " mins early";
+      }
+    } 
 {% endblock %}
