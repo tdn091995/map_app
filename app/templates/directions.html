@@ -9,38 +9,41 @@
 {% endblock %}
 
 {% block maproute %}
-      function calculateAndDisplayRoute(latlong, directionsService, directionsDisplay) {
-        var start = latlong
-        //var end =  "{{ src }}, Fullerton";
-        if("{{ src }}" === 'Pollak Library'){
-    			var newEnd = '33.881530, -117.885766';
-    		} else if("{{ src }}" === 'Computer Science Building'){
-    			var newEnd = '33.882148, -117.882660';
-    		} else if("{{ src }}" === 'Mihaylo'){
-    			var newEnd = '33.878866, -117.883385';
-    		} else if("{{ src }}" === 'McCarthy Hall'){
-    			var newEnd = '33.879864, -117.885550';
-    		} else if("{{ src }}" === 'Engineering Building'){
-    			var newEnd = '33.882177, -117.883186';
-    		} else if("{{ src }}" === 'Humanities-Social Sciences'){
-    			var newEnd = '33.880497, -117.884462';
-    		} else if("{{ src }}" === 'Kinesiology &amp; Health Science'){
-    			var newEnd = '33.882628, -117.885890';
-    		}//text directions wrong unless i add fullerton. cs and khs break if fullerton is added in views.py... next step is to add waypoints
-        directionsService.route({
-          origin: start,
-          //destination: end,
-          destination: newEnd,
-          travelMode: 'WALKING'
-        }, function(response, status) {
-          if (status === 'OK') {
-            directionsDisplay.setDirections(response);
-          } else {
-            window.alert('Directions request failed due to ' + status);
-          }
-        });
-      }
-      calculateAndDisplayRoute(latlong, directionsService, directionsDisplay);
+      GeoMarker = new GeolocationMarker();
+      GeoMarker.setCircleOptions({visible: false});
+      google.maps.event.addListenerOnce(GeoMarker, 'position_changed', function() {
+        //map.setCenter(this.getPosition());
+        //map.fitBounds(this.getBounds());
+      });
+      GeoMarker.setMap(map)
+      var start = latlong
+      //var end =  "{{ src }}, Fullerton";
+      if("{{ src }}" === 'Pollak Library'){
+        var newEnd = '33.881530, -117.885766';
+      } else if("{{ src }}" === 'Computer Science Building'){
+        var newEnd = '33.882148, -117.882660';
+      } else if("{{ src }}" === 'Mihaylo'){
+        var newEnd = '33.878866, -117.883385';
+      } else if("{{ src }}" === 'McCarthy Hall'){
+        var newEnd = '33.879864, -117.885550';
+      } else if("{{ src }}" === 'Engineering Building'){
+        var newEnd = '33.882177, -117.883186';
+      } else if("{{ src }}" === 'Humanities-Social Sciences'){
+        var newEnd = '33.880497, -117.884462';
+      } else if("{{ src }}" === 'Kinesiology &amp; Health Science'){
+        var newEnd = '33.882628, -117.885890';
+      }//text directions wrong unless i add fullerton. cs and khs break if fullerton is added in views.py... next step is to add waypoints
+      directionsService.route({
+        origin: start,
+        destination: end,
+        travelMode: 'WALKING'
+      }, function(response, status) {
+        if (status === 'OK') {
+          directionsDisplay.setDirections(response);
+        } else {
+          window.alert('Directions request failed due to ' + status);
+        }
+      });
 {% endblock %}
 
 {% block time %}
