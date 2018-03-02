@@ -8,12 +8,14 @@ from .key import getKey
 
 @app.route('/')
 def home():
-	return render_template('base.html')
+	key = getKey()
+	return render_template('base.html', key=key)
 
 @app.route('/map')
 def mapdemo():
-	return render_template('campusmap.html')
-
+	key = getKey()
+	return render_template('campusmap.html', key=key)
+	
 @app.route('/map', methods=['POST'])
 def mapdemo_post():
 	if request.method == 'POST':

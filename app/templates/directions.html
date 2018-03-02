@@ -9,22 +9,26 @@
 {% endblock %}
 
 {% block maproute %}
-      function calculateAndDisplayRoute(latlong, directionsService, directionsDisplay) {
-        var start = latlong
-        var end =  "{{ src }}, Fullerton";
-        directionsService.route({
-          origin: start,
-          destination: end,
-          travelMode: 'WALKING'
-        }, function(response, status) {
-          if (status === 'OK') {
-            directionsDisplay.setDirections(response);
-          } else {
-            window.alert('Directions request failed due to ' + status);
-          }
-        });
-      }
-      calculateAndDisplayRoute(latlong, directionsService, directionsDisplay);
+      GeoMarker = new GeolocationMarker();
+      GeoMarker.setCircleOptions({visible: false});
+      google.maps.event.addListenerOnce(GeoMarker, 'position_changed', function() {
+        //map.setCenter(this.getPosition());
+        //map.fitBounds(this.getBounds());
+      });
+      GeoMarker.setMap(map)
+      var start = latlong
+      var end =  "{{ src }}, Fullerton";
+      directionsService.route({
+        origin: start,
+        destination: end,
+        travelMode: 'WALKING'
+      }, function(response, status) {
+        if (status === 'OK') {
+          directionsDisplay.setDirections(response);
+        } else {
+          window.alert('Directions request failed due to ' + status);
+        }
+      });
 {% endblock %}
 
 {% block time %}
