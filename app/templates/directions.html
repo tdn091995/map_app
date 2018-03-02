@@ -35,7 +35,7 @@
       }//text directions wrong unless i add fullerton. cs and khs break if fullerton is added in views.py... next step is to add waypoints
       directionsService.route({
         origin: start,
-        destination: end,
+        destination: newEnd,
         travelMode: 'WALKING'
       }, function(response, status) {
         if (status === 'OK') {
