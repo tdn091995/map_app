@@ -1,6 +1,8 @@
 {% extends "campusmap.html" %}
 
 {% block display %}
+	<br>
+	<br>
       <h2> Destination: {{ src }} </h2>
       {% for i in directions %}
       <p> {{ i|safe }} </p>
@@ -32,7 +34,7 @@
         var newEnd = '33.880497, -117.884462';
       } else if("{{ src }}" === 'Kinesiology &amp; Health Science'){
         var newEnd = '33.882628, -117.885890';
-      }//text directions wrong unless i add fullerton. cs and khs break if fullerton is added in views.py... next step is to add waypoints
+      }
       directionsService.route({
         origin: start,
         destination: newEnd,

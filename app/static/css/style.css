@@ -9,17 +9,24 @@
         }
 
         #map {
+			position: absolute;
             height: 570px;
-            margin-top: 160px;
-            margin-right: 400px;
-            margin-left: 200px;
+			width: 800px;
+			top: 200px;
+			left: 320px;
         }
+		
+		#navbar {
+			position: relative;
+			top: 100px;
+		}
+		
         
         #floating-panel {
             position: absolute;
             height: 30px;
-            top: 10px;
-            left: 15%;
+            top: 150px;
+            left: 20%;
             z-index: 5;
             background: #FFF;
             text-align: center;
@@ -31,17 +38,17 @@
             border: 1px solid #ccc;
             box-shadow: 0 2px 2px rgba(33, 33, 33, 0.4);
             display: block;
-            margin-top: 150px
         }
 
         #right-panel {
+			position: absolute;
             padding-left: 10px;
             height: 570px;
             float: right;
             width: 390px;
             overflow: auto;
-            margin-top: 160px;
-            margin-right: 200px;
+			right: 400px;
+			top: 200px;
             background-color: white;
         }
 
@@ -53,23 +60,24 @@
             border: 1px solid #ccc;
             box-shadow: 0 2px 2px rgba(33, 33, 33, 0.4);
             top: 135px;
-            right: 20%;
+            right: 25%;
         }
 
         #warning {
+			position: absolute;
         	display: block;
             visibility: hidden;
-            position: absolute;
             font-size: 22px;
             color: maroon;
             border: 1px solid #ccc;
             box-shadow: 0 2px 2px rgba(33, 33, 33, 0.4);
             top: 210px;
-            right: 16%;
+            right: 25%;
+			z-index: 1;
         }
 
         #panel {
-            position: absolute;
+			position: absolute;
             font-size: 18px;
             color: maroon;
             background: #fff;

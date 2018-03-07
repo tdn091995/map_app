@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
@@ -6,8 +7,10 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.6/components/menu.min.css"/>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <script src="https://maps.googleapis.com/maps/api/js?key={{ key }}"></script>
-    <script src="{{ url_for('static', filename='scripts/geolocation-marker.js') }}"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/components/dropdown.css"/>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/components/dropdown.min.js"/></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key={{ key }}"></script>
+	<script src="{{ url_for('static', filename='scripts/geolocation-marker.js') }}"></script>
     <style>
         body {
             background: url(static/img/university5.jpg);
@@ -18,10 +21,137 @@
 </head>
 
 <body>
-  <div class="ui attached inverted menu">
-    <a class="item" href="/">Home</a>
-    <a class="item" href="/map">Map</a>
-    <a class="item">Contact</a>
-  </div>
+	<div id="navbar">
+	<div class="ui vertical menu">
+	<a class="item">California State University, Fullerton</a>
+	<div class="ui simple dropdown item">
+	  <i class="book icon"></i> Education Buildings
+		<div class="menu">
+		  <div class="header">Adjust time span</div>
+		  <div class="item"><a href="#">Steven G. Mihalyo</a></div>
+		  <div class="item"><a href="#">Langsdorf Hall</a></div>
+		  <div class="item"><a href="#">Dan Black Hall</a></div>
+		  <div class="item"><a href="#">Mc Carthy Hall</a></div>
+		  <div class="item"><a href="#">Visual Arts</a></div>
+		  <div class="item"><a href="#">Kinesiology & Health Science</a></div>
+		  <div class="item"><a href="#">Humanities & Social Science</a></div>
+		  <div class="item"><a href="#">Education Classroom</a></div>
+		  <div class="item"><a href="#">Engineering</a></div>
+		  <div class="item"><a href="#">Computer Science</a></div>
+		  <div class="item"><a href="#">University Hall</a></div>
+		  <div class="item"><a href="#">Golleher Alumini House</a></div>
+		  <div class="item"><a href="#">Ruby Gerontology Center</a></div>
+		  <div class="item"><a href="#">Children's Center</a></div>
+		  <div class="item"><a href="#">Pollack Library</a></div>
+		  <div class="item"><a href="#">Pollack Library South</a></div>
+		  <div class="item"><a href="#">Titan Gym</a></div>
+		  <div class="item"><a href="#">CPAC</a></div>
+		</div>
+	</div>
+
+		<div class="ui simple dropdown item">
+		  <i class="coffee icon"></i> Food & Dining
+			<div class="menu">
+			  <div class="item"><a href="#">Panda Express(TSU)</a></div>
+			  <div class="item"><a href="#">Togo Sandwich(TSU)</a></div>
+			  <div class="item"><a href="#">Juice it Up(TSU)</a></div>
+			  <div class="item"><a href="#">Baja Express(TSU)</a></div>
+			  <div class="item"><a href="#">Carl's Jr</a></div>
+			  <div class="item"><a href="#">Togo Sandwich(College Park)</a></div>
+			  <div class="item"><a href="#">Starbucks(PL)</a></div>
+			  <div class="item"><a href="#">Starbucks(TSU)</a></div>
+			  <div class="item"><a href="#">Starbucks(Mihalyo)</a></div>
+			  <div class="item"><a href="#">Gastronome</a></div>
+			</div>
+		</div>
+
+		<div class="ui simple dropdown item">
+		  <i class="download icon"></i> ATM & Bank
+			<div class="menu">
+			  <div class="item"><a href="#">BoFA Bank ATM</a></div>
+			  <div class="item"><a href="#">Chase Bank ATM</a></div>
+			  <div class="item"><a href="#">Wells Fargo Bank ATM</a></div>
+			  <div class="item"><a href="#">US Bank Branch(Titan Shop)</a></div>
+			</div>
+		</div>
+
+		<div class="ui simple dropdown item">
+		  <i class="download icon"></i> Landmarks
+			<div class="menu">
+			  <div class="item"><a href="#">QUAD</a></div>
+			  <div class="item"><a href="#">ECS QUAD</a></div>
+			</div>
+		</div>
+
+		<div class="ui simple dropdown item">
+		  <i class="download icon"></i> Facilities
+			<div class="menu">
+			  <div class="item"><a href="#">Corporation Yard</a></div>
+			  <div class="item"><a href="#">Trigen</a></div>
+			  <div class="item"><a href="#">Parking & Transportation Office</a></div>
+			  <div class="item"><a href="#">Environment Health Service</a></div>
+			</div>
+		</div>
+
+		<div class="ui simple dropdown item">
+		  <i class="download icon"></i> Administrative Building
+			<div class="menu">
+			  <div class="item"><a href="#">College Park</a></div>
+			  <div class="item"><a href="#">College Park - West</a></div>
+			</div>
+		</div>
+
+		<div class="ui simple dropdown item">
+		  <i class="download icon"></i> Emergency
+			<div class="menu">
+			  <div class="item"><a href="#">University Police</a></div>
+			  <div class="item"><a href="#">Student Health Center</a></div>
+			</div>
+		</div>
+
+		<div class="ui simple dropdown item">
+		  <i class="download icon"></i> Student Services
+			<div class="menu">
+			  <div class="item"><a href="#">Resident Hall</a></div>
+			  <div class="item"><a href="#">Student Housing</a></div>
+			  <div class="item"><a href="#">Recreation Center</a></div>
+			</div>
+		</div>
+
+		<div class="ui simple dropdown item">
+		  <i class="download icon"></i> Titan Pride
+			<div class="menu">
+			  <div class="item"><a href="#">Titan ROTC</a></div>
+			  <div class="item"><a href="#">Titan House</a></div>
+			  <div class="item"><a href="#">Titan Hall</a></div>
+			  <div class="item"><a href="#">Titan Shop(Bookstore)</a></div>
+			  <div class="item"><a href="#">Titan Student Union(TSU)</a></div>
+			</div>
+		</div>
+
+		<div class="ui simple dropdown item">
+		  <i class="download icon"></i> Parking Structures
+			<div class="menu">
+			  <div class="item"><a href="#">Parking Lot A</a></div>
+			  <div class="item"><a href="#">Parking Lot A South</a></div>
+			  <div class="item"><a href="#">Parking Lot C</a></div>
+			  <div class="item"><a href="#">Parking Lot C West</a></div>
+			  <div class="item"><a href="#">Parking Lot C East</a></div>
+			  <div class="item"><a href="#">Parking Lot E</a></div>
+			  <div class="item"><a href="#">Parking Lot F</a></div>
+			  <div class="item"><a href="#">Parking Lot G</a></div>
+			  <div class="item"><a href="#">Parking Lot H</a></div>
+			  <div class="item"><a href="#">Parking Lot I</a></div>
+			  <div class="item"><a href="#">Parking Lot S</a></div>
+			  <div class="item"><a href="#">Arboritum Parking</a></div>
+			  <div class="item"><a href="#">Dumbo Down Parking</a></div>
+			  <div class="item"><a href="#">Nutwood Structure Parking</a></div>
+			  <div class="item"><a href="#">East Side Structure Parking</a></div>
+			  <div class="item"><a href="#">State College Structure Parking</a></div>
+			  <div class="item"><a href="#">CPFS Parking</a></div>
+			</div>
+		</div>
+		</div>
+	</div>
   {% block map %} {% endblock %}
 </body>
