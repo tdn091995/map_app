@@ -23,19 +23,12 @@
 	         </a>
 	    </form>
 	</div>
-    <div id="txt"></div>
+    <div id="txt" class="ui label"></div>
     <div id="warning"></div>
     <div id="right-panel">
         {% block display %}{% endblock %}
     </div>
     <div id="map"></div>
-    <div id="panel" onclick="myFunction()">
-        <span class="popuptext" id="myPopup"></span>
-        <center>Guide</center>
-        1. Enter class on left panel and click submit
-        <br> 2. Follow visual map and text directions
-        <br> 3. Time warning signs will appear
-    </div>
     </div>
     <!--
 	<script type="text/javascript" src="{{url_for('static', filename='scripts/map.js')}}"></script>
@@ -249,5 +242,4 @@
 		    }
 		}());
 	</script>
-    
 {% endblock %}
