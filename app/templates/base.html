@@ -4,13 +4,14 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <title>Displaying text directions with <code>setPanel()</code></title>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.6/components/menu.min.css"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.6/semantic.min.css"/>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/components/dropdown.css"/>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/components/dropdown.min.js"/></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key={{ key }}"></script>
-	<script src="{{ url_for('static', filename='scripts/geolocation-marker.js') }}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ key }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.min.js"/></script>
+    <script src="{{ url_for('static', filename='scripts/geolocation-marker.js') }}"></script>
+
     <style>
         body {
             background: url(static/img/university5.jpg);
@@ -21,137 +22,626 @@
 </head>
 
 <body>
-	<div id="navbar">
-	<div class="ui vertical menu">
-	<a class="item">California State University, Fullerton</a>
-	<div class="ui simple dropdown item">
-	  <i class="book icon"></i> Education Buildings
-		<div class="menu">
-		  <div class="header">Adjust time span</div>
-		  <div class="item"><a href="#">Steven G. Mihalyo</a></div>
-		  <div class="item"><a href="#">Langsdorf Hall</a></div>
-		  <div class="item"><a href="#">Dan Black Hall</a></div>
-		  <div class="item"><a href="#">Mc Carthy Hall</a></div>
-		  <div class="item"><a href="#">Visual Arts</a></div>
-		  <div class="item"><a href="#">Kinesiology & Health Science</a></div>
-		  <div class="item"><a href="#">Humanities & Social Science</a></div>
-		  <div class="item"><a href="#">Education Classroom</a></div>
-		  <div class="item"><a href="#">Engineering</a></div>
-		  <div class="item"><a href="#">Computer Science</a></div>
-		  <div class="item"><a href="#">University Hall</a></div>
-		  <div class="item"><a href="#">Golleher Alumini House</a></div>
-		  <div class="item"><a href="#">Ruby Gerontology Center</a></div>
-		  <div class="item"><a href="#">Children's Center</a></div>
-		  <div class="item"><a href="#">Pollack Library</a></div>
-		  <div class="item"><a href="#">Pollack Library South</a></div>
-		  <div class="item"><a href="#">Titan Gym</a></div>
-		  <div class="item"><a href="#">CPAC</a></div>
-		</div>
-	</div>
+<div id="navbar">
+  <div class="ui vertical menu">
+    <h2 class="ui center aligned header" id="header1">
+      <img src="{{ url_for('static', filename='img/asktuffy2.png') }}" class="ui circular image">
+      <a href=/map>CSUF</a>
+    </h2>
+    <h3 class="ui orange center aligned header">
+      California State University, Fullerton
+    </h3>
+    <div class="ui fitted divider"></div>
+    <!-- <img class="ui small image" src="{{ url_for('static', filename='img/asktuffy2.png') }}" alt="Ask Tuffy"
+      style="width:50px;height:50px;" > -->
+    <div class="ui menu">
+        <div class="item" id="signup">
+            <div class="ui blue submit button">Sign up</div>
+        </div>
 
-		<div class="ui simple dropdown item">
-		  <i class="coffee icon"></i> Food & Dining
-			<div class="menu">
-			  <div class="item"><a href="#">Panda Express(TSU)</a></div>
-			  <div class="item"><a href="#">Togo Sandwich(TSU)</a></div>
-			  <div class="item"><a href="#">Juice it Up(TSU)</a></div>
-			  <div class="item"><a href="#">Baja Express(TSU)</a></div>
-			  <div class="item"><a href="#">Carl's Jr</a></div>
-			  <div class="item"><a href="#">Togo Sandwich(College Park)</a></div>
-			  <div class="item"><a href="#">Starbucks(PL)</a></div>
-			  <div class="item"><a href="#">Starbucks(TSU)</a></div>
-			  <div class="item"><a href="#">Starbucks(Mihalyo)</a></div>
-			  <div class="item"><a href="#">Gastronome</a></div>
-			</div>
-		</div>
+        <div class="item" id="login">
+            <div class="ui blue submit button"><i class="white signup icon"></i>Login</div>
+         <!-- <div class="ui button"></i>Log-in</div> -->
+        </div>
+    </div>
 
-		<div class="ui simple dropdown item">
-		  <i class="download icon"></i> ATM & Bank
-			<div class="menu">
-			  <div class="item"><a href="#">BoFA Bank ATM</a></div>
-			  <div class="item"><a href="#">Chase Bank ATM</a></div>
-			  <div class="item"><a href="#">Wells Fargo Bank ATM</a></div>
-			  <div class="item"><a href="#">US Bank Branch(Titan Shop)</a></div>
-			</div>
-		</div>
 
-		<div class="ui simple dropdown item">
-		  <i class="download icon"></i> Landmarks
-			<div class="menu">
-			  <div class="item"><a href="#">QUAD</a></div>
-			  <div class="item"><a href="#">ECS QUAD</a></div>
-			</div>
-		</div>
+    <div class="active item">
+        <div class="ui transparent icon input">
+            <input type="text" placeholder="Search here ...">
+            <i class="search icon"></i>
+        </div>
+    </div>
 
-		<div class="ui simple dropdown item">
-		  <i class="download icon"></i> Facilities
-			<div class="menu">
-			  <div class="item"><a href="#">Corporation Yard</a></div>
-			  <div class="item"><a href="#">Trigen</a></div>
-			  <div class="item"><a href="#">Parking & Transportation Office</a></div>
-			  <div class="item"><a href="#">Environment Health Service</a></div>
-			</div>
-		</div>
+    <div class="ui fitted divider"></div>
 
-		<div class="ui simple dropdown item">
-		  <i class="download icon"></i> Administrative Building
-			<div class="menu">
-			  <div class="item"><a href="#">College Park</a></div>
-			  <div class="item"><a href="#">College Park - West</a></div>
-			</div>
-		</div>
+    <div class="ui simple dropdown item">
+        <i class="teal book icon"></i> Education Buildings
+        <div class="menu">
+            <div class="header">Education Building list in CSUF</div>
 
-		<div class="ui simple dropdown item">
-		  <i class="download icon"></i> Emergency
-			<div class="menu">
-			  <div class="item"><a href="#">University Police</a></div>
-			  <div class="item"><a href="#">Student Health Center</a></div>
-			</div>
-		</div>
+            <div class="ui buttons" id="CC">
+                <button class="ui button" id="CC-btn"><i class="teal book icon"></i>Children's Center</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="CC-direction">Direction</button>
+            </div>
 
-		<div class="ui simple dropdown item">
-		  <i class="download icon"></i> Student Services
-			<div class="menu">
-			  <div class="item"><a href="#">Resident Hall</a></div>
-			  <div class="item"><a href="#">Student Housing</a></div>
-			  <div class="item"><a href="#">Recreation Center</a></div>
-			</div>
-		</div>
+            <div class="ui buttons" id="CS">
+                <button class="ui button" id="CS-btn"><i class="teal book icon"></i>Computer Science </button>
+                <div class="or"></div>
+                <button class="ui positive button" id="CS-direction">Direction</button>
+            </div>
 
-		<div class="ui simple dropdown item">
-		  <i class="download icon"></i> Titan Pride
-			<div class="menu">
-			  <div class="item"><a href="#">Titan ROTC</a></div>
-			  <div class="item"><a href="#">Titan House</a></div>
-			  <div class="item"><a href="#">Titan Hall</a></div>
-			  <div class="item"><a href="#">Titan Shop(Bookstore)</a></div>
-			  <div class="item"><a href="#">Titan Student Union(TSU)</a></div>
-			</div>
-		</div>
+            <div class="ui buttons" id="CPAC">
+                <button class="ui button" id="CPAC-btn"><i class="teal book icon"></i>CPAC</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="CPAC-direction">Direction</button>
+            </div>
 
-		<div class="ui simple dropdown item">
-		  <i class="download icon"></i> Parking Structures
-			<div class="menu">
-			  <div class="item"><a href="#">Parking Lot A</a></div>
-			  <div class="item"><a href="#">Parking Lot A South</a></div>
-			  <div class="item"><a href="#">Parking Lot C</a></div>
-			  <div class="item"><a href="#">Parking Lot C West</a></div>
-			  <div class="item"><a href="#">Parking Lot C East</a></div>
-			  <div class="item"><a href="#">Parking Lot E</a></div>
-			  <div class="item"><a href="#">Parking Lot F</a></div>
-			  <div class="item"><a href="#">Parking Lot G</a></div>
-			  <div class="item"><a href="#">Parking Lot H</a></div>
-			  <div class="item"><a href="#">Parking Lot I</a></div>
-			  <div class="item"><a href="#">Parking Lot S</a></div>
-			  <div class="item"><a href="#">Arboritum Parking</a></div>
-			  <div class="item"><a href="#">Dumbo Down Parking</a></div>
-			  <div class="item"><a href="#">Nutwood Structure Parking</a></div>
-			  <div class="item"><a href="#">East Side Structure Parking</a></div>
-			  <div class="item"><a href="#">State College Structure Parking</a></div>
-			  <div class="item"><a href="#">CPFS Parking</a></div>
-			</div>
-		</div>
-		</div>
-	</div>
+            <div class="ui buttons" id="DBH">
+                <button class="ui button" id="DBH-btn"><i class="teal book icon"></i>Dan Black Hall </button>
+                <div class="or"></div>
+                <button class="ui positive button" id="DBH-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="EC">
+                <button class="ui button" id="EC-btn"><i class="teal book icon"></i>Education Classroom </button>
+                <div class="or"></div>
+                <button class="ui positive button" id="EC-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="E">
+                <button class="ui button" id="E-btn"><i class="teal book icon"></i>Engineering </button>
+                <div class="or"></div>
+                <button class="ui positive button" id="E-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="GAH">
+                <button class="ui button" id="GAH-btn"><i class="teal book icon"></i>Golleher Alumini House</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="GAH-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="HSS">
+                <button class="ui button" id="HSS-btn"><i class="teal book icon"></i>Humanities & Social Science</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="HSS-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="KH">
+                <button class="ui button" id="KH-btn"><i class="teal book icon"></i>Kinesiology & Health Science</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="KH-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="LH">
+                <button class="ui button" id="LH-btn"><i class="teal book icon"></i>Langsdorf Hall </button>
+                <div class="or"></div>
+                <button class="ui positive button" id="LH-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="MCH">
+                <button class="ui button" id="MCH-btn"><i class="teal book icon"></i>Mc Carthy Hall </button>
+                <div class="or"></div>
+                <button class="ui positive button" id="MCH-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="PL">
+                <button class="ui button" id="PL-btn"><i class="teal book icon"></i>Pollack Library </button>
+                <div class="or"></div>
+                <button class="ui positive button" id="PL-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="PLS">
+                <button class="ui button" id="PLS-btn"><i class="teal book icon"></i>Pollack Library South </button>
+                <div class="or"></div>
+                <button class="ui positive button" id="PLS-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="RGC">
+                <button class="ui button" id="RGC-btn"><i class="teal book icon"></i>Ruby Gerontology Center </button>
+                <div class="or"></div>
+                <button class="ui positive button" id="RGC-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="SGMH">
+                <button class="ui button" id="SGMH-btn"><i class="teal book icon"></i>Steven G. Mihalyo</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="SGMH-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="gym">
+                <button class="ui button" id="gym-btn"><i class="teal book icon"></i>Titan Gym </button>
+                <div class="or"></div>
+                <button class="ui positive button" id="gym-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="UH">
+                <button class="ui button" id="UH-btn"><i class="teal book icon"></i>University Hall </button>
+                <div class="or"></div>
+                <button class="ui positive button" id="UH-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="VA">
+                <button class="ui button" id="VA-btn"><i class="teal book icon"></i>Visual Arts </button>
+                <div class="or"></div>
+                <button class="ui positive button" id="VA-direction">Direction</button>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="ui simple dropdown item">
+        <i class="teal users icon"></i> Food & Dining
+        <div class="menu">
+            <div class="header">Places to eat in CSUF</div>
+
+            <div class="ui buttons" id="baja">
+                <button class="ui button" id="baj-btn"><i class="teal users icon"></i>Baja Express(TSU)</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="baja-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="carl">
+                <button class="ui button" id="carl-btn"><i class="teal users icon"></i>Carl's Jr</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="carl-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="gas">
+                <button class="ui button" id="gas-btn"><i class="teal users icon"></i>Gastronome</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="gas-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="juice">
+                <button class="ui button" id="juice-btn"><i class="teal users icon"></i>Juice it Up(TSU)</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="juice-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="panda">
+                <button class="ui button" id="panda-btn"><i class="teal users icon"></i>Panda Express(TSU)</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="panda-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="star-sgmh">
+                <button class="ui button" id="star-sgmh-btn"><i class="teal coffee icon"></i>Starbucks(Mihalyo)</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="star-sgmh-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="star-pl">
+                <button class="ui button" id="star-pl-btn"><i class="teal coffee icon"></i>Starbucks(PL)</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="star-pl-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="star-tsu">
+                <button class="ui button" id="star-tsu-btn"><i class="teal coffee icon"></i>Starbucks(TSU)</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="star-tsu-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="togo-cp">
+                <button class="ui button" id="togo-tcp-btn"><i class="teal users icon"></i>Togo Sandwich(College Park)</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="togo-cp-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="togo-tsu">
+                <button class="ui button" id="togo-tsu-btn"><i class="teal users icon"></i>Togo Sandwich(TSU)</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="togo-tsu-direction">Direction</button>
+            </div>
+            <!-- <div class="item"><a href="#">Panda Express(TSU)</a></div>
+              <div class="item"><a href="#">Togo Sandwich(TSU)</a></div>
+              <div class="item"><a href="#">Juice it Up(TSU)</a></div>
+              <div class="item"><a href="#">Baja Express(TSU)</a></div>
+              <div class="item"><a href="#">Carl's Jr</a></div>
+              <div class="item"><a href="#">Togo Sandwich(College Park)</a></div>
+              <div class="item"><a href="#">Starbucks(PL)</a></div>
+              <div class="item"><a href="#">Starbucks(TSU)</a></div>
+              <div class="item"><a href="#">Starbucks(Mihalyo)</a></div>
+              <div class="item"><a href="#">Gastronome</a></div> -->
+
+        </div>
+    </div>
+
+    <div class="ui simple dropdown item">
+        <i class="teal credit card icon"></i> ATM & Bank
+        <div class="menu">
+            <div class="header">ATM located in CSUF</div>
+
+            <div class="ui buttons" id="bofa">
+                <button class="ui button" id="bofa-btn"><i class="teal credit card icon"></i>BoFA Bank ATM</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="bofa-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="chase">
+                <button class="ui button" id="chase-btn"><i class="teal credit card icon"></i>Chase Bank ATM</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="chase-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="wells">
+                <button class="ui button" id="wells-btn"><i class="teal credit card icon"></i>Wells Fargo Bank ATM</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="wells-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="usbank">
+                <button class="ui button" id="usbank-btn"><i class="teal credit card icon"></i>US Bank Branch(Titan Shop)</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="usbank-direction">Direction</button>
+            </div>
+
+            <!-- <div class="item"><a href="#">BoFA Bank ATM</a></div>
+              <div class="item"><a href="#">Chase Bank ATM</a></div>
+              <div class="item"><a href="#">Wells Fargo Bank ATM</a></div>
+              <div class="item"><a href="#">US Bank Branch(Titan Shop)</a></div> -->
+        </div>
+    </div>
+
+    <div class="ui simple dropdown item">
+        <i class="teal magnet icon"></i> Landmarks
+        <div class="menu">
+            <div class="header">Important Landmarks for Events</div>
+
+            <div class="ui buttons" id="ecsquad">
+                <button class="ui button" id="ecsquad-btn"><i class="teal magnet icon"></i>ECS QUAD</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="ecsquad-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="quad">
+                <button class="ui button" id="quad-btn"><i class="teal magnet icon"></i>QUAD</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="quad-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="tw">
+                <button class="ui button" id="tw-btn"><i class="teal magnet icon"></i>Titan Walk</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="tw-direction">Direction</button>
+            </div>
+            <!-- <div class="item"><a href="#">QUAD</a></div>
+              <div class="item"><a href="#">ECS QUAD</a></div> -->
+        </div>
+    </div>
+
+    <div class="ui simple dropdown item">
+        <i class="teal recycle icon"></i> Facilities
+        <div class="menu">
+            <div class="header">Facilities provided by CSUF</div>
+
+            <div class="ui buttons" id="env">
+                <button class="ui button" id="env-btn"><i class="teal recycle icon"></i>Environment Health & Safety</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="env-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="pto">
+                <button class="ui button" id="pto-btn"><i class="teal recycle icon"></i>Parking & Transportation Office</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="pto-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="trigen">
+                <button class="ui button" id="trigen-btn"><i class="teal recycle icon"></i>Trigen</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="trigen-direction">Direction</button>
+            </div>
+
+            <!-- <div class="item"><a href="#">Environment Health & Safety</a></div>
+              <div class="item"><a href="#">Parking & Transportation Office</a></div>
+              <div class="item"><a href="#">Trigen</a></div> -->
+        </div>
+    </div>
+
+    <div class="ui simple dropdown item">
+        <i class="teal search icon"></i>Corporation Yard
+        <div class="menu">
+            <div class="header"><a href="#">Corporation Yard</a></div>
+
+            <div class="ui buttons" id="trigen">
+                <button class="ui button" id="trigen-btn"><i class="teal search icon"></i>Automobile Shop</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="trigen-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="trigen">
+                <button class="ui button" id="trigen-btn"><i class="teal search icon"></i>Carpenter Shop</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="trigen-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="trigen">
+                <button class="ui button" id="trigen-btn"><i class="teal search icon"></i>Mailing Center</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="trigen-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="trigen">
+                <button class="ui button" id="trigen-btn"><i class="teal search icon"></i>Shipping & Recieving</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="trigen-direction">Direction</button>
+            </div>
+
+            <!-- <div class="item"><a href="#">Automobile Shop</a></div>
+            <div class="item"><a href="#">Carpenter Shop</a></div>
+            <div class="item"><a href="#">Mailing Center</a></div>
+            <div class="item"><a href="#">Shipping & Recieving</a></div> -->
+        </div>
+    </div>
+
+    <div class="ui simple dropdown item">
+        <i class="teal laptop icon"></i> Administrative Building
+        <div class="menu">
+            <div class="header">Located outside of CSUF campus</div>
+
+            <div class="ui buttons" id="cp">
+                <button class="ui button" id="cp-btn"><i class="teal laptop icon"></i>College Park</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="cp-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="cp-west">
+                <button class="ui button" id="cp-west-btn"><i class="teal laptop icon"></i>College Park - West</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="cp-west-direction">Direction</button>
+            </div>
+
+            <!-- <div class="item"><a href="#">College Park</a></div>
+              <div class="item"><a href="#">College Park - West</a></div> -->
+        </div>
+    </div>
+
+    <div class="ui simple dropdown item">
+        <i class="teal plus icon"></i> Emergency
+        <div class="menu">
+            <div class="header">CSUF Emergency buildings</div>
+
+            <div class="ui buttons" id="shc">
+                <button class="ui button" id="shc-btn"><i class="teal user doctor icon"></i>Student Health Center</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="shc-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="police">
+                <button class="ui button" id="police-btn"><i class="teal plus icon"></i>University Police</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="police-direction">Direction</button>
+            </div>
+
+            <!-- <div class="item"><a href="#">University Police</a></div>
+              <div class="item"><a href="#">Student Health Center</a></div> -->
+        </div>
+    </div>
+
+    <div class="ui simple dropdown item">
+        <i class="teal thumbs up icon"></i> Student Services
+        <div class="menu">
+            <div class="header">Student services in CSUF</div>
+
+            <div class="ui buttons" id="ar">
+                <button class="ui button" id="ar-btn"><i class="teal thumbs up icon"></i>Admission & Records S.C</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="ar-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="career">
+                <button class="ui button" id="career-btn"><i class="teal thumbs up icon"></i>Career Center</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="career-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="rc">
+                <button class="ui button" id="rc-btn"><i class="teal thumbs up icon"></i>Recreation Center</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="rc-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="RH">
+                <button class="ui button" id="RH-btn"><i class="teal thumbs up icon"></i>Resident Hall</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="RH-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="SH">
+                <button class="ui button" id="SH-btn"><i class="teal thumbs up icon"></i>Student Housing</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="SH-direction">Direction</button>
+            </div>
+
+            <!-- <div class="item"><a href="#">Career Center</a></div>
+              <div class="item"><a href="#">Recreation Center</a></div>
+              <div class="item"><a href="#">Resident Hall</a></div>
+              <div class="item"><a href="#">Student Housing</a></div> -->
+        </div>
+    </div>
+
+    <div class="ui simple dropdown item">
+        <!-- <i class="download icon"></i>  -->
+        Titan Pride
+        <div class="ui teal left pointing label">pride</div>
+        <div class="menu">
+            <div class="header">Pride of Titans</div>
+
+            <div class="ui buttons" id="THall">
+                <button class="ui button" id="THall-btn"><i class="teal spinner icon"></i>Titan Hall</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="THall-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="THouse">
+                <button class="ui button" id="THouse-btn"><i class="teal spinner icon"></i>Titan House</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="THouse-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="TR">
+                <button class="ui button" id="TR-btn"><i class="teal spinner icon"></i>Titan ROTC</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="TR-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="TS">
+                <button class="ui button" id="TS-btn"><i class="teal spinner icon"></i>Titan Shop</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="TS-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="TSU">
+                <button class="ui button" id="TSU-btn"><i class="teal spinner icon"></i>Titan Student Union(TSU)</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="TSU-direction">Direction</button>
+            </div>
+
+            <!-- <div class="item"><a href="#">Titan ROTC</a></div>
+              <div class="item"><a href="#">Titan House</a></div>
+              <div class="item"><a href="#">Titan Hall</a></div>
+              <div class="item"><a href="#">Titan Shop(Bookstore)</a></div>
+              <div class="item"><a href="#">Titan Student Union(TSU)</a></div> -->
+        </div>
+    </div>
+
+    <div class="ui simple dropdown item">
+        <i class="teal car icon"></i> Parking Structures
+        <div class="menu">
+            <div class="header">Parking including students and faculties in CSUF</div>
+
+            <div class="ui buttons" id="lota">
+                <button class="ui button" id="lota-btn"><i class="teal car icon"></i>Parking Lot A</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="lota-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="lotas">
+                <button class="ui button" id="lotas-btn"><i class="teal car icon"></i>Parking Lot A - South</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="lotas-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="lotc">
+                <button class="ui button" id="lotc-btn"><i class="teal car icon"></i>Parking Lot C</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="lotc-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="lotce">
+                <button class="ui button" id="lotce-btn"><i class="teal car icon"></i>Parking Lot C - East</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="lotce-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="lotcw">
+                <button class="ui button" id="lotcw-btn"><i class="teal car icon"></i>Parking Lot C - West</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="lotcw-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="lote">
+                <button class="ui button" id="lote-btn"><i class="teal car icon"></i>Parking Lot E</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="lote-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="lotf">
+                <button class="ui button" id="lotf-btn"><i class="teal car icon"></i>Parking Lot F</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="lotf-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="lotg">
+                <button class="ui button" id="lotg-btn"><i class="teal car icon"></i>Parking Lot G</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="lotg-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="loth">
+                <button class="ui button" id="loth-btn"><i class="teal car icon"></i>Parking Lot H</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="loth-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="loti">
+                <button class="ui button" id="loti-btn"><i class="teal car icon"></i>Parking Lot I</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="loti-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="lots">
+                <button class="ui button" id="lots-btn"><i class="teal car icon"></i>Parking Lot S</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="lots-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="arbp">
+                <button class="ui button" id="arbp-btn"><i class="teal car icon"></i>Arboritum Parking</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="arbp-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="cpfsp">
+                <button class="ui button" id="cpfsp-btn"><i class="teal car icon"></i>CPFS Parking</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="cpfsp-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="ddp">
+                <button class="ui button" id="ddp-btn"><i class="teal car icon"></i>Dumbo Down Parking</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="ddp-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="east-side-p">
+                <button class="ui button" id="east-side-p-btn"><i class="teal car icon"></i>East Side Structure Parking</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="east-side-p-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="nutwoodp">
+                <button class="ui button" id="nutwoodp-btn"><i class="teal car icon"></i>Nutwood Structure Parking</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="nutwoodp-direction">Direction</button>
+            </div>
+
+            <div class="ui buttons" id="scsp">
+                <button class="ui button" id="scsp-btn"><i class="teal car icon"></i>State College Structure Parking</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="scsp-direction">Direction</button>
+            </div>
+
+            <!-- <div class="item"><a href="#">Parking Lot A</a></div>
+              <div class="item"><a href="#">Parking Lot A South</a></div>
+              <div class="item"><a href="#">Parking Lot C</a></div>
+              <div class="item"><a href="#">Parking Lot C West</a></div>
+              <div class="item"><a href="#">Parking Lot C East</a></div>
+              <div class="item"><a href="#">Parking Lot E</a></div>
+              <div class="item"><a href="#">Parking Lot F</a></div>
+              <div class="item"><a href="#">Parking Lot G</a></div>
+              <div class="item"><a href="#">Parking Lot H</a></div>
+              <div class="item"><a href="#">Parking Lot I</a></div>
+              <div class="item"><a href="#">Parking Lot S</a></div>
+              <div class="item"><a href="#">Arboritum Parking</a></div>
+              <div class="item"><a href="#">Dumbo Down Parking</a></div>
+              <div class="item"><a href="#">Nutwood Structure Parking</a></div>
+              <div class="item"><a href="#">East Side Structure Parking</a></div>
+              <div class="item"><a href="#">State College Structure Parking</a></div>
+              <div class="item"><a href="#">CPFS Parking</a></div> -->
+        </div>
+    </div>
+
+    <div class="ui fitted divider"></div>
+
+    <a href="#" class="item" id="offline-map"><i class="teal map icon"></i>Offline Map/Legend</a>
+    <a href="#" class="item" id="contact-us"><i class="teal phone icon"></i>Contact Us</a>
+
+  </div>
+
+</div>
   {% block map %} {% endblock %}
 </body>
