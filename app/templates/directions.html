@@ -11,18 +11,13 @@
 {% endblock %}
 
 {% block maproute %}
+
       GeoMarker = new GeolocationMarker();
       GeoMarker.setCircleOptions({visible: false});
-      google.maps.event.addListenerOnce(GeoMarker, 'position_changed', function() {
-        //map.setCenter(this.getPosition());
-        //map.fitBounds(this.getBounds());
-      });
       GeoMarker.setMap(map);
-      var start = latlong;
-      //var end =  "{{ src }}, Fullerton";
 
       directionsService.route({
-        origin: start,
+        origin: "{{ cur }}",
         destination: "{{ coords }}",
         travelMode: 'WALKING'
       }, function(response, status) {

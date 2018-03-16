@@ -14,15 +14,6 @@
 {% extends "base.html" %}
 
 {% block map %}
-	<div id="floating-panel">
-	    <form id="geolocation" action="" method="POST">
-	        <a>Enter Class
-	         <input type="text" id="src1" name="src1" placeholder="">
-	         <input type="hidden" id="location" name="location" value="">  
-	         <button class="button ui" type="Submit" id="submit">Submit</button>
-	         </a>
-	    </form>
-	</div>
     <div id="txt" class="ui label"></div>
     <div id="warning"></div>
     <div id="right-panel">
@@ -30,16 +21,34 @@
     </div>
     <div id="map"></div>
     </div>
-    <!--
-	<script type="text/javascript" src="{{url_for('static', filename='scripts/map.js')}}"></script>
-	-->
+
 	<script>
-		(function (){
 			var latlong;
 			var map;
 			var GeoMarker;
 			var directionsDisplay;
 			var directionsService;
+
+			document.getElementById('src1').value="";
+
+			if (navigator.geolocation) {	// Call geolocation to get user's current position
+		     	navigator.geolocation.getCurrentPosition(getCurrPos, errorCallback, {enableHighAccuracy:true, timeout:60000, maximumAge:600000});
+		    } 
+
+			function getCurrPos(position) {
+		        document.getElementById('location').value = position.coords.latitude + "," + position.coords.longitude;
+		   	}
+
+		   	function errorCallback() {}
+
+			var dButtons = document.getElementsByClassName('ui positive button');
+       		for(var i = 0; i < dButtons.length; i++) {
+       			var button = dButtons[i];
+	        	button.addEventListener('click', function () {
+	        		document.getElementById('src1').value = this.id;
+
+	        	});
+        	}
 
 	        function startTime() {	// Displays real time clock
 	            var today = new Date();
@@ -66,15 +75,11 @@
 	            return i;
 	        }
 	        startTime();
-		    if (navigator.geolocation) {	// Call geolocation to get user's current position; initMaps is called
-		    //  navigator.geolocation.watchPosition(initMaps);
-		     	navigator.geolocation.getCurrentPosition(initMaps);
-		    } 
-		    function initMaps(position) {	// displays map on page, sets up variables for the directions service for use later
+	        initMap();
+	        
+		    function initMap() {	// displays map on page, sets up variables for the directions service for use later
 		        directionsDisplay = new google.maps.DirectionsRenderer;
 		        directionsService = new google.maps.DirectionsService;
-		        latlong = position.coords.latitude + "," + position.coords.longitude;
-		        document.getElementById('location').value = latlong; 
 		        var mapOptions = {
 		            zoom: 16,
 		            center: {
@@ -238,8 +243,9 @@
 		                map: map
 		            });
 		        });
-		        {% block maproute %} {% endblock %}	// calls function displaying route on the map
+
+		        {% block maproute %} {% endblock %}
 		    }
-		}());
-	</script>
+
+	</script>	
 {% endblock %}
