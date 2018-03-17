@@ -11,11 +11,10 @@
 {% endblock %}
 
 {% block maproute %}
-
       GeoMarker = new GeolocationMarker();
       GeoMarker.setCircleOptions({visible: false});
       GeoMarker.setMap(map);
-
+      
       directionsService.route({
         origin: "{{ cur }}",
         destination: "{{ coords }}",
@@ -27,6 +26,7 @@
           window.alert('Directions request failed due to ' + status);
         }
       });
+      
 {% endblock %}
 
 {% block time %}

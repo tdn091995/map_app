@@ -29,18 +29,18 @@
 			var directionsDisplay;
 			var directionsService;
 
-			document.getElementById('src1').value="";
+			function userLoc() {
+				if (navigator.geolocation) {	// Call geolocation to get user's current position
+			     	navigator.geolocation.getCurrentPosition(getCurrPos, errorCallback, {enableHighAccuracy:true});
+			    } 
 
-			if (navigator.geolocation) {	// Call geolocation to get user's current position
-		     	navigator.geolocation.getCurrentPosition(getCurrPos, errorCallback, {enableHighAccuracy:true, timeout:60000, maximumAge:600000});
-		    } 
+				function getCurrPos(position) {
+			        document.getElementById('location').value = position.coords.latitude + "," + position.coords.longitude;
+			        //alert(document.getElementById('location').value);
+			   	}
 
-			function getCurrPos(position) {
-		        document.getElementById('location').value = position.coords.latitude + "," + position.coords.longitude;
+			   	function errorCallback() {}
 		   	}
-
-		   	function errorCallback() {}
-
 			var dButtons = document.getElementsByClassName('ui positive button');
        		for(var i = 0; i < dButtons.length; i++) {
        			var button = dButtons[i];
@@ -243,9 +243,9 @@
 		                map: map
 		            });
 		        });
-
+		        userLoc();
 		        {% block maproute %} {% endblock %}
 		    }
-
+		    document.getElementById('src1').value="";
 	</script>	
 {% endblock %}
