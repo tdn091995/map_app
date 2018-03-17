@@ -24,17 +24,15 @@ def mapdemo_post():
 		current = request.form['location']
 		if current != '':
 			session['curLoc'] = current
-		#cur = request.form['location']
-	key = getKey()
-	#info = getBuilding(src)
-	info = getBuilding(src)
-	bld = info[0]
-	coords = info[1]
-	gmaps = GMaps(session['curLoc'], coords)
-	directions = gmaps.getDirections()
-	tl = gmaps.getTripLength()
-	cur = session['curLoc']
 	if not src:
 		return render_template('campusmap.html')
 	else:
+		key = getKey()
+		info = getBuilding(src)
+		bld = info[0]
+		coords = info[1]
+		gmaps = GMaps(session['curLoc'], coords)
+		directions = gmaps.getDirections()
+		tl = gmaps.getTripLength()
+		cur = session['curLoc']
 		return render_template('directions.html', bld=bld, coords=coords, cur=cur, directions=directions, tl=tl, key=key)
