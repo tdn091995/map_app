@@ -33,7 +33,6 @@
 				if (navigator.geolocation) {	// Call geolocation to get user's current position
 			     	navigator.geolocation.getCurrentPosition(getCurrPos, errorCallback, {enableHighAccuracy:true});
 			    }
-
 				function getCurrPos(position) {
 			        document.getElementById('location').value = position.coords.latitude + "," + position.coords.longitude;
 			        //alert(document.getElementById('location').value);
@@ -41,6 +40,7 @@
 
 			   	function errorCallback() {}
 		   	}
+
 			var bldButtons = document.getElementsByClassName('ui button');
        		for(var i = 0; i < bldButtons.length; i++) {
             		var button = bldButtons[i];
@@ -63,7 +63,6 @@
 			});
 		    }
         }
-
 
 	        function startTime() {	// Displays real time clock
 	            var today = new Date();
@@ -98,6 +97,7 @@
               lng: -117.885076
             };
             directionsDisplay = new google.maps.DirectionsRenderer;
+
 		        directionsService = new google.maps.DirectionsService;
 		        var mapOptions = {
 		            zoom: 16,
@@ -205,10 +205,11 @@
 		        };
 		        map = new google.maps.Map(document.getElementById('map'), mapOptions);
 		        directionsDisplay.setMap(map);
-
 		        userLoc();
 		        {% block maproute %} {% endblock %}
 		    }
 		    document.getElementById('src1').value="";
+
 	</script>
+
 {% endblock %}
