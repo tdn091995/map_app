@@ -1,7 +1,7 @@
 def getBuilding(src):
         classdict = {
         "CS" : ["Computer Science Building", "33.882148, -117.882660"],
-        "SGMH" : ["Mihaylo", "33.878866, -117.883385"],
+        "SGMH" : ["Steven G. Mihalyo", "33.878866, -117.883385"],
         "PL" : ["Pollak Library", "33.881530, -117.885766"],
         "MH" : ["McCarthy Hall", "33.879864, -117.885550"],
         "E" : ["Engineering Building", "33.882177, -117.883186"],
@@ -22,24 +22,31 @@ def getBuilding(src):
         "TG" : ["Titan Gymnasium", "33.883010, -117.885888"],
         "UH" : ["University Hall", "33.879530, -117.884209"],
         "VA" : ["Visual Arts", "33.880019, -117.888472"],
-        "BE" : ["Baja Express", "33.881971, -117.887690"],
+        "BE" : ["Baja Fresh", "33.881971, -117.887690"],
         "CJ" : ["Carls Jr", "33.879294, -117.883822"],
         "GA" : ["Gastronome", "33.883175, -117.881982"],
         "JU" : ["Juice It Up", "33.881659, -117.887810"],
-        "PE" : ["Panda Express", "33.881966, -117.887630"],
+        "PEX" : ["Panda Express", "33.881971, -117.887690"],
         "MST" : ["Mihaylo Starbucks", "33.878666, -117.883295"],
         "PLST" : ["Pollak Library Starbucks", "33.881488, -117.885172"],
         "TSUST" : ["TSU Starbucks", "33.881583, -117.887998"],
-        "CPT" : ["College Park Togos", "33.877525, -117.883881"],
+        "CPT" : ["College Park Togos", "33.877711, -117.883507"],
         "TSUT" : ["TSU Togos", "33.881958, -117.887737"],
         "BOFA" : ["BoFA Bank ATM", "33.881667, -117.887246"],
         "CATM" : ["Chase ATM", "33.881667, -117.887246"],
         "WATM" : ["Wells Fargo ATM", "33.881667, -117.887246"],
-        "USB" : ["US-Bank", "33.881951, -117.887183"],
+        "USB" : ["US-Bank", "33.881933, -117.887065"],
+        "BA" : ["Becker Amphitheater","33.881278, -117.887079"],
         "ECSQ" : ["ECS Quad", "33.882277, -117.884115"],
         "Q" : ["Quad", "33.880374, -117.885378"],
+        "TW" : ["Titan Walk", "33.881237, -117.886411"],
         "EHS" : ["Environment Health & Safety", "33.885158, -117.889355"],
-        "P" : ["Parking and Transportation Services", "33.884840, -117.889426"],
+        "TRI" : ["Trigen","33.879683, -117.887304"],
+        "P" : ["Parking and Transportation Office", "33.884840, -117.889426"],
+        "AS" : ["Automobile Shop","33.883890, -117.889318"],
+        "CSH" : ["Carpenter Shop","33.884028, -117.888266"],
+        "MC" : ["Mailing Center","33.884155, -117.888760"],
+        "SR" : ["Shipping & Recieving","33.883783, -117.888760"],
         "CP" : ["College Park", "33.877731, -117.883405"],
         "CPW" : ["College Park West", "33.880918, -117.890017"],
         "SHCC": ["Student Health & Counseling Center", "33.883195, -117.884108"],
@@ -49,11 +56,13 @@ def getBuilding(src):
         "SRC": ["Student Recreation Center", "33.883453, -117.887809"],
         "RH": ["Resident Hall", "33.883628, -117.881806"],
         "SH" : ["Student Housing", "33.883637, -117.881707"],
-        "THALL" : ["Titan Hall", "33.881162, -117.890120"],
         "TH" : ["Titan House", "33.883847, -117.884146"],
         "TROTC" : ["Titan ROTC", "33.884151, -117.884032"],
-        "TS" : ["Titan Shop", "33.881891, -117.886982"],
+        "TSH" : ["Titan Shop", "33.881891, -117.886982"],
         "TSU" : ["Titan Student Union","33.881480, -117.888623"],
+        "TS" : ["Titan Stadium", "33.886659, -117.886990"],
+        "GF" : ["Goodwin Field", "33.887128, -117.885308"],
+        "AF" : ["Anderson Field", "33.886000, -117.884936"],
         "PAS" : ["Parking Lot A-South", "33.885493, -117.888760"],
         "PA" : ["Parking Lot A", "33.887431, -117.888480"],
         "PC" : ["Parking Lot C", "33.878300, -117.888378"],
@@ -89,10 +98,3 @@ def getBuilding(src):
         else:
                 building = ['','']
         return building
-
-
-
-        
-
-
-

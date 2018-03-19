@@ -1,24 +1,24 @@
 <!--
    html with some javascript. we could use flask/python to host this website.
-   
+
    this sample file was found at:
    https://developers.google.com/maps/documentation/javascript/examples/directions-panel
-   
+
    we can change the direction points to match these:
    https://www.fullerton.edu/campusmap/
-   
+
    we could also add in custom markers, maybe with a legend. for the parking lots and other poi (points of interest) on campus. something like this:
    https://developers.google.com/maps/documentation/javascript/adding-a-legend
-   
+
     -->
 {% extends "base.html" %}
 
 {% block map %}
     <div id="txt" class="ui label"></div>
     <div id="warning"></div>
-    <div id="right-panel">
+    <!-- <div id="right-panel">
         {% block display %}{% endblock %}
-    </div>
+    </div> -->
     <div id="map"></div>
     </div>
 
@@ -32,8 +32,7 @@
 			function userLoc() {
 				if (navigator.geolocation) {	// Call geolocation to get user's current position
 			     	navigator.geolocation.getCurrentPosition(getCurrPos, errorCallback, {enableHighAccuracy:true});
-			    } 
-
+			    }
 				function getCurrPos(position) {
 			        document.getElementById('location').value = position.coords.latitude + "," + position.coords.longitude;
 			        //alert(document.getElementById('location').value);
@@ -41,14 +40,29 @@
 
 			   	function errorCallback() {}
 		   	}
-			var dButtons = document.getElementsByClassName('ui positive button');
-       		for(var i = 0; i < dButtons.length; i++) {
-       			var button = dButtons[i];
-	        	button.addEventListener('click', function () {
-	        		document.getElementById('src1').value = this.id;
 
-	        	});
-        	}
+			var bldButtons = document.getElementsByClassName('ui button');
+       		for(var i = 0; i < bldButtons.length; i++) {
+            		var button = bldButtons[i];
+
+		    if (bldButtons[i].className == 'ui button') {
+		      button.addEventListener('click', function () {
+			//alert(this.value);
+			var latlng = this.value.split(',');
+			var lat = parseFloat(latlng[0]);
+			var lng = parseFloat(latlng[1]);
+
+			var marker = new google.maps.Marker({map:map});
+			marker.setPosition(new google.maps.LatLng(lat, lng));
+
+		      })
+		    }
+		    else {
+			button.addEventListener('click', function () {
+			document.getElementById('src1').value = this.id;
+			});
+		    }
+        }
 
 	        function startTime() {	// Displays real time clock
 	            var today = new Date();
@@ -63,7 +77,7 @@
 	            var s = today.getSeconds();
 	            h = checkTime(h);
 	            m = checkTime(m);
-	            s = checkTime(s); 
+	            s = checkTime(s);
 	            document.getElementById('txt').innerHTML=h+":"+m+":"+s;
 	            setTimeout(startTime, 500);
 	            {% block time %} {% endblock %}
@@ -76,16 +90,18 @@
 	        }
 	        startTime();
 	        initMap();
-	        
+
 		    function initMap() {	// displays map on page, sets up variables for the directions service for use later
-		        directionsDisplay = new google.maps.DirectionsRenderer;
+            var csufLocation = {
+              lat: 33.881994,
+              lng: -117.885076
+            };
+            directionsDisplay = new google.maps.DirectionsRenderer;
+
 		        directionsService = new google.maps.DirectionsService;
 		        var mapOptions = {
 		            zoom: 16,
-		            center: {
-		                lat: 33.881994,
-		                lng: -117.885076
-		            },
+		            center: csufLocation,
 		            streetViewControl: false,
 		            mapTypeControl: false,
 		            styles: [{
@@ -189,63 +205,11 @@
 		        };
 		        map = new google.maps.Map(document.getElementById('map'), mapOptions);
 		        directionsDisplay.setMap(map);
-		        // display the customized icons
-		        // add any needed icons using the below format in var icons
-		        var icons = {
-		            parking: {
-		                name: 'Parking',
-		                icon: 'https://newcdn.iconfinder.com/data/icons/rental-icon/240/parking-20.png'
-		            },
-		            library: {
-		                name: 'Library',
-		                icon: 'https://cdn0.iconfinder.com/data/icons/octicons/1024/book-20.png'
-		            },
-		            titan_student_union: {
-		                name: 'Titan Student Union',
-		                icon: 'https://newcdn.iconfinder.com/data/icons/pittogrammi/142/97-20.png'
-		            },
-		            book_store: {
-		                name: 'Book Store',
-		                icon: 'https://cdn4.iconfinder.com/data/icons/essential-app-1/16/shopping-bag-paper-store-20.png'
-		            }
-		        };
-		        // array of icons to be used on the map.
-		        var features = [{
-		            position: new google.maps.LatLng(33.880303, -117.881738),
-		            type: 'parking'
-		        }, {
-		            position: new google.maps.LatLng(33.883071, -117.888595),
-		            type: 'parking'
-		        }, {
-		            position: new google.maps.LatLng(33.884843, -117.889426),
-		            type: 'parking'
-		        }, {
-		            position: new google.maps.LatLng(33.879039, -117.888448),
-		            type: 'parking'
-		        }, {
-		            position: new google.maps.LatLng(33.883071, -117.888595),
-		            type: 'parking'
-		        }, {
-		            position: new google.maps.LatLng(33.881101, -117.885359),
-		            type: 'library'
-		        }, {
-		            position: new google.maps.LatLng(33.881402, -117.887644),
-		            type: 'titan_student_union'
-		        }, {
-		            position: new google.maps.LatLng(33.881897, -117.886883),
-		            type: 'book_store'
-		        }];
-		        // put the markers on the map
-		        features.forEach(function(feature) {
-		            var marker = new google.maps.Marker({
-		                position: feature.position,
-		                icon: icons[feature.type].icon,
-		                map: map
-		            });
-		        });
 		        userLoc();
 		        {% block maproute %} {% endblock %}
 		    }
 		    document.getElementById('src1').value="";
-	</script>	
+
+	</script>
+
 {% endblock %}

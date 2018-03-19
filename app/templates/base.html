@@ -7,10 +7,8 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.6/semantic.min.css"/>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.min.js"/></script>
-    
     <script src="https://maps.googleapis.com/maps/api/js?key={{ key }}"></script>
     <script  src="{{ url_for('static', filename='scripts/geolocation-marker.js') }}"></script>
 
@@ -26,8 +24,7 @@
 <body>
 
 <form id="geolocation" action="" method="POST">
-<input type="hidden" id="location" name="location" value=""> 
-
+<input type="hidden" id="location" name="location" value="">
 <div id="navbar">
   <div class="ui vertical menu">
     <h2 class="ui center aligned header" id="header1">
@@ -52,9 +49,10 @@
     </div>
 
 
+
     <div class="active item">
         <div class="ui transparent icon input">
-            <input type="text" id="src1" name="src1" placeholder="Enter Class">
+            <input type="text" id="src1" name="src1" placeholder="Enter Class e.g cs101">
             <button class="ui compact icon button" type="Submit" id="submit">
               <i class="search icon"></i>
             </button>
@@ -69,109 +67,104 @@
             <div class="header">Education Building list in CSUF</div>
 
             <div class="ui buttons" id="CC">
-                <button class="ui button" id="CC-btn"><i class="teal book icon"></i>Children's Center</button>
+                <button class="ui button" id="CC-btn" value="{{ getCoords('CC') }}" type="button"><i class="teal book icon"></i>Children's Center</button>
                 <div class="or"></div>
                 <button class="ui positive button" id="CC-direction">Direction</button>
+
             </div>
 
             <div class="ui buttons" id="CS">
-                <button class="ui button" id="CS-btn"><i class="teal book icon"></i>Computer Science </button>
+                <button class="ui button" id="CS-btn" value="{{ getCoords('CS') }}" type="button"><i class="teal book icon"></i>Computer Science </button>
                 <div class="or"></div>
                 <button class="ui positive button" id="CS-direction">Direction</button>
             </div>
 
             <div class="ui buttons" id="CPAC">
-                <button class="ui button" id="CPAC-btn"><i class="teal book icon"></i>CPAC</button>
+                <button class="ui button" id="CPAC-btn" value="{{ getCoords('CPAC') }}" type="button"><i class="teal book icon"></i>Clayes Performing Arts Center</button>
                 <div class="or"></div>
                 <button class="ui positive button" id="CPAC-direction">Direction</button>
             </div>
 
             <div class="ui buttons" id="DBH">
-                <button class="ui button" id="DBH-btn"><i class="teal book icon"></i>Dan Black Hall </button>
+                <button class="ui button" id="DBH-btn" value="{{ getCoords('DBH') }}" type="button"><i class="teal book icon"></i>Dan Black Hall </button>
                 <div class="or"></div>
                 <button class="ui positive button" id="DBH-direction">Direction</button>
             </div>
 
             <div class="ui buttons" id="EC">
-                <button class="ui button" id="EC-btn"><i class="teal book icon"></i>Education Classroom </button>
+                <button class="ui button" id="EC-btn" value="{{ getCoords('EC') }}" type="button"><i class="teal book icon"></i>Education Classroom </button>
                 <div class="or"></div>
                 <button class="ui positive button" id="EC-direction">Direction</button>
             </div>
 
             <div class="ui buttons" id="E">
-                <button class="ui button" id="E-btn"><i class="teal book icon"></i>Engineering </button>
+                <button class="ui button" id="E-btn" value="{{ getCoords('E') }}" type="button"><i class="teal book icon"></i>Engineering </button>
                 <div class="or"></div>
                 <button class="ui positive button" id="E-direction">Direction</button>
             </div>
 
-            <div class="ui buttons" id="GAH">
-                <button class="ui button" id="GAH-btn"><i class="teal book icon"></i>Golleher Alumini House</button>
+            <div class="ui buttons" id="G">
+                <button class="ui button" id="G-btn" value="{{ getCoords('G') }}" type="button"><i class="teal book icon"></i>Golleher Alumini House</button>
                 <div class="or"></div>
-                <button class="ui positive button" id="GAH-direction">Direction</button>
+                <button class="ui positive button" id="G-direction">Direction</button>
             </div>
 
-            <div class="ui buttons" id="HSS">
-                <button class="ui button" id="HSS-btn"><i class="teal book icon"></i>Humanities & Social Science</button>
+            <div class="ui buttons" id="H">
+                <button class="ui button" id="H-btn" value="{{ getCoords('H') }}" type="button"><i class="teal book icon"></i>Humanities & Social Science</button>
                 <div class="or"></div>
-                <button class="ui positive button" id="HSS-direction">Direction</button>
+                <button class="ui positive button" id="H-direction">Direction</button>
             </div>
 
-            <div class="ui buttons" id="KH">
-                <button class="ui button" id="KH-btn"><i class="teal book icon"></i>Kinesiology & Health Science</button>
+            <div class="ui buttons" id="KHS">
+                <button class="ui button" id="KHS-btn" value="{{ getCoords('KHS') }}" type="button"><i class="teal book icon"></i>Kinesiology & Health Science</button>
                 <div class="or"></div>
-                <button class="ui positive button" id="KH-direction">Direction</button>
+                <button class="ui positive button" id="KHS-direction">Direction</button>
             </div>
 
             <div class="ui buttons" id="LH">
-                <button class="ui button" id="LH-btn"><i class="teal book icon"></i>Langsdorf Hall </button>
+                <button class="ui button" id="LH-btn" value="{{ getCoords('LH') }}" type="button"><i class="teal book icon"></i>Langsdorf Hall </button>
                 <div class="or"></div>
                 <button class="ui positive button" id="LH-direction">Direction</button>
             </div>
 
-            <div class="ui buttons" id="MCH">
-                <button class="ui button" id="MCH-btn"><i class="teal book icon"></i>Mc Carthy Hall </button>
+            <div class="ui buttons" id="MH">
+                <button class="ui button" id="MH-btn" value="{{ getCoords('MH') }}" type="button"><i class="teal book icon"></i>Mc Carthy Hall </button>
                 <div class="or"></div>
-                <button class="ui positive button" id="MCH-direction">Direction</button>
+                <button class="ui positive button" id="MH-direction">Direction</button>
             </div>
 
             <div class="ui buttons" id="PL">
-                <button class="ui button" id="PL-btn"><i class="teal book icon"></i>Pollack Library </button>
+                <button class="ui button" id="PL-btn" value="{{ getCoords('PL') }}" type="button"><i class="teal book icon"></i>Pollack Library </button>
                 <div class="or"></div>
                 <button class="ui positive button" id="PL-direction">Direction</button>
             </div>
 
             <div class="ui buttons" id="PLS">
-                <button class="ui button" id="PLS-btn"><i class="teal book icon"></i>Pollack Library South </button>
+                <button class="ui button" id="PLS-btn" value="{{ getCoords('PLS') }}" type="button"><i class="teal book icon"></i>Pollack Library South </button>
                 <div class="or"></div>
                 <button class="ui positive button" id="PLS-direction">Direction</button>
             </div>
 
             <div class="ui buttons" id="RGC">
-                <button class="ui button" id="RGC-btn"><i class="teal book icon"></i>Ruby Gerontology Center </button>
+                <button class="ui button" id="RGC-btn" value="{{ getCoords('RGC') }}" type="button"><i class="teal book icon"></i>Ruby Gerontology Center </button>
                 <div class="or"></div>
                 <button class="ui positive button" id="RGC-direction">Direction</button>
             </div>
 
             <div class="ui buttons" id="SGMH">
-                <button class="ui button" id="SGMH-btn"><i class="teal book icon"></i>Steven G. Mihalyo</button>
+                <button class="ui button" id="SGMH-btn" value="{{ getCoords('SGMH') }}" type="button"><i class="teal book icon"></i>Steven G. Mihalyo</button>
                 <div class="or"></div>
                 <button class="ui positive button" id="SGMH-direction">Direction</button>
             </div>
 
-            <div class="ui buttons" id="gym">
-                <button class="ui button" id="gym-btn"><i class="teal book icon"></i>Titan Gym </button>
-                <div class="or"></div>
-                <button class="ui positive button" id="gym-direction">Direction</button>
-            </div>
-
             <div class="ui buttons" id="UH">
-                <button class="ui button" id="UH-btn"><i class="teal book icon"></i>University Hall </button>
+                <button class="ui button" id="UH-btn" value="{{ getCoords('UH') }}" type="button"><i class="teal book icon"></i>University Hall </button>
                 <div class="or"></div>
                 <button class="ui positive button" id="UH-direction">Direction</button>
             </div>
 
             <div class="ui buttons" id="VA">
-                <button class="ui button" id="VA-btn"><i class="teal book icon"></i>Visual Arts </button>
+                <button class="ui button" id="VA-btn" value="{{ getCoords('VA') }}" type="button"><i class="teal book icon"></i>Visual Arts </button>
                 <div class="or"></div>
                 <button class="ui positive button" id="VA-direction">Direction</button>
             </div>
@@ -181,79 +174,68 @@
 
     <div class="ui simple dropdown item">
         <i class="teal users icon"></i> Food & Dining
-        <div class="menu">
+        <div class="menu"  style="overflow:auto;max-height:215px;">
             <div class="header">Places to eat in CSUF</div>
 
-            <div class="ui buttons" id="baja">
-                <button class="ui button" id="baj-btn"><i class="teal users icon"></i>Baja Express(TSU)</button>
+            <div class="ui buttons" id="BE">
+                <button class="ui button" id="BE-btn" value="{{ getCoords('BE') }}" type="button"><i class="teal users icon"></i>Baja Fresh(TSU)</button>
                 <div class="or"></div>
-                <button class="ui positive button" id="baja-direction">Direction</button>
+                <button class="ui positive button" id="BE-direction">Direction</button>
             </div>
 
-            <div class="ui buttons" id="carl">
-                <button class="ui button" id="carl-btn"><i class="teal users icon"></i>Carl's Jr</button>
+            <div class="ui buttons" id="CJ">
+                <button class="ui button" id="CJ-btn" value="{{ getCoords('CJ') }}" type="button"><i class="teal users icon"></i>Carl's Jr</button>
                 <div class="or"></div>
-                <button class="ui positive button" id="carl-direction">Direction</button>
+                <button class="ui positive button" id="CJ-direction">Direction</button>
             </div>
 
-            <div class="ui buttons" id="gas">
-                <button class="ui button" id="gas-btn"><i class="teal users icon"></i>Gastronome</button>
+            <div class="ui buttons" id="GA">
+                <button class="ui button" id="GA-btn" value="{{ getCoords('GA') }}" type="button"><i class="teal users icon"></i>Gastronome</button>
                 <div class="or"></div>
-                <button class="ui positive button" id="gas-direction">Direction</button>
+                <button class="ui positive button" id="GA-direction">Direction</button>
             </div>
 
-            <div class="ui buttons" id="juice">
-                <button class="ui button" id="juice-btn"><i class="teal users icon"></i>Juice it Up(TSU)</button>
+            <div class="ui buttons" id="JU">
+                <button class="ui button" id="JU-btn" value="{{ getCoords('JU') }}" type="button"><i class="teal users icon"></i>Juice it Up(TSU)</button>
                 <div class="or"></div>
-                <button class="ui positive button" id="juice-direction">Direction</button>
+                <button class="ui positive button" id="JU-direction">Direction</button>
             </div>
 
-            <div class="ui buttons" id="panda">
-                <button class="ui button" id="panda-btn"><i class="teal users icon"></i>Panda Express(TSU)</button>
+            <div class="ui buttons" id="PEX">
+                <button class="ui button" id="PEX-btn" value="{{ getCoords('PEX') }}" type="button"><i class="teal users icon"></i>Panda Express(TSU)</button>
                 <div class="or"></div>
-                <button class="ui positive button" id="panda-direction">Direction</button>
+                <button class="ui positive button" id="PEX-direction">Direction</button>
             </div>
 
-            <div class="ui buttons" id="star-sgmh">
-                <button class="ui button" id="star-sgmh-btn"><i class="teal coffee icon"></i>Starbucks(Mihalyo)</button>
+            <div class="ui buttons" id="MST">
+                <button class="ui button" id="MST-btn" value="{{ getCoords('MST') }}" type="button"><i class="teal coffee icon"></i>Starbucks(Mihalyo)</button>
                 <div class="or"></div>
-                <button class="ui positive button" id="star-sgmh-direction">Direction</button>
+                <button class="ui positive button" id="MST-direction">Direction</button>
             </div>
 
-            <div class="ui buttons" id="star-pl">
-                <button class="ui button" id="star-pl-btn"><i class="teal coffee icon"></i>Starbucks(PL)</button>
+            <div class="ui buttons" id="PLST">
+                <button class="ui button" id="PLST-btn" value="{{ getCoords('PLST') }}" type="button"><i class="teal coffee icon"></i>Starbucks(PL)</button>
                 <div class="or"></div>
-                <button class="ui positive button" id="star-pl-direction">Direction</button>
+                <button class="ui positive button" id="PLST-direction">Direction</button>
             </div>
 
-            <div class="ui buttons" id="star-tsu">
-                <button class="ui button" id="star-tsu-btn"><i class="teal coffee icon"></i>Starbucks(TSU)</button>
+            <div class="ui buttons" id="TSUST">
+                <button class="ui button" id="TSUST-btn" value="{{ getCoords('TSUST') }}" type="button"><i class="teal coffee icon"></i>Starbucks(TSU)</button>
                 <div class="or"></div>
-                <button class="ui positive button" id="star-tsu-direction">Direction</button>
+                <button class="ui positive button" id="TSUST-direction">Direction</button>
             </div>
 
-            <div class="ui buttons" id="togo-cp">
-                <button class="ui button" id="togo-tcp-btn"><i class="teal users icon"></i>Togo Sandwich(College Park)</button>
+            <div class="ui buttons" id="CPT">
+                <button class="ui button" id="CPT-btn" value="{{ getCoords('CPT') }}" type="button"><i class="teal users icon"></i>Togo Sandwich(College Park)</button>
                 <div class="or"></div>
-                <button class="ui positive button" id="togo-cp-direction">Direction</button>
+                <button class="ui positive button" id="CPT-direction">Direction</button>
             </div>
 
-            <div class="ui buttons" id="togo-tsu">
-                <button class="ui button" id="togo-tsu-btn"><i class="teal users icon"></i>Togo Sandwich(TSU)</button>
+            <div class="ui buttons" id="TSUT">
+                <button class="ui button" id="TSUT-btn" value="{{ getCoords('TSUT') }}" type="button"><i class="teal users icon"></i>Togo Sandwich(TSU)</button>
                 <div class="or"></div>
-                <button class="ui positive button" id="togo-tsu-direction">Direction</button>
+                <button class="ui positive button" id="TSUT-direction">Direction</button>
             </div>
-            <!-- <div class="item"><a href="#">Panda Express(TSU)</a></div>
-              <div class="item"><a href="#">Togo Sandwich(TSU)</a></div>
-              <div class="item"><a href="#">Juice it Up(TSU)</a></div>
-              <div class="item"><a href="#">Baja Express(TSU)</a></div>
-              <div class="item"><a href="#">Carl's Jr</a></div>
-              <div class="item"><a href="#">Togo Sandwich(College Park)</a></div>
-              <div class="item"><a href="#">Starbucks(PL)</a></div>
-              <div class="item"><a href="#">Starbucks(TSU)</a></div>
-              <div class="item"><a href="#">Starbucks(Mihalyo)</a></div>
-              <div class="item"><a href="#">Gastronome</a></div> -->
-
         </div>
     </div>
 
@@ -262,34 +244,29 @@
         <div class="menu">
             <div class="header">ATM located in CSUF</div>
 
-            <div class="ui buttons" id="bofa">
-                <button class="ui button" id="bofa-btn"><i class="teal credit card icon"></i>BoFA Bank ATM</button>
+            <div class="ui buttons" id="BOFA">
+                <button class="ui button" id="BOFA-btn" value="{{ getCoords('BOFA') }}" type="button"><i class="teal credit card icon"></i>BoFA Bank ATM</button>
                 <div class="or"></div>
-                <button class="ui positive button" id="bofa-direction">Direction</button>
+                <button class="ui positive button" id="BOFA-direction">Direction</button>
             </div>
 
-            <div class="ui buttons" id="chase">
-                <button class="ui button" id="chase-btn"><i class="teal credit card icon"></i>Chase Bank ATM</button>
+            <div class="ui buttons" id="CATM">
+                <button class="ui button" id="CATM-btn" value="{{ getCoords('CATM') }}" type="button"><i class="teal credit card icon"></i>Chase Bank ATM</button>
                 <div class="or"></div>
-                <button class="ui positive button" id="chase-direction">Direction</button>
+                <button class="ui positive button" id="CATM-direction">Direction</button>
             </div>
 
-            <div class="ui buttons" id="wells">
-                <button class="ui button" id="wells-btn"><i class="teal credit card icon"></i>Wells Fargo Bank ATM</button>
+            <div class="ui buttons" id="WATM">
+                <button class="ui button" id="WATM-btn" value="{{ getCoords('WATM') }}" type="button"><i class="teal credit card icon"></i>Wells Fargo Bank ATM</button>
                 <div class="or"></div>
-                <button class="ui positive button" id="wells-direction">Direction</button>
+                <button class="ui positive button" id="WATM-direction">Direction</button>
             </div>
 
-            <div class="ui buttons" id="usbank">
-                <button class="ui button" id="usbank-btn"><i class="teal credit card icon"></i>US Bank Branch(Titan Shop)</button>
+            <div class="ui buttons" id="USB">
+                <button class="ui button" id="USB-btn" value="{{ getCoords('USB') }}" type="button"><i class="teal credit card icon"></i>US Bank Branch(Titan Shop)</button>
                 <div class="or"></div>
-                <button class="ui positive button" id="usbank-direction">Direction</button>
+                <button class="ui positive button" id="USB-direction">Direction</button>
             </div>
-
-            <!-- <div class="item"><a href="#">BoFA Bank ATM</a></div>
-              <div class="item"><a href="#">Chase Bank ATM</a></div>
-              <div class="item"><a href="#">Wells Fargo Bank ATM</a></div>
-              <div class="item"><a href="#">US Bank Branch(Titan Shop)</a></div> -->
         </div>
     </div>
 
@@ -298,25 +275,29 @@
         <div class="menu">
             <div class="header">Important Landmarks for Events</div>
 
-            <div class="ui buttons" id="ecsquad">
-                <button class="ui button" id="ecsquad-btn"><i class="teal magnet icon"></i>ECS QUAD</button>
+            <div class="ui buttons" id="BA">
+                <button class="ui button" id="BA-btn" value="{{ getCoords('BA') }}" type="button"><i class="teal magnet icon"></i>Becker Amphitheater</button>
                 <div class="or"></div>
-                <button class="ui positive button" id="ecsquad-direction">Direction</button>
+                <button class="ui positive button" id="BA-direction">Direction</button>
             </div>
 
-            <div class="ui buttons" id="quad">
-                <button class="ui button" id="quad-btn"><i class="teal magnet icon"></i>QUAD</button>
+            <div class="ui buttons" id="ECSQ">
+                <button class="ui button" id="ECSQ-btn" value="{{ getCoords('ECSQ') }}" type="button"><i class="teal magnet icon"></i>ECS QUAD</button>
                 <div class="or"></div>
-                <button class="ui positive button" id="quad-direction">Direction</button>
+                <button class="ui positive button" id="ECSQ-direction">Direction</button>
             </div>
 
-            <div class="ui buttons" id="tw">
-                <button class="ui button" id="tw-btn"><i class="teal magnet icon"></i>Titan Walk</button>
+            <div class="ui buttons" id="Q">
+                <button class="ui button" id="Q-btn" value="{{ getCoords('Q') }}" type="button"><i class="teal magnet icon"></i>QUAD</button>
                 <div class="or"></div>
-                <button class="ui positive button" id="tw-direction">Direction</button>
+                <button class="ui positive button" id="Q-direction">Direction</button>
             </div>
-            <!-- <div class="item"><a href="#">QUAD</a></div>
-              <div class="item"><a href="#">ECS QUAD</a></div> -->
+
+            <div class="ui buttons" id="TW">
+                <button class="ui button" id="TW-btn" value="{{ getCoords('TW') }}" type="button"><i class="teal magnet icon"></i>Titan Walk</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="TW-direction">Direction</button>
+            </div>
         </div>
     </div>
 
@@ -325,63 +306,163 @@
         <div class="menu">
             <div class="header">Facilities provided by CSUF</div>
 
-            <div class="ui buttons" id="env">
-                <button class="ui button" id="env-btn"><i class="teal recycle icon"></i>Environment Health & Safety</button>
+            <div class="ui buttons" id="EHS">
+                <button class="ui button" id="EHS-btn" value="{{ getCoords('EHS') }}" type="button"><i class="teal recycle icon"></i>Environment Health & Safety</button>
                 <div class="or"></div>
-                <button class="ui positive button" id="env-direction">Direction</button>
+                <button class="ui positive button" id="EHS-direction">Direction</button>
             </div>
 
-            <div class="ui buttons" id="pto">
-                <button class="ui button" id="pto-btn"><i class="teal recycle icon"></i>Parking & Transportation Office</button>
+            <div class="ui buttons" id="P">
+                <button class="ui button" id="P-btn" value="{{ getCoords('P') }}" type="button"><i class="teal recycle icon"></i>Parking & Transportation Office</button>
                 <div class="or"></div>
-                <button class="ui positive button" id="pto-direction">Direction</button>
+                <button class="ui positive button" id="P-direction">Direction</button>
             </div>
 
-            <div class="ui buttons" id="trigen">
-                <button class="ui button" id="trigen-btn"><i class="teal recycle icon"></i>Trigen</button>
+            <div class="ui buttons" id="TRI">
+                <button class="ui button" id="TRI-btn" value="{{ getCoords('TRI') }}" type="button"><i class="teal recycle icon"></i>Trigen</button>
                 <div class="or"></div>
-                <button class="ui positive button" id="trigen-direction">Direction</button>
+                <button class="ui positive button" id="TRI-direction">Direction</button>
             </div>
-
-            <!-- <div class="item"><a href="#">Environment Health & Safety</a></div>
-              <div class="item"><a href="#">Parking & Transportation Office</a></div>
-              <div class="item"><a href="#">Trigen</a></div> -->
         </div>
     </div>
+
+        <div class="ui simple dropdown item">
+            <i class="teal car icon"></i> Parking Structures
+            <div class="menu" style="overflow:auto;max-height:289px;">
+                <div class="header">Parking including students and faculties in CSUF</div>
+
+                <div class="ui buttons" id="PA">
+                    <button class="ui button" id="PA-btn" value="{{ getCoords('PA') }}" type="button"><i class="teal car icon"></i>Parking Lot A</button>
+                    <div class="or"></div>
+                    <button class="ui positive button" id="PA-direction">Direction</button>
+                </div>
+
+                <div class="ui buttons" id="PAS">
+                    <button class="ui button" id="PAS-btn" value="{{ getCoords('PAS') }}" type="button"><i class="teal car icon"></i>Parking Lot A - South</button>
+                    <div class="or"></div>
+                    <button class="ui positive button" id="PAS-direction">Direction</button>
+                </div>
+
+                <div class="ui buttons" id="PC">
+                    <button class="ui button" id="PC-btn" value="{{ getCoords('PC') }}" type="button"><i class="teal car icon"></i>Parking Lot C</button>
+                    <div class="or"></div>
+                    <button class="ui positive button" id="PC-direction">Direction</button>
+                </div>
+
+                <div class="ui buttons" id="PCE">
+                    <button class="ui button" id="PCE-btn" value="{{ getCoords('PCE') }}" type="button"><i class="teal car icon"></i>Parking Lot C - East</button>
+                    <div class="or"></div>
+                    <button class="ui positive button" id="PCE-direction">Direction</button>
+                </div>
+
+                <div class="ui buttons" id="PCW">
+                    <button class="ui button" id="PCW-btn" value="{{ getCoords('PCW') }}" type="button"><i class="teal car icon"></i>Parking Lot C - West</button>
+                    <div class="or"></div>
+                    <button class="ui positive button" id="PCW-direction">Direction</button>
+                </div>
+
+                <div class="ui buttons" id="PE">
+                    <button class="ui button" id="PE-btn" value="{{ getCoords('PE') }}" type="button"><i class="teal car icon"></i>Parking Lot E</button>
+                    <div class="or"></div>
+                    <button class="ui positive button" id="PE-direction">Direction</button>
+                </div>
+
+                <div class="ui buttons" id="PF">
+                    <button class="ui button" id="PF-btn" value="{{ getCoords('PF') }}" type="button"><i class="teal car icon"></i>Parking Lot F</button>
+                    <div class="or"></div>
+                    <button class="ui positive button" id="PF-direction">Direction</button>
+                </div>
+
+                <div class="ui buttons" id="PG">
+                    <button class="ui button" id="PG-btn" value="{{ getCoords('PG') }}" type="button"><i class="teal car icon"></i>Parking Lot G</button>
+                    <div class="or"></div>
+                    <button class="ui positive button" id="PG-direction">Direction</button>
+                </div>
+
+                <div class="ui buttons" id="PH">
+                    <button class="ui button" id="PH-btn" value="{{ getCoords('PH') }}" type="button"><i class="teal car icon"></i>Parking Lot H</button>
+                    <div class="or"></div>
+                    <button class="ui positive button" id="PH-direction">Direction</button>
+                </div>
+
+                <div class="ui buttons" id="PI">
+                    <button class="ui button" id="PI-btn" value="{{ getCoords('PI') }}" type="button"><i class="teal car icon"></i>Parking Lot I</button>
+                    <div class="or"></div>
+                    <button class="ui positive button" id="PI-direction">Direction</button>
+                </div>
+
+                <div class="ui buttons" id="PS">
+                    <button class="ui button" id="PS-btn" value="{{ getCoords('PS') }}" type="button"><i class="teal car icon"></i>Parking Lot S</button>
+                    <div class="or"></div>
+                    <button class="ui positive button" id="PS-direction">Direction</button>
+                </div>
+
+                <div class="ui buttons" id="AP">
+                    <button class="ui button" id="AP-btn" value="{{ getCoords('AP') }}" type="button"><i class="teal car icon"></i>Arboritum Parking</button>
+                    <div class="or"></div>
+                    <button class="ui positive button" id="AP-direction">Direction</button>
+                </div>
+
+                <div class="ui buttons" id="CPFSP">
+                    <button class="ui button" id="CPFSP-btn" value="{{ getCoords('CPFSP') }}" type="button"><i class="teal car icon"></i>CPFS Parking</button>
+                    <div class="or"></div>
+                    <button class="ui positive button" id="CPFSP-direction">Direction</button>
+                </div>
+
+                <div class="ui buttons" id="DDP">
+                    <button class="ui button" id="DDP-btn" value="{{ getCoords('DDP') }}" type="button"><i class="teal car icon"></i>Dumbo Down Parking</button>
+                    <div class="or"></div>
+                    <button class="ui positive button" id="DDP-direction">Direction</button>
+                </div>
+
+                <div class="ui buttons" id="EPS">
+                    <button class="ui button" id="EPS-btn" value="{{ getCoords('EPS') }}" type="button"><i class="teal car icon"></i>East Side Structure Parking</button>
+                    <div class="or"></div>
+                    <button class="ui positive button" id="EPS-direction">Direction</button>
+                </div>
+
+                <div class="ui buttons" id="NPS">
+                    <button class="ui button" id="NPS-btn" value="{{ getCoords('NPS') }}" type="button"><i class="teal car icon"></i>Nutwood Structure Parking</button>
+                    <div class="or"></div>
+                    <button class="ui positive button" id="NPS-direction">Direction</button>
+                </div>
+
+                <div class="ui buttons" id="SCPS">
+                    <button class="ui button" id="SCPS-btn" value="{{ getCoords('SCPS') }}" type="button"><i class="teal car icon"></i>State College Structure Parking</button>
+                    <div class="or"></div>
+                    <button class="ui positive button" id="SCPS-direction">Direction</button>
+                </div>
+            </div>
+        </div>
 
     <div class="ui simple dropdown item">
         <i class="teal search icon"></i>Corporation Yard
         <div class="menu">
             <div class="header"><a href="#">Corporation Yard</a></div>
 
-            <div class="ui buttons" id="trigen">
-                <button class="ui button" id="trigen-btn"><i class="teal search icon"></i>Automobile Shop</button>
+            <div class="ui buttons" id="AS">
+                <button class="ui button" id="AS-btn" value="{{ getCoords('AS') }}" type="button"><i class="teal search icon"></i>Automobile Shop</button>
                 <div class="or"></div>
-                <button class="ui positive button" id="trigen-direction">Direction</button>
+                <button class="ui positive button" id="AS-direction">Direction</button>
             </div>
 
-            <div class="ui buttons" id="trigen">
-                <button class="ui button" id="trigen-btn"><i class="teal search icon"></i>Carpenter Shop</button>
+            <div class="ui buttons" id="CSH">
+                <button class="ui button" id="CSH-btn" value="{{ getCoords('CSH') }}" type="button"><i class="teal search icon"></i>Carpenter Shop</button>
                 <div class="or"></div>
-                <button class="ui positive button" id="trigen-direction">Direction</button>
+                <button class="ui positive button" id="CSH-direction">Direction</button>
             </div>
 
-            <div class="ui buttons" id="trigen">
-                <button class="ui button" id="trigen-btn"><i class="teal search icon"></i>Mailing Center</button>
+            <div class="ui buttons" id="MC">
+                <button class="ui button" id="MC-btn" value="{{ getCoords('MC') }}" type="button"><i class="teal search icon"></i>Mailing Center</button>
                 <div class="or"></div>
-                <button class="ui positive button" id="trigen-direction">Direction</button>
+                <button class="ui positive button" id="MC-direction">Direction</button>
             </div>
 
-            <div class="ui buttons" id="trigen">
-                <button class="ui button" id="trigen-btn"><i class="teal search icon"></i>Shipping & Recieving</button>
+            <div class="ui buttons" id="SR">
+                <button class="ui button" id="SR-btn" value="{{ getCoords('SR') }}" type="button"><i class="teal search icon"></i>Shipping & Recieving</button>
                 <div class="or"></div>
-                <button class="ui positive button" id="trigen-direction">Direction</button>
+                <button class="ui positive button" id="SR-direction">Direction</button>
             </div>
-
-            <!-- <div class="item"><a href="#">Automobile Shop</a></div>
-            <div class="item"><a href="#">Carpenter Shop</a></div>
-            <div class="item"><a href="#">Mailing Center</a></div>
-            <div class="item"><a href="#">Shipping & Recieving</a></div> -->
         </div>
     </div>
 
@@ -390,42 +471,17 @@
         <div class="menu">
             <div class="header">Located outside of CSUF campus</div>
 
-            <div class="ui buttons" id="cp">
-                <button class="ui button" id="cp-btn"><i class="teal laptop icon"></i>College Park</button>
+            <div class="ui buttons" id="CP">
+                <button class="ui button" id="CP-btn" value="{{ getCoords('CP') }}" type="button"><i class="teal laptop icon"></i>College Park</button>
                 <div class="or"></div>
-                <button class="ui positive button" id="cp-direction">Direction</button>
+                <button class="ui positive button" id="CP-direction">Direction</button>
             </div>
 
-            <div class="ui buttons" id="cp-west">
-                <button class="ui button" id="cp-west-btn"><i class="teal laptop icon"></i>College Park - West</button>
+            <div class="ui buttons" id="CPW">
+                <button class="ui button" id="CPW-btn" value="{{ getCoords('CPW') }}" type="button"><i class="teal laptop icon"></i>College Park - West</button>
                 <div class="or"></div>
-                <button class="ui positive button" id="cp-west-direction">Direction</button>
+                <button class="ui positive button" id="CPW-direction">Direction</button>
             </div>
-
-            <!-- <div class="item"><a href="#">College Park</a></div>
-              <div class="item"><a href="#">College Park - West</a></div> -->
-        </div>
-    </div>
-
-    <div class="ui simple dropdown item">
-        <i class="teal plus icon"></i> Emergency
-        <div class="menu">
-            <div class="header">CSUF Emergency buildings</div>
-
-            <div class="ui buttons" id="shc">
-                <button class="ui button" id="shc-btn"><i class="teal user doctor icon"></i>Student Health Center</button>
-                <div class="or"></div>
-                <button class="ui positive button" id="shc-direction">Direction</button>
-            </div>
-
-            <div class="ui buttons" id="police">
-                <button class="ui button" id="police-btn"><i class="teal plus icon"></i>University Police</button>
-                <div class="or"></div>
-                <button class="ui positive button" id="police-direction">Direction</button>
-            </div>
-
-            <!-- <div class="item"><a href="#">University Police</a></div>
-              <div class="item"><a href="#">Student Health Center</a></div> -->
         </div>
     </div>
 
@@ -434,40 +490,35 @@
         <div class="menu">
             <div class="header">Student services in CSUF</div>
 
-            <div class="ui buttons" id="ar">
-                <button class="ui button" id="ar-btn"><i class="teal thumbs up icon"></i>Admission & Records S.C</button>
+            <div class="ui buttons" id="ARSC">
+                <button class="ui button" id="ARSC-btn" value="{{ getCoords('ARSC') }}" type="button"><i class="teal thumbs up icon"></i>Admission and Records Service Center</button>
                 <div class="or"></div>
-                <button class="ui positive button" id="ar-direction">Direction</button>
+                <button class="ui positive button" id="ARSC-direction">Direction</button>
             </div>
 
-            <div class="ui buttons" id="career">
-                <button class="ui button" id="career-btn"><i class="teal thumbs up icon"></i>Career Center</button>
+            <div class="ui buttons" id="CRC">
+                <button class="ui button" id="CRC-btn" value="{{ getCoords('CRC') }}" type="button"><i class="teal thumbs up icon"></i>Career Center</button>
                 <div class="or"></div>
-                <button class="ui positive button" id="career-direction">Direction</button>
-            </div>
-
-            <div class="ui buttons" id="rc">
-                <button class="ui button" id="rc-btn"><i class="teal thumbs up icon"></i>Recreation Center</button>
-                <div class="or"></div>
-                <button class="ui positive button" id="rc-direction">Direction</button>
+                <button class="ui positive button" id="CRC-direction">Direction</button>
             </div>
 
             <div class="ui buttons" id="RH">
-                <button class="ui button" id="RH-btn"><i class="teal thumbs up icon"></i>Resident Hall</button>
+                <button class="ui button" id="RH-btn" value="{{ getCoords('RH') }}" type="button"><i class="teal thumbs up icon"></i>Resident Hall</button>
                 <div class="or"></div>
                 <button class="ui positive button" id="RH-direction">Direction</button>
             </div>
 
             <div class="ui buttons" id="SH">
-                <button class="ui button" id="SH-btn"><i class="teal thumbs up icon"></i>Student Housing</button>
+                <button class="ui button" id="SH-btn" value="{{ getCoords('SH') }}" type="button"><i class="teal thumbs up icon"></i>Student Housing</button>
                 <div class="or"></div>
                 <button class="ui positive button" id="SH-direction">Direction</button>
             </div>
 
-            <!-- <div class="item"><a href="#">Career Center</a></div>
-              <div class="item"><a href="#">Recreation Center</a></div>
-              <div class="item"><a href="#">Resident Hall</a></div>
-              <div class="item"><a href="#">Student Housing</a></div> -->
+            <div class="ui buttons" id="SRC">
+                <button class="ui button" id="SRC-btn" value="{{ getCoords('SRS') }}" type="button"><i class="teal thumbs up icon"></i>Student Recreation Center</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="SRC-direction">Direction</button>
+            </div>
         </div>
     </div>
 
@@ -478,180 +529,91 @@
         <div class="menu">
             <div class="header">Pride of Titans</div>
 
-            <div class="ui buttons" id="THall">
-                <button class="ui button" id="THall-btn"><i class="teal spinner icon"></i>Titan Hall</button>
+            <div class="ui buttons" id="TG">
+                <button class="ui button" id="TG-btn" value="{{ getCoords('TG') }}" type="button"><i class="teal spinner icon"></i>Titan Gymnasium </button>
                 <div class="or"></div>
-                <button class="ui positive button" id="THall-direction">Direction</button>
+                <button class="ui positive button" id="TG-direction">Direction</button>
             </div>
 
-            <div class="ui buttons" id="THouse">
-                <button class="ui button" id="THouse-btn"><i class="teal spinner icon"></i>Titan House</button>
+            <div class="ui buttons" id="TH">
+                <button class="ui button" id="TH-btn" value="{{ getCoords('TH') }}" type="button"><i class="teal spinner icon"></i>Titan House</button>
                 <div class="or"></div>
-                <button class="ui positive button" id="THouse-direction">Direction</button>
+                <button class="ui positive button" id="TH-direction">Direction</button>
             </div>
 
-            <div class="ui buttons" id="TR">
-                <button class="ui button" id="TR-btn"><i class="teal spinner icon"></i>Titan ROTC</button>
+            <div class="ui buttons" id="TROTC">
+                <button class="ui button" id="TROTC-btn" value="{{ getCoords('TROTC') }}" type="button"><i class="teal spinner icon"></i>Titan ROTC</button>
                 <div class="or"></div>
-                <button class="ui positive button" id="TR-direction">Direction</button>
+                <button class="ui positive button" id="TROTC-direction">Direction</button>
             </div>
 
-            <div class="ui buttons" id="TS">
-                <button class="ui button" id="TS-btn"><i class="teal spinner icon"></i>Titan Shop</button>
+            <div class="ui buttons" id="TSH">
+                <button class="ui button" id="TSH-btn" value="{{ getCoords('TSH') }}" type="button"><i class="teal spinner icon"></i>Titan Shop</button>
                 <div class="or"></div>
-                <button class="ui positive button" id="TS-direction">Direction</button>
+                <button class="ui positive button" id="TSH-direction">Direction</button>
             </div>
 
             <div class="ui buttons" id="TSU">
-                <button class="ui button" id="TSU-btn"><i class="teal spinner icon"></i>Titan Student Union(TSU)</button>
+                <button class="ui button" id="TSU-btn" value="{{ getCoords('TSU') }}" type="button"><i class="teal spinner icon"></i>Titan Student Union(TSU)</button>
                 <div class="or"></div>
                 <button class="ui positive button" id="TSU-direction">Direction</button>
             </div>
-
-            <!-- <div class="item"><a href="#">Titan ROTC</a></div>
-              <div class="item"><a href="#">Titan House</a></div>
-              <div class="item"><a href="#">Titan Hall</a></div>
-              <div class="item"><a href="#">Titan Shop(Bookstore)</a></div>
-              <div class="item"><a href="#">Titan Student Union(TSU)</a></div> -->
         </div>
     </div>
 
     <div class="ui simple dropdown item">
-        <i class="teal car icon"></i> Parking Structures
+        <i class="teal spinner icon"></i>Titan Sports Complex
         <div class="menu">
-            <div class="header">Parking including students and faculties in CSUF</div>
+            <div class="header">Athelatics Stadiums</div>
 
-            <div class="ui buttons" id="lota">
-                <button class="ui button" id="lota-btn"><i class="teal car icon"></i>Parking Lot A</button>
+            <div class="ui buttons" id="TS">
+                <button class="ui button" id="TS-btn" value="{{ getCoords('TS') }}" type="button"><i class="teal spinner icon"></i>Titan Stadium</button>
                 <div class="or"></div>
-                <button class="ui positive button" id="lota-direction">Direction</button>
+                <button class="ui positive button" id="TS-direction">Direction</button>
             </div>
 
-            <div class="ui buttons" id="lotas">
-                <button class="ui button" id="lotas-btn"><i class="teal car icon"></i>Parking Lot A - South</button>
+            <div class="ui buttons" id="GF">
+                <button class="ui button" id="GF-btn" value="{{ getCoords('GF') }}" type="button"><i class="teal spinner icon"></i>Goodwin Field</button>
                 <div class="or"></div>
-                <button class="ui positive button" id="lotas-direction">Direction</button>
+                <button class="ui positive button" id="GF-direction">Direction</button>
             </div>
 
-            <div class="ui buttons" id="lotc">
-                <button class="ui button" id="lotc-btn"><i class="teal car icon"></i>Parking Lot C</button>
+            <div class="ui buttons" id="AF">
+                <button class="ui button" id="AF-btn" value="{{ getCoords('AF') }}" type="button"><i class="teal spinner icon"></i>Anderson Field</button>
                 <div class="or"></div>
-                <button class="ui positive button" id="lotc-direction">Direction</button>
+                <button class="ui positive button" id="AF-direction">Direction</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui simple dropdown item">
+        <i class="teal plus icon"></i> Emergency
+        <div class="menu">
+            <div class="header">CSUF Emergency buildings</div>
+
+            <div class="ui buttons" id="SHCC">
+                <button class="ui button" id="SHCC-btn" value="{{ getCoords('SHCC') }}" type="button"><i class="teal user doctor icon"></i>Student Health & Counseling Center</button>
+                <div class="or"></div>
+                <button class="ui positive button" id="SHCC-direction">Direction</button>
             </div>
 
-            <div class="ui buttons" id="lotce">
-                <button class="ui button" id="lotce-btn"><i class="teal car icon"></i>Parking Lot C - East</button>
+            <div class="ui buttons" id="UP">
+                <button class="ui button" id="UP-btn" value="{{ getCoords('UP') }}" type="button"><i class="teal plus icon"></i>University Police</button>
                 <div class="or"></div>
-                <button class="ui positive button" id="lotce-direction">Direction</button>
+                <button class="ui positive button" id="UP-direction">Direction</button>
             </div>
-
-            <div class="ui buttons" id="lotcw">
-                <button class="ui button" id="lotcw-btn"><i class="teal car icon"></i>Parking Lot C - West</button>
-                <div class="or"></div>
-                <button class="ui positive button" id="lotcw-direction">Direction</button>
-            </div>
-
-            <div class="ui buttons" id="lote">
-                <button class="ui button" id="lote-btn"><i class="teal car icon"></i>Parking Lot E</button>
-                <div class="or"></div>
-                <button class="ui positive button" id="lote-direction">Direction</button>
-            </div>
-
-            <div class="ui buttons" id="lotf">
-                <button class="ui button" id="lotf-btn"><i class="teal car icon"></i>Parking Lot F</button>
-                <div class="or"></div>
-                <button class="ui positive button" id="lotf-direction">Direction</button>
-            </div>
-
-            <div class="ui buttons" id="lotg">
-                <button class="ui button" id="lotg-btn"><i class="teal car icon"></i>Parking Lot G</button>
-                <div class="or"></div>
-                <button class="ui positive button" id="lotg-direction">Direction</button>
-            </div>
-
-            <div class="ui buttons" id="loth">
-                <button class="ui button" id="loth-btn"><i class="teal car icon"></i>Parking Lot H</button>
-                <div class="or"></div>
-                <button class="ui positive button" id="loth-direction">Direction</button>
-            </div>
-
-            <div class="ui buttons" id="loti">
-                <button class="ui button" id="loti-btn"><i class="teal car icon"></i>Parking Lot I</button>
-                <div class="or"></div>
-                <button class="ui positive button" id="loti-direction">Direction</button>
-            </div>
-
-            <div class="ui buttons" id="lots">
-                <button class="ui button" id="lots-btn"><i class="teal car icon"></i>Parking Lot S</button>
-                <div class="or"></div>
-                <button class="ui positive button" id="lots-direction">Direction</button>
-            </div>
-
-            <div class="ui buttons" id="arbp">
-                <button class="ui button" id="arbp-btn"><i class="teal car icon"></i>Arboritum Parking</button>
-                <div class="or"></div>
-                <button class="ui positive button" id="arbp-direction">Direction</button>
-            </div>
-
-            <div class="ui buttons" id="cpfsp">
-                <button class="ui button" id="cpfsp-btn"><i class="teal car icon"></i>CPFS Parking</button>
-                <div class="or"></div>
-                <button class="ui positive button" id="cpfsp-direction">Direction</button>
-            </div>
-
-            <div class="ui buttons" id="ddp">
-                <button class="ui button" id="ddp-btn"><i class="teal car icon"></i>Dumbo Down Parking</button>
-                <div class="or"></div>
-                <button class="ui positive button" id="ddp-direction">Direction</button>
-            </div>
-
-            <div class="ui buttons" id="east-side-p">
-                <button class="ui button" id="east-side-p-btn"><i class="teal car icon"></i>East Side Structure Parking</button>
-                <div class="or"></div>
-                <button class="ui positive button" id="east-side-p-direction">Direction</button>
-            </div>
-
-            <div class="ui buttons" id="nutwoodp">
-                <button class="ui button" id="nutwoodp-btn"><i class="teal car icon"></i>Nutwood Structure Parking</button>
-                <div class="or"></div>
-                <button class="ui positive button" id="nutwoodp-direction">Direction</button>
-            </div>
-
-            <div class="ui buttons" id="scsp">
-                <button class="ui button" id="scsp-btn"><i class="teal car icon"></i>State College Structure Parking</button>
-                <div class="or"></div>
-                <button class="ui positive button" id="scsp-direction">Direction</button>
-            </div>
-
-            <!-- <div class="item"><a href="#">Parking Lot A</a></div>
-              <div class="item"><a href="#">Parking Lot A South</a></div>
-              <div class="item"><a href="#">Parking Lot C</a></div>
-              <div class="item"><a href="#">Parking Lot C West</a></div>
-              <div class="item"><a href="#">Parking Lot C East</a></div>
-              <div class="item"><a href="#">Parking Lot E</a></div>
-              <div class="item"><a href="#">Parking Lot F</a></div>
-              <div class="item"><a href="#">Parking Lot G</a></div>
-              <div class="item"><a href="#">Parking Lot H</a></div>
-              <div class="item"><a href="#">Parking Lot I</a></div>
-              <div class="item"><a href="#">Parking Lot S</a></div>
-              <div class="item"><a href="#">Arboritum Parking</a></div>
-              <div class="item"><a href="#">Dumbo Down Parking</a></div>
-              <div class="item"><a href="#">Nutwood Structure Parking</a></div>
-              <div class="item"><a href="#">East Side Structure Parking</a></div>
-              <div class="item"><a href="#">State College Structure Parking</a></div>
-              <div class="item"><a href="#">CPFS Parking</a></div> -->
         </div>
     </div>
 
     <div class="ui fitted divider"></div>
 
     <a href="#" class="item" id="offline-map"><i class="teal map icon"></i>Offline Map/Legend</a>
-    <a href="#" class="item" id="contact-us"><i class="teal phone icon"></i>Contact Us</a>
+    <a href="#" class="item" id="team"><i class="teal phone icon"></i>Meet The Team</a>
 
   </div>
 
-
 </div>
+
 </form>
 {% block map %} {% endblock %}
 </body>

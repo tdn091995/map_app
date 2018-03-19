@@ -36,3 +36,10 @@ def mapdemo_post():
 		tl = gmaps.getTripLength()
 		cur = session['curLoc']
 		return render_template('directions.html', bld=bld, coords=coords, cur=cur, directions=directions, tl=tl, key=key)
+
+@app.context_processor
+def coords_processor():
+	def getCoords(src):
+		y = getBuilding(src)
+		return y[1]
+	return dict(getCoords=getCoords)
