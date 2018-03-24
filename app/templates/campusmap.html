@@ -14,7 +14,7 @@
 {% extends "base.html" %}
 
 {% block map %}
-    <div id="txt" class="ui label"></div>
+    <div id="info" class="ui label"></div>
     <div id="warning"></div>
     <!-- <div id="right-panel">
         {% block display %}{% endblock %}
@@ -80,7 +80,7 @@
         h = checkTime(h);
         m = checkTime(m);
         s = checkTime(s);
-        document.getElementById('txt').innerHTML = h + ":" + m + ":" + s;
+        document.getElementById('info').innerHTML = h + ":" + m + ":" + s;
         setTimeout(startTime, 500); {% block time %} {% endblock %}
     }
 

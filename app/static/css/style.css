@@ -7,38 +7,30 @@
             margin: 0;
             padding: 0;
         }
+        
+        .container{
+            display:-webkit-box;
+            display:-ms-flexbox;
+            display:flex;
+            padding:8px;
+
+            height:100%;
+            -webkit-box-sizing:border-box;
+            box-sizing:border-box;
+        }
+
         #map {
-            position: absolute;
-            height: 570px;
-            width: 810px;
-            top: 200px;
-            left: 320px;
+            position: relative;
+            height: 670px;
+            width: 910px;
+            top: 260px;
         }
 	
         #navbar {
             position: relative;
-            top: 10px;
+            margin-right: 50px;
         }
 		
-
-        #floating-panel {
-            position: absolute;
-            height: 50px;
-            top: 140px;
-            left: 20%;
-            z-index: 5;
-            background: #FFF;
-            text-align: center;
-            line-height: 30px;
-            padding-left: 10px;
-            padding: 5px;
-            font-size: 14px;
-            font-family: Arial;
-            border: 1px solid #ccc;
-            box-shadow: 0 2px 2px rgba(33, 33, 33, 0.4);
-            display: block;
-        }
-
         #right-panel {
             position: absolute;
             padding-left: 10px;
@@ -51,7 +43,7 @@
             background-color: white;
         }
 
-        #txt {
+        #info {
             position: absolute;
             size: 40px;
             font-size: 30px;
@@ -92,13 +84,3 @@
             top: 16px;
         }
         
-        @media print {
-            #map {
-                height: 100%;
-                margin: 0;
-            }
-            #right-panel {
-                float: none;
-                width: auto;
-            }
-        }
