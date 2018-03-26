@@ -2,7 +2,7 @@
          * element that contains the map. */
 
         html,
-        body {
+        body.pushable>.pusher {
             height: 100%;
             margin: 0;
             padding: 0;
@@ -19,11 +19,16 @@
             box-sizing:border-box;
         }
 
+        .ui.sidebar {
+            overflow: visible !important;
+        }
+
         #map {
-            position: relative;
-            height: 670px;
-            width: 910px;
-            top: 260px;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0px;
+            z-index: -1;
         }
 	
         #navbar {
@@ -51,8 +56,8 @@
             background: #fff;
             border: 1px solid #ccc;
             box-shadow: 0 2px 2px rgba(33, 33, 33, 0.4);
-            top: 125px;
-            right: 26%;
+            top: 0px;
+            right: 0px;
         }
 
         #warning {
@@ -82,5 +87,9 @@
         #header1{
             position: relative;
             top: 16px;
+        }
+
+        #left-sidebar-toggle{
+            padding: 14px;
         }
         

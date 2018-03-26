@@ -15,22 +15,20 @@
     <script src="https://maps.googleapis.com/maps/api/js?key={{ key }}"></script>
     <script  src="{{ url_for('static', filename='scripts/geolocation-marker.js') }}"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-
-    <style> 
-        body {
+    <style>
+        body.pushable>.pusher {
             background: url(static/img/university5.jpg);
             background-size: cover;
             background-size: 100%;
-        }
+        }    
     </style>
 </head>
 
 <body>
-<div class="container">
-<form id="geolocation" action="" method="POST">
-<input type="hidden" id="location" name="location" value="">
-<div id="navbar">
-  <div class="ui vertical menu">
+
+  <div class="ui left vertical menu sidebar">
+    <form id="geolocation" action="" method="POST">
+    <input type="hidden" id="location" name="location" value="">  
     <h2 class="ui center aligned header" id="header1">
       <img src="{{ url_for('static', filename='img/asktuffy2.png') }}" class="ui circular image">
       <a href=/map>CSUF</a>
@@ -52,19 +50,16 @@
         </div>
     </div>
 
-
-
     <div class="active item">
         <div class="ui transparent icon input">
             <input type="text" id="src1" name="src1" placeholder="Enter Class e.g cs101">
-            <button class="ui compact icon button" type="Submit" id="submit" style="position: relative; right: 18px">
+            <button class="ui compact icon button" type="Submit" id="submit" style="position: relative; right: 8px">
               <i class="search icon"></i>
             </button>
         </div>
     </div>
 
     <div class="ui fitted divider"></div>
-
     <div class="ui simple dropdown item">
         <i class="teal book icon"></i> Education Buildings
         <div class="menu" style="overflow:auto;max-height:289px;">
@@ -609,7 +604,7 @@
         </div>
     </div>
 
-    <div id="ex1" class="ui modal">
+    <div id="ex1" class="modal">
            <p><strong>Education Buildings</strong><br>
              CC - Children's Center|| CS - Computer Science|| CPAC - Clayes Performing Arts Center||
              DBH - Dan Black Hall|| EC - Education Classroom|| E - Engineering|| G - Golleher Alumni House
@@ -652,11 +647,25 @@
         <i class="teal map icon"></i>Offline Map/Legend</a>
         <a href="#" class="item" id="team"><i class="teal phone icon"></i>Meet The Team</a>
 
+    </form>
   </div>
 
-</div>
 
-</form>
-{% block map %} {% endblock %}
-</div>
+    <div class="pusher">
+    <button class="ui icon button" id="left-sidebar-toggle">
+      <i class="align justify icon"></i>
+    </button>
+    {% block map %} {% endblock %}
+    </div>
+
+    <script>
+            $('.ui.sidebar').sidebar({
+        dimPage: false,
+        transition: 'push',
+        exclusive: false,
+        closable: false
+    });
+
+    $('.ui.sidebar').sidebar('attach events', '#left-sidebar-toggle');
+    </script>
 </body>

@@ -30,6 +30,15 @@
     var directionsService;
 
     initMap();
+	$('.ui.sidebar').sidebar({
+		dimPage: false,
+		transition: 'push',
+		exclusive: false,
+		closable: false
+	});
+
+	$('.ui.sidebar').sidebar('attach events', '#left-sidebar-toggle');
+
     if (navigator.geolocation) { // Call geolocation to get user's current position
         navigator.geolocation.getCurrentPosition(getCurrPos, errorCallback, {
             enableHighAccuracy: true
