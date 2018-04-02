@@ -61,109 +61,112 @@
 
     <div class="ui fitted divider"></div>
     <div class="ui simple dropdown item">
-        <i class="teal book icon"></i> Education Buildings
+        <i class="teal book icon"></i>
+            <div class="ui checkbox">
+                <input type="checkbox" name="example">
+                <label> Education Buildings </label>
+            </div>
         <div class="menu" style="overflow:auto;max-height:289px;">
             <div class="header">Education Building list in CSUF</div>
 
             <div class="ui buttons" id="CC">
-                <button class="ui button" id="CC-btn" value="{{ getCoords('CC') }}" type="button"><i class="teal book icon"></i>Children's Center</button>
+                <button class="ui button ebuildings" id="CC-btn" value="{{ getCoords('CC') }}" type="button"><i class="teal book icon"></i>Children's Center</button>
                 <div class="or"></div>
                 <button class="ui positive button" id="CC-direction">Direction</button>
-
             </div>
 
             <div class="ui buttons" id="CS">
-                <button class="ui button" id="CS-btn" value="{{ getCoords('CS') }}" type="button"><i class="teal book icon"></i>Computer Science </button>
+                <button class="ui button ebuildings" id="CS-btn" value="{{ getCoords('CS') }}" type="button"><i class="teal book icon"></i>Computer Science</button>
                 <div class="or"></div>
                 <button class="ui positive button" id="CS-direction">Direction</button>
             </div>
 
             <div class="ui buttons" id="CPAC">
-                <button class="ui button" id="CPAC-btn" value="{{ getCoords('CPAC') }}" type="button"><i class="teal book icon"></i>Clayes Performing Arts Center</button>
+                <button class="ui button ebuildings" id="CPAC-btn" value="{{ getCoords('CPAC') }}" type="button"><i class="teal book icon"></i>Clayes Performing Arts Center</button>
                 <div class="or"></div>
                 <button class="ui positive button" id="CPAC-direction">Direction</button>
             </div>
 
             <div class="ui buttons" id="DBH">
-                <button class="ui button" id="DBH-btn" value="{{ getCoords('DBH') }}" type="button"><i class="teal book icon"></i>Dan Black Hall </button>
+                <button class="ui button ebuildings" id="DBH-btn" value="{{ getCoords('DBH') }}" type="button"><i class="teal book icon"></i>Dan Black Hall </button>
                 <div class="or"></div>
                 <button class="ui positive button" id="DBH-direction">Direction</button>
             </div>
 
             <div class="ui buttons" id="EC">
-                <button class="ui button" id="EC-btn" value="{{ getCoords('EC') }}" type="button"><i class="teal book icon"></i>Education Classroom </button>
+                <button class="ui button ebuildings" id="EC-btn" value="{{ getCoords('EC') }}" type="button"><i class="teal book icon"></i>Education Classroom </button>
                 <div class="or"></div>
                 <button class="ui positive button" id="EC-direction">Direction</button>
             </div>
 
             <div class="ui buttons" id="E">
-                <button class="ui button" id="E-btn" value="{{ getCoords('E') }}" type="button"><i class="teal book icon"></i>Engineering </button>
+                <button class="ui button ebuildings" id="E-btn" value="{{ getCoords('E') }}" type="button"><i class="teal book icon"></i>Engineering </button>
                 <div class="or"></div>
                 <button class="ui positive button" id="E-direction">Direction</button>
             </div>
 
             <div class="ui buttons" id="G">
-                <button class="ui button" id="G-btn" value="{{ getCoords('G') }}" type="button"><i class="teal book icon"></i>Golleher Alumini House</button>
+                <button class="ui button ebuildings" id="G-btn" value="{{ getCoords('G') }}" type="button"><i class="teal book icon"></i>Golleher Alumini House</button>
                 <div class="or"></div>
                 <button class="ui positive button" id="G-direction">Direction</button>
             </div>
 
             <div class="ui buttons" id="H">
-                <button class="ui button" id="H-btn" value="{{ getCoords('H') }}" type="button"><i class="teal book icon"></i>Humanities & Social Science</button>
+                <button class="ui button ebuildings" id="H-btn" value="{{ getCoords('H') }}" type="button"><i class="teal book icon"></i>Humanities & Social Science</button>
                 <div class="or"></div>
                 <button class="ui positive button" id="H-direction">Direction</button>
             </div>
 
             <div class="ui buttons" id="KHS">
-                <button class="ui button" id="KHS-btn" value="{{ getCoords('KHS') }}" type="button"><i class="teal book icon"></i>Kinesiology & Health Science</button>
+                <button class="ui button ebuildings" id="KHS-btn" value="{{ getCoords('KHS') }}" type="button"><i class="teal book icon"></i>Kinesiology & Health Science</button>
                 <div class="or"></div>
                 <button class="ui positive button" id="KHS-direction">Direction</button>
             </div>
 
             <div class="ui buttons" id="LH">
-                <button class="ui button" id="LH-btn" value="{{ getCoords('LH') }}" type="button"><i class="teal book icon"></i>Langsdorf Hall </button>
+                <button class="ui button ebuildings" id="LH-btn" value="{{ getCoords('LH') }}" type="button"><i class="teal book icon"></i>Langsdorf Hall </button>
                 <div class="or"></div>
                 <button class="ui positive button" id="LH-direction">Direction</button>
             </div>
 
             <div class="ui buttons" id="MH">
-                <button class="ui button" id="MH-btn" value="{{ getCoords('MH') }}" type="button"><i class="teal book icon"></i>Mc Carthy Hall </button>
+                <button class="ui button ebuildings" id="MH-btn" value="{{ getCoords('MH') }}" type="button"><i class="teal book icon"></i>Mc Carthy Hall </button>
                 <div class="or"></div>
                 <button class="ui positive button" id="MH-direction">Direction</button>
             </div>
 
             <div class="ui buttons" id="PL">
-                <button class="ui button" id="PL-btn" value="{{ getCoords('PL') }}" type="button"><i class="teal book icon"></i>Pollack Library </button>
+                <button class="ui button ebuildings" id="PL-btn" value="{{ getCoords('PL') }}" type="button"><i class="teal book icon"></i>Pollack Library </button>
                 <div class="or"></div>
                 <button class="ui positive button" id="PL-direction">Direction</button>
             </div>
 
             <div class="ui buttons" id="PLS">
-                <button class="ui button" id="PLS-btn" value="{{ getCoords('PLS') }}" type="button"><i class="teal book icon"></i>Pollack Library South </button>
+                <button class="ui button ebuildings" id="PLS-btn" value="{{ getCoords('PLS') }}" type="button"><i class="teal book icon"></i>Pollack Library South </button>
                 <div class="or"></div>
                 <button class="ui positive button" id="PLS-direction">Direction</button>
             </div>
 
             <div class="ui buttons" id="RGC">
-                <button class="ui button" id="RGC-btn" value="{{ getCoords('RGC') }}" type="button"><i class="teal book icon"></i>Ruby Gerontology Center </button>
+                <button class="ui button ebuildings" id="RGC-btn" value="{{ getCoords('RGC') }}" type="button"><i class="teal book icon"></i>Ruby Gerontology Center </button>
                 <div class="or"></div>
                 <button class="ui positive button" id="RGC-direction">Direction</button>
             </div>
 
             <div class="ui buttons" id="SGMH">
-                <button class="ui button" id="SGMH-btn" value="{{ getCoords('SGMH') }}" type="button"><i class="teal book icon"></i>Steven G. Mihalyo</button>
+                <button class="ui button ebuildings" id="SGMH-btn" value="{{ getCoords('SGMH') }}" type="button"><i class="teal book icon"></i>Steven G. Mihalyo</button>
                 <div class="or"></div>
                 <button class="ui positive button" id="SGMH-direction">Direction</button>
             </div>
 
             <div class="ui buttons" id="UH">
-                <button class="ui button" id="UH-btn" value="{{ getCoords('UH') }}" type="button"><i class="teal book icon"></i>University Hall </button>
+                <button class="ui button ebuildings" id="UH-btn" value="{{ getCoords('UH') }}" type="button"><i class="teal book icon"></i>University Hall </button>
                 <div class="or"></div>
                 <button class="ui positive button" id="UH-direction">Direction</button>
             </div>
 
             <div class="ui buttons" id="VA">
-                <button class="ui button" id="VA-btn" value="{{ getCoords('VA') }}" type="button"><i class="teal book icon"></i>Visual Arts </button>
+                <button class="ui button ebuildings" id="VA-btn" value="{{ getCoords('VA') }}" type="button"><i class="teal book icon"></i>Visual Arts </button>
                 <div class="or"></div>
                 <button class="ui positive button" id="VA-direction">Direction</button>
             </div>
@@ -659,13 +662,21 @@
     </div>
 
     <script>
-            $('.ui.sidebar').sidebar({
-        dimPage: false,
-        transition: 'push',
-        exclusive: false,
-        closable: false
-    });
+        $('.ui.sidebar').sidebar({
+                dimPage: false,
+                transition: 'push',
+                exclusive: false,
+                closable: false
+        });
+        $('.ui.sidebar').sidebar('attach events', '#left-sidebar-toggle');
 
-    $('.ui.sidebar').sidebar('attach events', '#left-sidebar-toggle');
+        $('.ui.checkbox').checkbox({
+            onChecked: function () {
+                var mulButtons = document.getElementsByClassName('ebuildings');
+                for(var i = 0; i < mulButtons.length; i++){
+                    mulButtons[i].click();
+                }
+            }
+        });
     </script>
 </body>

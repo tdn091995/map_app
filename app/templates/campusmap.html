@@ -30,14 +30,7 @@
     var directionsService;
 
     initMap();
-	$('.ui.sidebar').sidebar({
-		dimPage: false,
-		transition: 'push',
-		exclusive: false,
-		closable: false
-	});
 
-	$('.ui.sidebar').sidebar('attach events', '#left-sidebar-toggle');
 
     if (navigator.geolocation) { // Call geolocation to get user's current position
         navigator.geolocation.getCurrentPosition(getCurrPos, errorCallback, {
@@ -56,7 +49,7 @@
     for (var i = 0; i < bldButtons.length; i++) {
         var button = bldButtons[i];
 
-        if (bldButtons[i].className == 'ui button') {
+        if (bldButtons[i].className != 'ui positive button') {
             button.addEventListener('click', function() {
                 //alert(this.value);
                 var latlng = this.value.split(',');
@@ -69,7 +62,7 @@
                 marker.setPosition(new google.maps.LatLng(lat, lng));
 
             })
-        } else if (bldButtons[i].className == 'ui positive button') {
+        } else {
             button.addEventListener('click', function() {
                 document.getElementById('src1').value = this.id;
             });
