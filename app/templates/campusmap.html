@@ -1,24 +1,9 @@
-<!--
-   html with some javascript. we could use flask/python to host this website.
-
-   this sample file was found at:
-   https://developers.google.com/maps/documentation/javascript/examples/directions-panel
-
-   we can change the direction points to match these:
-   https://www.fullerton.edu/campusmap/
-
-   we could also add in custom markers, maybe with a legend. for the parking lots and other poi (points of interest) on campus. something like this:
-   https://developers.google.com/maps/documentation/javascript/adding-a-legend
-
-    -->
 {% extends "base.html" %}
 
 {% block map %}
     <div id="info" class="ui label"></div>
-    <div id="warning"></div>
-    <!-- <div id="right-panel">
-        {% block display %}{% endblock %}
-    </div> -->
+    <!-- <div id="warning"></div> -->
+    {% block display %}{% endblock %}
     <div id="map"></div>
     </div>
 
@@ -28,9 +13,9 @@
     var GeoMarker;
     var directionsDisplay;
     var directionsService;
+    var markers = []
 
     initMap();
-
 
     if (navigator.geolocation) { // Call geolocation to get user's current position
         navigator.geolocation.getCurrentPosition(getCurrPos, errorCallback, {
@@ -44,25 +29,33 @@
     }
 
     function errorCallback() {}
-
-    var bldButtons = document.getElementsByClassName('ui button');
-    for (var i = 0; i < bldButtons.length; i++) {
-        var button = bldButtons[i];
-
-        if (bldButtons[i].className != 'ui positive button') {
-            button.addEventListener('click', function() {
-                //alert(this.value);
-                var latlng = this.value.split(',');
+    var markerButtons = document.getElementsByClassName('ui button marker');
+    for (let i = 0; i < markerButtons.length; i++) {
+        var button = markerButtons[i];
+                var latlng = button.value.split(',');
                 var lat = parseFloat(latlng[0]);
                 var lng = parseFloat(latlng[1]);
-
                 var marker = new google.maps.Marker({
-                    map: map
+                        position: new google.maps.LatLng(lat, lng),
                 });
-                marker.setPosition(new google.maps.LatLng(lat, lng));
-
+                markers.push(marker);
+                marker.setMap(map);
+                marker.setVisible(false);
+                button.addEventListener('click', function() {    
+                if (this.value != "ON") {
+                    markers[i].setVisible(true);
+                    this.value="ON";
+                }
+                else {
+                    markers[i].setVisible(false);
+                    this.value="OFF";
+                }
             })
-        } else {
+    }
+    var dirButtons = document.getElementsByClassName('ui positive button');
+    for(let i = 0; i < dirButtons.length; i++) {
+        var button = dirButtons[i];
+        if (button.className === 'ui positive button') {
             button.addEventListener('click', function() {
                 document.getElementById('src1').value = this.id;
             });
@@ -102,7 +95,7 @@
         directionsDisplay = new google.maps.DirectionsRenderer;
         directionsService = new google.maps.DirectionsService;
         var mapOptions = {
-            zoom: 16,
+            zoom: 17,
             center: csufLocation,
             streetViewControl: false,
             mapTypeControl: false,

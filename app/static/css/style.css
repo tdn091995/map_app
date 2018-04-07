@@ -5,7 +5,7 @@
         body.pushable>.pusher {
             height: 100%;
             margin: 0;
-            padding: 0;
+            padding: lem;
         }
         
         .container{
@@ -13,7 +13,6 @@
             display:-ms-flexbox;
             display:flex;
             padding:8px;
-
             height:100%;
             -webkit-box-sizing:border-box;
             box-sizing:border-box;
@@ -21,6 +20,22 @@
 
         .ui.sidebar {
             overflow: visible !important;
+        }
+
+        #infocard {
+            left: 44%;
+            top: 10%;
+        }
+
+        #loginbutton {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        #signupbutton {
+            margin-left: 40px;
+            margin-top: 10px;
+            margin-bottom: 10px;
         }
 
         #map {
@@ -39,7 +54,6 @@
         #right-panel {
             position: absolute;
             padding-left: 10px;
-            height: 570px;
             float: right;
             width: 390px;
             overflow: auto;
