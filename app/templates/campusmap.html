@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
 {% block map %}
-    <div id="info" class="ui label"></div>
     <!-- <div id="warning"></div> -->
-    {% block display %}{% endblock %}
+    {% block display %} {% endblock %}
     <div id="map"></div>
-    </div>
-
+{% endblock %}
+    
+{% block mapscript %}
 	<script>
     var latlong;
     var map;
@@ -14,46 +14,54 @@
     var directionsDisplay;
     var directionsService;
     var markers = []
+    var markerButtons = document.getElementsByClassName('ui button marker');
+    var dirButtons = document.getElementsByClassName('ui button positive');
+    const csufLocation = {
+            lat: 33.881994,
+            lng: -117.885076
+    };
 
     initMap();
 
     if (navigator.geolocation) { // Call geolocation to get user's current position
         navigator.geolocation.getCurrentPosition(getCurrPos, errorCallback, {
-            enableHighAccuracy: true
+            enableHighAccuracy: true,
         });
     }
 
     function getCurrPos(position) {
-        document.getElementById('location').value = position.coords.latitude + "," + position.coords.longitude;
+        curLoc = position.coords.latitude + "," + position.coords.longitude;
+        document.getElementById('location').value = curLoc;
+        document.getElementById('CurrentLocation') = curLoc;
         //alert(document.getElementById('location').value);
     }
 
     function errorCallback() {}
-    var markerButtons = document.getElementsByClassName('ui button marker');
+
     for (let i = 0; i < markerButtons.length; i++) {
         var button = markerButtons[i];
-                var latlng = button.value.split(',');
-                var lat = parseFloat(latlng[0]);
-                var lng = parseFloat(latlng[1]);
-                var marker = new google.maps.Marker({
-                        position: new google.maps.LatLng(lat, lng),
-                });
-                markers.push(marker);
-                marker.setMap(map);
-                marker.setVisible(false);
-                button.addEventListener('click', function() {    
-                if (this.value != "ON") {
-                    markers[i].setVisible(true);
-                    this.value="ON";
-                }
-                else {
-                    markers[i].setVisible(false);
-                    this.value="OFF";
-                }
-            })
+        var latlng = button.value.split(',');
+        var lat = parseFloat(latlng[0]);
+        var lng = parseFloat(latlng[1]);
+        var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(lat, lng),
+        });
+        markers.push(marker);
+        marker.setMap(map);
+        marker.setVisible(false);
+        button.addEventListener('click', function() {    
+            if (this.value != "ON") {
+                markers[i].setVisible(true);
+                this.value="ON";
+            }
+            else {
+                markers[i].setVisible(false);
+                this.value="OFF";
+            }
+        })
     }
-    var dirButtons = document.getElementsByClassName('ui positive button');
-    for(let i = 0; i < dirButtons.length; i++) {
+
+    for (let i = 0; i < dirButtons.length; i++) {
         var button = dirButtons[i];
         if (button.className === 'ui positive button') {
             button.addEventListener('click', function() {
@@ -62,36 +70,7 @@
         }
     }
 
-    function startTime() { // Displays real time clock
-        var today = new Date();
-        var h = today.getHours();
-        if (h > 12) {
-            h = h - 12;
-        } else if (h == 0) {
-            h = 12;
-        }
-        var m = today.getMinutes();
-        var s = today.getSeconds();
-        h = checkTime(h);
-        m = checkTime(m);
-        s = checkTime(s);
-        document.getElementById('info').innerHTML = h + ":" + m + ":" + s;
-        setTimeout(startTime, 500); {% block time %} {% endblock %}
-    }
-
-    function checkTime(i) {
-        if (i < 10) {
-            i = "0" + i;
-        }
-        return i;
-    }
-
     function initMap() { // displays map on page, sets up variables for the directions service for use later
-        startTime();
-        var csufLocation = {
-            lat: 33.881994,
-            lng: -117.885076
-        };
         directionsDisplay = new google.maps.DirectionsRenderer;
         directionsService = new google.maps.DirectionsService;
         var mapOptions = {
@@ -99,6 +78,7 @@
             center: csufLocation,
             streetViewControl: false,
             mapTypeControl: false,
+            gestureHandling: 'greedy',
             styles: [{
                     "featureType": "landscape",
                     "stylers": [{
@@ -205,5 +185,4 @@
     }
     document.getElementById('src1').value = "";
 </script>
-
 {% endblock %}

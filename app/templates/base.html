@@ -14,7 +14,7 @@
     <script  src="{{ url_for('static', filename='scripts/geolocation-marker.js') }}"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <style>
-        body.pushable>.pusher {
+        body {
             background: url(static/img/university5.jpg);
             background-size: cover;
             background-size: 100%;
@@ -23,7 +23,54 @@
 </head>
 
 <body>
-  <div class="ui left vertical menu sidebar">
+    <div class="ui blue inverted attached secondary menu" id="topbar">
+        <button class="ui icon button" id="left-sidebar-toggle">
+          <i class="blue align justify icon"></i>
+        </button>
+        <a class="ui item" href="/">Home</a>
+        <a class="ui item" href="/map">Map</a>
+
+        <div class="ui blue floating labeled icon dropdown button">
+          <i class="map marker alternative icon"></i>
+          <span class="text" id="start">Current Location</span>
+          <div class="menu">
+            <div class="item" id="CurrentLocation">
+              Current Location
+            </div>
+            <div class="item" data-value="{{ getCoords('PE') }}">
+              Parking Lot E
+            </div>
+            <div class="item" data-value="{{ getCoords('PS') }}">
+              Parking Lot S
+            </div>
+            <div class="item" data-value="{{ getCoords('NPS') }}">
+              Nutwood Parking Structure
+            </div>
+            <div class="item" data-value="{{ getCoords('EPS') }}">
+              Eastside Parking Structure
+            </div>
+            <div class="item" data-value="{{ getCoords('SCPS') }}">
+              State College Parking Structure
+            </div>
+          </div>
+        </div>
+        <div class="active item">
+            <div class="ui transparent icon input">
+                <input type="text" id="src1" name="src1" placeholder="Enter Class e.g cs101">
+                <button class="ui blue compact icon button" type="Submit" id="submit">
+                  <i class="search icon"></i>
+                </button>
+            </div>
+        </div>  
+        <div class="right menu">
+            <div class="ui left tiny attached button signupmodal" id="signupbutton">Sign up</div>
+            <div class="ui right tiny attached button loginmodal" id="loginbutton"><i class="white signup icon"></i>Login</div></a>     
+        </div> 
+    </div>
+
+
+    <div id="sidemenu">
+    <div class="ui left vertical menu sidebar" id="left-sidebar">
     <form id="geolocation" action="" method="POST">
     <input type="hidden" id="location" name="location" value="">
     <h2 class="ui center aligned header" id="header1">
@@ -34,21 +81,10 @@
       California State University, Fullerton
     </h3>
     <div class="ui fitted divider"></div>
+
     <!-- <img class="ui small image" src="{{ url_for('static', filename='img/asktuffy2.png') }}" alt="Ask Tuffy"
       style="width:50px;height:50px;" > -->
     
-        <div class="ui blue left attached button signupmodal" id="signupbutton">Sign up</div>
-        <div class="ui blue right attached button loginmodal" id="loginbutton"><i class="white signup icon"></i>Login</div></a>
-    
-
-    <div class="active item">
-        <div class="ui transparent icon input">
-            <input type="text" id="src1" name="src1" placeholder="Enter Class e.g cs101">
-            <button class="ui compact icon button" type="Submit" id="submit" style="position: relative; right: 8px">
-              <i class="search icon"></i>
-            </button>
-        </div>
-    </div>
 
     <div class="ui fitted divider"></div>
     <div class="ui simple dropdown item">
@@ -301,7 +337,7 @@
             <div class="ui buttons" id="TW">
                 <button class="ui button lm marker" id="TW-btn" value="{{ getCoords('TW') }}" type="button"><i class="teal magnet icon"></i>Titan Walk</button>
                 <div class="or"></div>
-                <button class="ui positive lm button" id="TW-direction">Direction</button>
+                <button class="ui positive button" id="TW-direction">Direction</button>
             </div>
         </div>
     </div>
@@ -679,18 +715,15 @@
               <p><strong>Emergency</strong><br>
               SHCC - Student Health & Counseling Center|| UP - University Police
            </p>
-         </div>
-        <a class="item" id="offline-map">
-        <i class="teal map icon"></i>Offline Map/Legend</a>
-        <a href="#" class="item" id="team"><i class="teal phone icon"></i>Meet The Team</a>
+    </div>
+    <a class="item" id="offline-map">
+    <i class="teal map icon"></i>Offline Map/Legend</a>
+    <a href="#" class="item" id="team"><i class="teal phone icon"></i>Meet The Team</a>
 
     </form>
-  </div>
+    </div>
 
     <div class="pusher">
-        <button class="ui icon button" id="left-sidebar-toggle">
-          <i class="align justify icon"></i>
-        </button>
         <div class="ui modal" id="loginmodal">
             <div class="content">
                 <div class="ui middle aligned center aligned grid">
@@ -717,9 +750,21 @@
                 </div>
             </div>
         </div>
-    {% block map %} {% endblock %}
+        {% block map %}{% endblock %}
+    </div>
+
+    {% block mapscript %}{% endblock %}
     <script>
         //$('.login.modal').modal('attach events', '.icon.button', 'show');
+
+        $('.ui.dropdown').dropdown({
+            onChange: function (val, text, $selectedItem) {
+                document.getElementById('location').value = val;
+            }
+        });
+
+        $('.ui.dropdown').dropdown('set selected', '{{ cur }}');
+
         $(document).ready(function(){
              $('#loginbutton').click(function(){
                 $('#loginmodal').modal('show');    
@@ -728,9 +773,11 @@
                 $('#legendmodal').modal('show');
              });
         });
+
         $('.ui.sidebar').sidebar({
+                context: $('#sidemenu'),
                 dimPage: false,
-                transition: 'push',
+                transition: 'overlay',
                 exclusive: false,
                 closable: false
         });
@@ -781,6 +828,22 @@
             },
             onUnchecked: function () {
                     var mulButtons = document.getElementsByClassName('button abuildings');
+                    for(let j = 0; j < mulButtons.length; j++){
+                        mulButtons[j].value="ON";
+                        mulButtons[j].click();
+                    }                    
+            }
+        });
+        $('.ui.checkbox.bbuildings').checkbox({
+            onChecked: function () {
+                    var mulButtons = document.getElementsByClassName('button bbuildings');
+                    for(let j = 0; j < mulButtons.length; j++){
+                        mulButtons[j].value="OFF";
+                        mulButtons[j].click();
+                    }                          
+            },
+            onUnchecked: function () {
+                    var mulButtons = document.getElementsByClassName('button bbuildings');
                     for(let j = 0; j < mulButtons.length; j++){
                         mulButtons[j].value="ON";
                         mulButtons[j].click();
