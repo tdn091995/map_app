@@ -7,10 +7,12 @@ from .gmaps import GMaps
 from .building import getBuilding
 from .key import getKey
 
+
 @app.route('/')
+@app.route('/home')
 def home():
 	key = getKey()
-	return render_template('base.html', key=key)
+	return render_template('home.html', key=key)
 
 @app.route('/map')
 def mapdemo():
@@ -36,6 +38,10 @@ def mapdemo_post():
 		tl = gmaps.getTripLength()
 		cur = session['curLoc']
 		return render_template('directions.html', bld=bld, coords=coords, cur=cur, directions=directions, tl=tl, key=key)
+
+@app.route('/contact')
+def meet_the_team():
+	return render_template('contact.html')
 
 @app.context_processor
 def coords_processor():
