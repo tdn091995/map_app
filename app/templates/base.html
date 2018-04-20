@@ -6,12 +6,13 @@
     <title>Titan Map App</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.6/semantic.min.css"/>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.6/semantic.min.js"/></script>
-
-    <script src="https://maps.googleapis.com/maps/api/js?key={{ key }}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=geometry,drawing&key={{ key }}"></script>
     <script  src="{{ url_for('static', filename='scripts/geolocation-marker.js') }}"></script>
+    <script  src="{{ url_for('static', filename='scripts/content.js') }}"></script>
+    <script  src="{{ url_for('static', filename='scripts/mapstyles.js') }}"></script>
+    <script  src="{{ url_for('static', filename='scripts/markercolor.js') }}"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <style>
         body {
@@ -23,47 +24,47 @@
 </head>
 
 <body>
-    <div class="ui attached four item inverted menu" id="navbar">
-        <a class="ui item" href="/home">Home</a>
-        <a class="ui item" href="/map">Map</a>
-        <a class="ui item" href="/contact"><i class="phone icon"></i>Meet The Team</a>
-        <div class="right menu">
-            <div class="ui blue left tiny attached button signupmodal" id="signupbutton">Sign up</div>
-            <div class="ui blue right tiny attached button loginmodal" id="loginbutton"><i class="white signup icon"></i>Login</div></a>     
-        </div>   
-    </div>
 
-    {% block bar %}{% endblock %}
-
-    <div class="pusher">
-        <div class="ui modal" id="loginmodal">
-            <div class="content">
-                <div class="ui middle aligned center aligned grid">
-                    <div class="column">
-                        <div class="content">
-                            <h1 class="ui blue image header">Log-in to your account</h1>
-                        </div>
-                        <form class="ui large form">
-                            <div class="field">
-                                <div class="ui left icon input">
-                                    <i class="user icon"></i> <input name="email" placeholder="Username" type="text">
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="ui left icon input">
-                                    <i class="lock icon"></i> <input name="password" placeholder="Password" type="password">
-                                </div>
-                            </div>
-                            <div class="ui fluid large blue submit button">
-                                Login
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {% block content %}{% endblock %}
+  <div class="ui attached four item inverted menu" id="navbar">
+    <a class="ui item" href="/">Home</a>
+    <a class="ui item" href="/map">Map</a>
+    <a href="#" class="item" id="team"><i class="phone icon"></i>Meet The Team</a>
+    <div class="right menu">
+        <div class="ui blue left tiny attached button signupmodal" id="signupbutton">Sign up</div>
+        <div class="ui blue right tiny attached button loginmodal" id="loginbutton"><i class="white signup icon"></i>Login</div></a>
     </div>
-    
-    {% block mapscript %}{% endblock %} 
+  </div>
+
+{% block bar %}{% endblock %}
+
+  <div class="pusher">
+      <div class="ui modal" id="loginmodal">
+          <div class="content">
+              <div class="ui middle aligned center aligned grid">
+                  <div class="column">
+                      <div class="content">
+                          <h1 class="ui blue image header">Log-in to your account </h1>
+                      </div>
+                      <form class="ui large form">
+                          <div class="field">
+                              <div class="ui left icon input">
+                                  <i class="user icon"></i> <input name="email" placeholder="Username" type="text">
+                              </div>
+                          </div>
+                          <div class="field">
+                              <div class="ui left icon input">
+                                  <i class="lock icon"></i> <input name="password" placeholder="Password" type="password">
+                              </div>
+                          </div>
+                          <div class="ui fluid large blue submit button">
+                              Login
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+      {% block content %}{% endblock %}
+  </div>
+  {% block mapscript %}{% endblock %}
 </body>

@@ -15,11 +15,12 @@
       GeoMarker = new GeolocationMarker();
       GeoMarker.setCircleOptions({visible: false});
       GeoMarker.setMap(map);
-      
+
       directionsService.route({
         origin: "{{ cur }}",
         destination: "{{ coords }}",
-        travelMode: 'WALKING'
+        <!-- travelMode: 'WALKING' -->
+        travelMode: travellingMode
       }, function(response, status) {
         if (status === 'OK') {
           directionsDisplay.setDirections(response);
@@ -28,3 +29,9 @@
         }
       });
 {% endblock %}
+
+{% block saveLocation %}
+  $('#CurrentLocation').attr('data-value', '{{ userLoc }}');
+  $('.ui.dropdown').dropdown('set selected', '{{ cur }}');
+{% endblock %}
+

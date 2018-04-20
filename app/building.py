@@ -1,5 +1,4 @@
-import re
-def getBuilding(src):
+def getBuilding():
         classdict = {
         "CS" : ["Computer Science Building", "33.882148, -117.882660"],
         "SGMH" : ["Steven G. Mihalyo", "33.878866, -117.883385"],
@@ -10,8 +9,14 @@ def getBuilding(src):
         "KHS" : ["Kinesiology & Health Science", "33.882628, -117.885890"],
         "CSH" : ["Carpenter Shop", "33.884035, -117.888246"],
         "SR" : ["Shipping & Receiving", "33.883799, -117.888730"],
+        "AS" : ["Automobile Shop","33.883890, -117.889318"],
+        "CSH" : ["Carpenter Shop","33.884028, -117.888266"],
+        "MC" : ["Mailing Center","33.884155, -117.888760"],
+        "SR" : ["Shipping & Recieving","33.883783, -117.888760"],
+
         "AS" : ["Automobile Shop", "33.883739, -117.889177"],
         "MC" : ["Mailing Center", "33.884281, -117.888742"],
+
         "CC" : ["Children’s Center", "33.885800, -117.888476"],
         "CPAC" : ["Clayes Performing Arts Center", "33.880564, -117.886564"],
         "DBH" : ["Dan Black Hall", "33.879246, -117.886565"],
@@ -33,9 +38,9 @@ def getBuilding(src):
         "TSUST" : ["TSU Starbucks", "33.881583, -117.887998"],
         "CPT" : ["College Park Togos", "33.877711, -117.883507"],
         "TSUT" : ["TSU Togos", "33.881958, -117.887737"],
-        "BOFA" : ["BoFA Bank ATM", "33.881667, -117.887246"],
-        "CATM" : ["Chase ATM", "33.881667, -117.887246"],
-        "WATM" : ["Wells Fargo ATM", "33.881667, -117.887246"],
+        "BOFA" : ["BoFA Bank ATM", "33.881647, -117.887393"],
+        "CATM" : ["Chase ATM", "33.881643, -117.887331"],
+        "WATM" : ["Wells Fargo ATM", "33.881641, -117.887395"],
         "USB" : ["US-Bank", "33.881933, -117.887065"],
         "BA" : ["Becker Amphitheater","33.881278, -117.887079"],
         "ECSQ" : ["ECS Quad", "33.882277, -117.884115"],
@@ -44,10 +49,6 @@ def getBuilding(src):
         "EHS" : ["Environment Health & Safety", "33.885158, -117.889355"],
         "TRI" : ["Trigen","33.879683, -117.887304"],
         "P" : ["Parking and Transportation Office", "33.884840, -117.889426"],
-        "AS" : ["Automobile Shop","33.883890, -117.889318"],
-        "CSH" : ["Carpenter Shop","33.884028, -117.888266"],
-        "MC" : ["Mailing Center","33.884155, -117.888760"],
-        "SR" : ["Shipping & Recieving","33.883783, -117.888760"],
         "CP" : ["College Park", "33.877731, -117.883405"],
         "CPW" : ["College Park West", "33.880918, -117.890017"],
         "SHCC": ["Student Health & Counseling Center", "33.883195, -117.884108"],
@@ -82,19 +83,4 @@ def getBuilding(src):
         "NPS" : ["Nutwood Parking Structure", "33.879397, -117.888491"],
         "SCPS" : ["Stage College Parking", "33.882832, -117.888769"]
         }
-        abv = ""
-        src = re.sub("[^a-zA-Z]+", "", src)
-        for i in src:
-                if i != "-" and i != " ":
-                        abv = abv + i
-                else:
-                        break
-        if len(abv) > 10:
-            abv = abv[:-9]
-        if abv in classdict:
-                building = classdict[abv]
-        elif abv.upper() in classdict:
-                building = classdict[abv.upper()]
-        else:
-                building = ["Quad", "33.880374, -117.885378"]
-        return building
+        return classdict

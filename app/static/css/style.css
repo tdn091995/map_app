@@ -1,80 +1,78 @@
-        /* Always set the map height explicitly to define the size of the div
-         * element that contains the map. */
+html,
+      body {
 
-        html,
-        body {
-            height: 100%;
-            margin: 0;
-        }
-        
-        .ui.sidebar {
-            overflow: visible !important;
-        }
+          height: 100%;
+          margin: 0;
+          overflow: hidden;
+      }
 
+      .ui.sidebar {
+          overflow: visible !important;
+      }
 
 
-        ::placeholder { /* Chrome/Opera/Safari */
-          color: #909;
-        }
 
-        #destination {
-        
-            flex-grow: 1;
-            margin-top: 6px;
-        }
+      ::placeholder { /* Chrome/Opera/Safari */
+        color: #909;
+      }
 
-        #infocard {
-            position: absolute;
-            left: 80%;
-            top: 10%;
-            z-index: 1;
-        }
+      #destination {
 
-        #topbar {
-            height: 50px;
-        }
+          flex-grow: 1;
+          margin-top: 6px;
+      }
 
-        #loginbutton {
-            margin-top: 10px;
-            margin-bottom: 10px;
-            margin-right: 10px;
-        }
+      #infocard {
+          position: absolute;
+          left: 80%;
+          top: 10%;
+          z-index: 1;
+      }
 
-        #signupbutton {
-            margin-left: 40px;
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
+      #topbar {
+          height: 50px;
+      }
 
-        #map {
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            z-index: 0;
-        }
-	
-        #start {
-            margin-top: 7px;
-        }
-		
+      #loginbutton {
+          margin-top: 10px;
+          margin-bottom: 10px;
+          margin-right: 10px;
+      }
 
-        #login {
-            position: relative;
-            right: 15px;
-            top: 5px;
-        }
+      #signupbutton {
+          margin-left: 40px;
+          margin-top: 10px;
+          margin-bottom: 10px;
+      }
 
-        #signup {
-            position: relative;
-            top: 5px;
-        }
+      #map {
+          position: absolute;
+          height: 100%;
+          width: 100%;
+          z-index: 0;
+      }
 
-        #header1{
-            position: relative;
-            top: 16px;
-        }
+      #start {
+          margin-top: 7px;
+      }
 
-        #left-sidebar-toggle{
-            padding: 14px;
-        }
-        
+
+      #login {
+          position: relative;
+          right: 15px;
+          top: 5px;
+      }
+
+      #signup {
+          position: relative;
+          top: 5px;
+      }
+
+      #header1{
+          position: relative;
+          top: 16px;
+      }
+
+      #left-sidebar-toggle{
+          padding: 14px;
+      }
