@@ -752,7 +752,7 @@
         var lng = parseFloat(latlng[1]);
 
         function pickImage(bld){
-			var image = '<img src="static/img/' + bld + '.jpg" height="300" width="480">';
+			var image = '<img src="static/img/' + bld + '.jpg" height="200" width="360">';
 			return image;
         }
 
@@ -768,7 +768,7 @@
           this.setAnimation(google.maps.Animation.BOUNCE);
         });
 
-        marker.addListener('mouseout', function() {
+        marker.addListener('moseout', function() {
           this.setIcon(defaultIcon);
           this.setAnimation(null);
         });
@@ -844,11 +844,17 @@
                                     '</div>'+
                                     '</div>';
 
-                var infowindow = new google.maps.InfoWindow({
-                    content: contentString
+                var infoBubble = new InfoBubble({
+                    content: contentString,
+                    maxWidth: 600,
+                    minWidth: 550,
+                    padding: 20,
+                    shadowStyle: 1,
+                    disableAutoPan: true,
+                    closeSrc: 'https://static.wixstatic.com/media/34b396_c3723d3c68e941229e546a46a69311eb~mv2.png/v1/fit/w_750,h_750/34b396_c3723d3c68e941229e546a46a69311eb~mv2.png'
                 });
                 markers[i].addListener('click', function() {
-                  infowindow.open(map, markers[i]);
+                  infoBubble.open(map, markers[i]);
                 });
                 // Till here Info-Window
                 markers[i].setTitle(array[0]);

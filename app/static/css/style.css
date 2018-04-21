@@ -10,14 +10,15 @@ html,
           overflow: visible !important;
       }
 
-
+      #content {
+        overflow: hidden;
+      }
 
       ::placeholder { /* Chrome/Opera/Safari */
         color: #909;
       }
 
       #destination {
-
           flex-grow: 1;
           margin-top: 6px;
       }
