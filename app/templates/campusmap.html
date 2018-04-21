@@ -553,7 +553,7 @@
           </div>
 
           <div class="ui buttons" id="SRC">
-              <button class="ui button ssbuildings marker" id="SRC-btn" value="{{ getCoords('SRS') }}" type="button"><i class="teal thumbs up icon"></i>Student Recreation Center</button>
+              <button class="ui button ssbuildings marker" id="SRC-btn" value="{{ getCoords('SRC') }}" type="button"><i class="teal thumbs up icon"></i>Student Recreation Center</button>
               <div class="or"></div>
               <button class="ui positive button" id="SRC-direction">Direction</button>
           </div>
@@ -717,11 +717,12 @@
     var directionsDisplay;
     var directionsService;
     var markers = []
+    var contentString;
     var markerButtons = document.getElementsByClassName('ui button marker');
     var dirButtons = document.getElementsByClassName('ui button positive');
 
     const csufLocation = {
-            lat: 33.881994,
+            lat: 33.880300,
             lng: -117.885076
     };
 
@@ -745,17 +746,26 @@
 
     function errorCallback() {}
 
+    function fillContent(bldid, bldname, desc, link, image) {
+    	return 	'<div id="bodyContent">'+ image +
+                '<p><b>'+ bldname + '</b> :'+ desc + '</p>'+
+                '<p><a href="' + link + '">Link to '+ bldname +'</a> '+
+                '</div>'+
+                '</div>';
+    }
+
+    function pickImage(bld){
+			var image = '<img src="static/img/' + bld + '.jpg" height="200" width="360">';
+			return image;
+    }
+
     for (let i = 0; i < markerButtons.length; i++) {
         var button = markerButtons[i];
         var latlng = button.value.split(',');
         var lat = parseFloat(latlng[0]);
         var lng = parseFloat(latlng[1]);
 
-        function pickImage(bld){
-			var image = '<img src="static/img/' + bld + '.jpg" height="200" width="360">';
-			return image;
-        }
-
+       
         var marker = new google.maps.Marker({
             position: new google.maps.LatLng(lat, lng),
             icon: defaultIcon,
@@ -768,7 +778,7 @@
           this.setAnimation(google.maps.Animation.BOUNCE);
         });
 
-        marker.addListener('moseout', function() {
+        marker.addListener('mouseout', function() {
           this.setIcon(defaultIcon);
           this.setAnimation(null);
         });
@@ -829,28 +839,23 @@
                 bldid = bldid.split("-");
                 var array = maindict[bldid[0]];
                 var image = pickImage(bldid[0]);
+                contentString = '<div id="content">'+
+                				'<button class="ui green button" id="' + bldid[0] +
+                				'-direction" onclick="document.getElementById(this.id).click()">Direction</button>' +
+                				'<h1 id="firstHeading" class="firstHeading">'+ array[0] +'</h1>';
 
-                var contentString = '<div id="content">'+
-                                    '<div id="siteNotice">'+
-                                    '</div>'+
-                                    '<div class="ui buttons">'+
-                                    '<button class="ui inverted green button"  id="'+ bldid[0] + '-direction">Direction</button>'+
-                                    '<button class="ui button">Street View</button>'+
-                                    '</div>'+
-                                    '<h1 id="firstHeading" class="firstHeading">'+ array[0] +'</h1>'+
-                                    '<div id="bodyContent">'+ image +
-                                    '<p><b>'+ array[0] + '</b> :'+ array[1] + '</p>'+
-                                    '<p><a href="' + array[2] + '">Link to '+ array[0] +'</a> '+
-                                    '</div>'+
-                                    '</div>';
+                contentString += fillContent(bldid[0], array[0], array[1], array[2], image);
 
                 var infoBubble = new InfoBubble({
                     content: contentString,
+                    autopanMargin: 1000,
                     maxWidth: 600,
                     minWidth: 550,
+                    borderWidth: 2,
+                    borderColor: '#000000',
                     padding: 20,
                     shadowStyle: 1,
-                    disableAutoPan: true,
+                    //disableAutoPan: true,
                     closeSrc: 'https://static.wixstatic.com/media/34b396_c3723d3c68e941229e546a46a69311eb~mv2.png/v1/fit/w_750,h_750/34b396_c3723d3c68e941229e546a46a69311eb~mv2.png'
                 });
                 markers[i].addListener('click', function() {
@@ -893,9 +898,19 @@
       strokeColor: '#000000',
       strokeOpacity: 0,
       strokeWeight: 2,
-      fillColor: '#27AE60',
+      fillColor: '#00B0FF',
       fillOpacity: 1
     });
+
+    var campusPath = new google.maps.Polyline({
+     path: campusBorder,
+     geodesic: true,
+     strokeColor: '#ffff00',
+     strokeOpacity: .6,
+     strokeWeight: 5
+   	});
+
+   	campusPath.setMap(map);
 
     educationBuildingPlygon.setMap(map);
     parkingPolygon.setMap(map);
@@ -914,7 +929,7 @@
         directionsDisplay = new google.maps.DirectionsRenderer;
         directionsService = new google.maps.DirectionsService;
         var mapOptions = {
-            zoom: 16,
+            zoom: 17,
             center: csufLocation,
             streetViewControl: false,
             mapTypeControl: false,

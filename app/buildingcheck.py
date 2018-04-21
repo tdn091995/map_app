@@ -19,3 +19,17 @@ def getBuildingCheck(src):
             else:
                 building = ['','']
             return building
+
+def getBldId(src):
+            classdict=getBuilding()
+            abv = ""
+            src = re.sub("[^a-zA-Z]+", "", src)
+            for i in src:
+                if i != "-" and i != " ":
+                    abv = abv + i
+                else:
+                    break
+            if len(abv) >= 10:
+                abv = abv[:-9]
+            return abv.upper()
+

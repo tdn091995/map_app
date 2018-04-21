@@ -2,16 +2,22 @@
 
 {% block display %}
 <div class="ui centered card raised overlay" id="infocard">
-  <div class="image">
-  </div>
   <div class="content">
     <div class="header">{{ bld }}</div>
     <div class="description"> You will be there in {{ tl }}.</div>
-   </div>
+    <div id="ui fitted divider"></div>
+  </div>
+
+  <div id="contentCard">
+  </div>
 </div>
 {% endblock %}
 
 {% block maproute %}
+      let array = maindict["{{ bldId }}"];
+      let image = pickImage("{{ bldId }}");
+      document.getElementById("contentCard").innerHTML = '<div id="content">' + fillContent('{{ bldId }}', array[0], array[1], array[2], image);
+
       GeoMarker = new GeolocationMarker();
       GeoMarker.setCircleOptions({visible: false});
       GeoMarker.setMap(map);

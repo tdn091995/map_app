@@ -6,12 +6,16 @@ from app import app
 from .gmaps import GMaps
 from .building import getBuilding
 from .buildingcheck import getBuildingCheck
+from .buildingcheck import getBldId
 from .key import getKey
 
-@app.route('/')
+@app.route('/home')
 def home():
-	key = getKey()
-	return render_template('base.html', key=key)
+	return render_template('home.html')
+
+@app.route('/contact')
+def contact():
+	return render_template('contact.html')
 
 @app.route('/map')
 def mapdemo():
@@ -33,6 +37,7 @@ def mapdemo_post():
 		if not info[0]:
 			return render_template('campusmap.html', key=key)
 		else:
+			bldId = getBldId(src)
 			bld = info[0]
 			coords = info[1]
 			gmaps = GMaps(session['startLoc'], coords)
@@ -40,7 +45,7 @@ def mapdemo_post():
 			tl = gmaps.getTripLength()
 			userLoc = session['userLoc']
 			cur = session['startLoc']
-			return render_template('directions.html', userLoc=userLoc, bld=bld, coords=coords, cur=cur, directions=directions, tl=tl, key=key)
+			return render_template('directions.html', userLoc=userLoc, bld=bld, bldId=bldId, coords=coords, cur=cur, directions=directions, tl=tl, key=key)
 
 @app.context_processor
 def coords_processor():
