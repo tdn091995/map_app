@@ -17,9 +17,14 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <style>
         body {
-            background: url(static/img/university5.jpg);
             background-size: cover;
             background-size: 100%;
+            background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) ), url(static/img/bg6.png);
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-color: black;
+			background-position: center center;
+			background-attachment: fixed;
         }
     </style>
 </head>
@@ -27,9 +32,9 @@
 <body>
 
   <div class="ui attached four item inverted menu" id="navbar">
-    <a class="ui item" href="/home">Home</a>
+    <a class="ui item" href="/">Home</a>
     <a class="ui item" href="/map">Map</a>
-    <a href="/contact" class="item" id="team"><i class="phone icon"></i>Meet The Team</a>
+    <a class="ui item" href="/contact" class="item" id="team"><i class="phone icon"></i>Meet The Team</a>
     <div class="right menu">
         <div class="ui blue left tiny attached button signupmodal" id="signupbutton">Sign up</div>
         <div class="ui blue right tiny attached button loginmodal" id="loginbutton"><i class="white signup icon"></i>Login</div></a>
