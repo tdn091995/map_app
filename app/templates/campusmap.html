@@ -763,8 +763,8 @@
             lng: -117.885076
     };
 
-    var EducationBuilding = [PLSCoords, PLCoords, RGCCoords, UHCoords, LHCoords, MHCoords, DBHCoords, ECCoords, ECoords, HCoords];
-    var parkingStructures = [EastSideP, lotE, NutwoodP, lotR, DDownnsP, lotA, lotG, ArboP, lotI, lotF, CPFSParkingLot, lotS, lotCEast, lotCWest, lotC];
+    var EducationBuilding = [PLSCoords, PLCoords, RGCCoords, UHCoords, LHCoords, MHCoords, DBHCoords, ECCoords, ECoords, HCoords, CCCoords, CSCoords];
+    var parkingStructures = [EastSideP, lotE, NutwoodP, lotR, DDownnsP, lotA, lotG, ArboP, lotI, lotF, CPFSParkingLot, lotS, lotCEast, lotCWest, lotC, lotH, StateCollegeParkingStructure, lotASouth];
 
     initMap();
     //$('.ui.dropdown').dropdown('set selected', '');
@@ -779,7 +779,9 @@
 
     function getCurrPos(position) {
         curLoc = position.coords.latitude + "," + position.coords.longitude;
+ 		{% if not post %}
         document.getElementById('location').value = curLoc;
+ 		{% endif %}
         document.getElementById('userLocation').value = curLoc;
         $('#CurrentLocation').attr('data-value', curLoc);
     }
@@ -909,17 +911,51 @@
                     closeSrc: 'https://static.wixstatic.com/media/34b396_c3723d3c68e941229e546a46a69311eb~mv2.png/v1/fit/w_750,h_750/34b396_c3723d3c68e941229e546a46a69311eb~mv2.png'
                 });
 */
+			var infoWindow = null;
+				var closeDelayed = false;
+    var closeDelayHandler = function() {
+        $(infoWindow.getWrapper()).removeClass('active');
+        setTimeout(function() {
+            closeDelayed = true;
+            infoWindow.close();
+        }, 300);
+    };
               var infoWindow = new SnazzyInfoWindow({
                 marker: markers[i],
                 content: contentString,
+                wrapperClass: 'custom-window',
             		closeOnMapClick: false,
     		        padding: '20px',
-    		        backgroundColor: 'rgba(230, 230, 230, 0.8)',
+    		        backgroundColor: 'rgba(255, 255, 255, 1)',
     		        border: true,
     		        borderRadius: '10px',
     		        shadow: true,
-    		        fontSize: '15px'
-              });
+    		        fontSize: '15px',
+    		        callbacks: {
+		            open: function() {
+		                $(this.getWrapper()).addClass('open');
+		            },
+		            afterOpen: function() {
+		                var wrapper = $(this.getWrapper());
+		                wrapper.addClass('active');
+		                wrapper.find('.custom-close').on('click', closeDelayHandler);
+		            },
+		            beforeClose: function() {
+		                if (!closeDelayed) {
+		                    closeDelayHandler();
+		                    return false;
+		                }
+		                return true;
+		            },
+		            afterClose: function() {
+		                var wrapper = $(this.getWrapper());
+		                wrapper.find('.custom-close').off();
+		                wrapper.removeClass('open');
+		                closeDelayed = false;
+		            }
+		        }
+		    });
+             
 
 
               markers[i].addListener('click', function() {
@@ -962,7 +998,7 @@
       strokeColor: '#000000',
       strokeOpacity: 0,
       strokeWeight: 2,
-      fillColor: '#00B0FF',
+      fillColor: '#239B56',
       fillOpacity: 1
     });
 
