@@ -4,7 +4,7 @@
 <div class="ui centered card raised overlay" id="infocard">
 	<div class="content">
 		<div class="header">{{ bld }}</div>
-		<div class="description"> You will be there in {{ tl }}.</div>
+		<div class="description"> You will be there in {{ tl }}. </div>
 		<div id="imageCard" class="image"></div>
 		<div id="contentCard"></div>
 	</div>
@@ -38,5 +38,6 @@
 {% block saveLocation %}
   $('#CurrentLocation').attr('data-value', '{{ userLoc }}');
   $('.ui.dropdown').dropdown('set selected', '{{ cur }}');
+  //alert(document.getElementById('location').value);
 {% endblock %}
 

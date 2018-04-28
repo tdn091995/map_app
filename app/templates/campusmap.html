@@ -415,6 +415,12 @@
                   <button class="ui positive button" id="PI-direction">Direction</button>
               </div>
 
+              <div class="ui buttons" id="PR">
+                  <button class="ui button pbuildings marker" id="PR-btn" value="{{ getCoords('PR') }}" type="button"><i class="teal car icon"></i>Parking Lot R</button>
+                  <div class="or"></div>
+                  <button class="ui positive button" id="PR-direction">Direction</button>
+              </div>
+
               <div class="ui buttons" id="PS">
                   <button class="ui button pbuildings marker" id="PS-btn" value="{{ getCoords('PS') }}" type="button"><i class="teal car icon"></i>Parking Lot S</button>
                   <div class="or"></div>
@@ -761,6 +767,8 @@
     var parkingStructures = [EastSideP, lotE, NutwoodP, lotR, DDownnsP, lotA, lotG, ArboP, lotI, lotF, CPFSParkingLot, lotS, lotCEast, lotCWest, lotC];
 
     initMap();
+    //$('.ui.dropdown').dropdown('set selected', '');
+    
     {% block saveLocation %}{% endblock %}
 
     if (navigator.geolocation) { // Call geolocation to get user's current position
@@ -773,6 +781,7 @@
         curLoc = position.coords.latitude + "," + position.coords.longitude;
         document.getElementById('location').value = curLoc;
         document.getElementById('userLocation').value = curLoc;
+        $('#CurrentLocation').attr('data-value', curLoc);
     }
 
     function errorCallback() {}
@@ -885,8 +894,8 @@
                 				'-direction" onclick="document.getElementById(this.id).click()">Direction</button>' +
                 				'<h1 id="firstHeading" class="firstHeading">'+ array[0] +'</h1>';
                 contentString += fillContent(bldid[0], array[0], array[1], array[2], image);
-
-                var infoBubble = new InfoBubble({
+/*
+                var infoBubble = new infoBubble({
                     content: contentString,
                     autopanMargin: 10,
                     maxWidth: 550,
@@ -899,12 +908,27 @@
                     //disableAutoPan: true,
                     closeSrc: 'https://static.wixstatic.com/media/34b396_c3723d3c68e941229e546a46a69311eb~mv2.png/v1/fit/w_750,h_750/34b396_c3723d3c68e941229e546a46a69311eb~mv2.png'
                 });
-                markers[i].addListener('click', function() {
-					infoBubble.open(map, markers[i]);
-                });
-                // Till here Info-Window
-                markers[i].setTitle(array[0]);
-                markers[i].setAnimation(google.maps.Animation.DROP);
+*/
+              var infoWindow = new SnazzyInfoWindow({
+                marker: markers[i],
+                content: contentString,
+            		closeOnMapClick: false,
+    		        padding: '20px',
+    		        backgroundColor: 'rgba(230, 230, 230, 0.8)',
+    		        border: true,
+    		        borderRadius: '10px',
+    		        shadow: true,
+    		        fontSize: '15px'
+              });
+
+
+              markers[i].addListener('click', function() {
+              //infoBubble.open(map, markers[i]);
+                infoWindow.open();
+              });
+              // Till here Info-Window
+              markers[i].setTitle(array[0]);
+              markers[i].setAnimation(google.maps.Animation.DROP);
             }
             else {
                 markers[i].setVisible(false);
@@ -977,9 +1001,7 @@
             styles: mapstyles
             };
         map = new google.maps.Map(document.getElementById('map'), mapOptions);
-
         directionsDisplay.setMap(map);
-
         {% block maproute %} {% endblock %}
     }
 </script>

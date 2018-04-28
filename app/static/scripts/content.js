@@ -68,6 +68,7 @@ var maindict = {
   "PG" : ["Parking Lot G", "Parking Lot G", ""],
   "PH" : ["Parking Lot H", "Parking Lot H", ""],
   "PI" : ["Parking Lot I", "Parking Lot I", ""],
+  "PR" : ["Parking Lot R", "33.882366, -117.888859"],
   "PS" : ["Parking Lot S", "Parking Lot S", ""],
   "AP" : ["Arboritum Parking", "Arboritum Parking", ""],
   "CPFSP" : ["CPFS Parking", "CPFS Parking", ""],

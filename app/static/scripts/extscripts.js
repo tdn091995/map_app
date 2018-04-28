@@ -11,6 +11,7 @@ $('.ui.sidebar').sidebar({
         exclusive: false,
         closable: false
 });
+
 $('.ui.sidebar').sidebar('attach events', '#left-sidebar-toggle');
 
 var locations = ['ebuildings', 'fdbuildings', 'abuildings', 'lm', 'fbuildings', 'pbuildings', 'cy', 'abuildings', 'ssbuildings', 'tbuildings', 'sbuildings', 'embuildings'];
