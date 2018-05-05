@@ -4,7 +4,7 @@ $('.ui.dropdown').dropdown({
     }
 });
 
-$('.ui.sidebar').sidebar({
+$('.ui.sidebar.map').sidebar({
         context: $('#sidemenu'),
         dimPage: false,
         transition: 'overlay',
@@ -12,7 +12,15 @@ $('.ui.sidebar').sidebar({
         closable: false
 });
 
-$('.ui.sidebar').sidebar('attach events', '#left-sidebar-toggle');
+$('.ui.sidebar.infocard').sidebar({
+        context: $('#sidemenu'),
+        dimPage: false,
+        transition: 'overlay',
+        exclusive: false,
+        closable: false
+});
+
+$('.ui.sidebar.map').sidebar('attach events', '#left-sidebar-toggle');
 
 var locations = ['ebuildings', 'fdbuildings', 'abuildings', 'lm', 'fbuildings', 'pbuildings', 'cy', 'abuildings', 'ssbuildings', 'tbuildings', 'sbuildings', 'embuildings'];
 

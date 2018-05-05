@@ -1,100 +1,113 @@
 html,
-      body {
-          height: 100%;
-          margin: 0;
-          overflow: hidden;
-      }
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
 
-      .custom-window {
+.custom-window {
   top: 30px;
   max-width: 400px;
   -webkit-transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   opacity: 0;
-  visibility: hidden; }
-  .custom-window.open .si-frame {
-    overflow: visible; }
-  .custom-window.active {
-    top: 0;
-    opacity: 1;
-    visibility: visible; }
-  .custom-window .si-content-wrapper {
-    padding-bottom: 10px; }
-  .custom-window .si-content {
-    overflow: visible; }
+  visibility: hidden;
+}
 
-      .ui.sidebar {
-          overflow: visible !important;
-      }
+.custom-window.open .si-frame {
+  overflow: visible;
+}
 
-      .ui.modal {
-          padding: 5px;
-          font-size: 9.4pt;
-      }
+.custom-window.active {
+  top: 0;
+  opacity: 1;
+  visibility: visible;
+}
 
-      ::placeholder { /* Chrome/Opera/Safari */
-        color: #909;
-      }
+.custom-window .si-content-wrapper {
+  padding-bottom: 10px;
+}
 
-      #destination {
-          flex-grow: 1;
-          margin-top: 6px;
-      }
+.custom-window .si-content {
+  overflow: visible;
+}
 
-      #infocard {
-          position: absolute;
-          padding: 2px;
-          overflow: auto;
-          max-height: 600px;
-          left: 82%;
-          top: 4%;
-          z-index: 1;
-      }
+.ui.sidebar {
+  overflow: visible !important;
+}
 
-      #topbar {
-          height: 50px;
-      }
+.ui.modal {
+  padding: 5px;
+  font-size: 9.4pt;
+}
 
-      #loginbutton {
-          margin-top: 10px;
-          margin-bottom: 10px;
-          margin-right: 10px;
-      }
+::placeholder {
+  /* Chrome/Opera/Safari */
+  color: #909;
+}
 
-      #signupbutton {
-          margin-left: 40px;
-          margin-top: 10px;
-          margin-bottom: 10px;
-      }
+#cardButton {
+  position: absolute;
+}
 
-      #map {
-          position: absolute;
-          height: 100%;
-          width: 100%;
-          z-index: 0;
-      }
+#destination {
+  flex-grow: 1;
+  margin-top: 6px;
+}
 
-      #start {
-          margin-top: 7px;
-      }
+#infocard {
+  position: absolute;
+  padding: 2px;
+  overflow: auto;
+  max-height: 600px;
+  left: 85%;
+  top: 4%;
+  z-index: 1;
+}
 
+#topbar {
+  height: 50px;
+}
 
-      #login {
-          position: relative;
-          right: 15px;
-          top: 5px;
-      }
+#loginbutton {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
 
-      #signup {
-          position: relative;
-          top: 5px;
-      }
+#signupbutton {
+  margin-left: 40px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 
-      #header1{
-          position: relative;
-          top: 16px;
-      }
+#map {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+}
 
-      #left-sidebar-toggle{
-          padding: 14px;
-      }
+#start {
+  margin-top: 7px;
+}
+
+#login {
+  position: relative;
+  right: 15px;
+  top: 5px;
+}
+
+#signup {
+  position: relative;
+  top: 5px;
+}
+
+#header1 {
+  position: relative;
+  top: 16px;
+}
+
+#left-sidebar-toggle {
+  padding: 14px;
+}
