@@ -900,7 +900,7 @@
                 var image = pickImage(bldid[0], 200, 360);
                 contentString = '<h1 id="firstHeading" class="firstHeading">'+ array[0] +'</h1>';
                 contentString += fillContent(bldid[0], array[0], array[1], array[2], image);
-                contentString += '<button class="ui right floated green button" id="' + '{{ bldId }}' +
+                contentString += '<button class="ui right floated green button" id="' + bldid[0] +
                                  '-direction" onclick="document.getElementById(this.id).click()">Direction</button>';
 /*
                 var infoBubble = new infoBubble({
