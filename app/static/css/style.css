@@ -41,6 +41,19 @@ body {
   font-size: 9.4pt;
 }
 
+.ui.button.marker {
+  width: 300px !important ;
+}
+
+.menu.sub {
+  overflow: auto !important;
+  max-height: 350px !important;
+}
+
+.header {
+
+}
+
 ::placeholder {
   /* Chrome/Opera/Safari */
   color: #909;
