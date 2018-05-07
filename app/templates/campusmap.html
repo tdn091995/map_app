@@ -765,7 +765,7 @@
     var EducationBuilding = [PLSCoords, PLCoords, RGCCoords, UHCoords, LHCoords, MHCoords, DBHCoords, ECCoords, ECoords, HCoords, CCCoords, CSCoords, mihaylo, KHSCoords, CPCCoords];
     var parkingStructures = [EastSideP, lotE, NutwoodP, lotR, DDownnsP, lotA, lotG, ArboP, lotI, lotF, CPFSParkingLot, lotS, lotCEast, lotCWest, lotC, lotH, StateCollegeParkingStructure, lotASouth];
 
-    //$('.ui.dropdown').dropdown('set selected', '');
+    
     
     {% block saveLocation %}{% endblock %}
 
@@ -800,9 +800,10 @@
     }
 
     function infoToggle() {
-
       $('.ui.card').transition('scale');
     }
+
+    initMap();
 
     for (let i = 0; i < markerButtons.length; i++) {
         var button = markerButtons[i];
@@ -1012,7 +1013,9 @@
      strokeWeight: 10
    	});
 
-   	
+   	campusPath.setMap(map);
+	educationBuildingPlygon.setMap(map);
+	parkingPolygon.setMap(map);
 
     // var addListenersOnPolygon = function(polygon) {
     //   google.maps.event.addListener(polygon, 'click', function (event) {
@@ -1022,7 +1025,7 @@
     // }
     //
     // addListenersOnPolygon(educationBuildingPlygon);
-    initMap();
+    
     function initMap() { // displays map on page, sets up variables for the directions service for use later
         var travellingMode = "WALKING";
         directionsDisplay = new google.maps.DirectionsRenderer;
@@ -1037,9 +1040,7 @@
             };
         map = new google.maps.Map(document.getElementById('map'), mapOptions);
         directionsDisplay.setMap(map);
-        campusPath.setMap(map);
-	    educationBuildingPlygon.setMap(map);
-	    parkingPolygon.setMap(map);
+        
         {% block maproute %} {% endblock %}
     }
 </script>
