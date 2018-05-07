@@ -50,17 +50,14 @@ body {
   max-height: 350px !important;
 }
 
-.header {
-
-}
-
 ::placeholder {
   /* Chrome/Opera/Safari */
   color: #909;
 }
 
-#cardButton {
-  position: absolute;
+#offline-map {
+  font-weight: bold !important;
+  color: white !important;
 }
 
 #destination {
@@ -73,9 +70,13 @@ body {
   padding: 2px;
   overflow: auto;
   max-height: 600px;
+  top: 5%;
   left: 85%;
-  top: 4%;
   z-index: 1;
+}
+
+#cardContent {
+  bottom: 15px;
 }
 
 #topbar {
@@ -102,6 +103,7 @@ body {
 }
 
 #start {
+  font-weight: bold !important;
   margin-top: 7px;
 }
 
