@@ -22,7 +22,7 @@ $('.ui.sidebar.infocard').sidebar({
 
 $('.ui.sidebar.map').sidebar('attach events', '#left-sidebar-toggle');
 
-var locations = ['ebuildings', 'fdbuildings', 'abuildings', 'lm', 'fbuildings', 'pbuildings', 'cy', 'abuildings', 'ssbuildings', 'tbuildings', 'sbuildings', 'embuildings'];
+var locations = ['ebuildings', 'fdbuildings', 'ddbuildings', 'abuildings', 'lm', 'fbuildings', 'pbuildings', 'cy', 'abuildings', 'ssbuildings', 'tbuildings', 'sbuildings', 'embuildings'];
 
 $('.ui.checkbox.ebuildings').checkbox({
     onChecked: function () {
@@ -50,6 +50,23 @@ $('.ui.checkbox.fdbuildings').checkbox({
     },
     onUnchecked: function () {
             var mulButtons = document.getElementsByClassName('button fdbuildings');
+            for(let j = 0; j < mulButtons.length; j++){
+                mulButtons[j].value="ON";
+                mulButtons[j].click();
+            }
+    }
+});
+
+$('.ui.checkbox.ddbuildings').checkbox({
+    onChecked: function () {
+            var mulButtons = document.getElementsByClassName('button ddbuildings');
+            for(let j = 0; j < mulButtons.length; j++){
+                mulButtons[j].value="OFF";
+                mulButtons[j].click();
+            }
+    },
+    onUnchecked: function () {
+            var mulButtons = document.getElementsByClassName('button ddbuildings');
             for(let j = 0; j < mulButtons.length; j++){
                 mulButtons[j].value="ON";
                 mulButtons[j].click();

@@ -172,10 +172,86 @@
               <div class="or"></div>
               <button class="ui positive button" id="VA-direction">Direction</button>
           </div>
-
       </div>
   </div>
 
+  <div class="ui simple dropdown item">
+      <i class="teal database icon"></i>
+      <div class="ui checkbox ddbuildings">
+              <input type="checkbox" name="example">
+              <label> Departments </label>
+          </div>
+      <div class="menu sub">
+          <div class="header" style="min-width: 600px">Departments in CSUF</div>
+
+          <div class="ui two large attached buttons" id="ANTH">
+              <button class="ui button ddbuildings marker" id="ANTH-btn" value="{{ getCoords('ANTH') }}" type="button"><i class="teal database icon"></i>Anthropology</button>
+              <div class="or"></div>
+              <button class="ui positive button" id="ANTH-direction">Direction</button>
+          </div>
+
+          <div class="ui two large attached buttons" id="BS">
+              <button class="ui button ddbuildings marker" id="BS-btn" value="{{ getCoords('BS') }}" type="button"><i class="teal database icon"></i>Biological Science</button>
+              <div class="or"></div>
+              <button class="ui positive button" id="BS-direction">Direction</button>
+          </div>
+
+          <div class="ui two large attached buttons" id="CH">
+              <button class="ui button ddbuildings marker" id="CH-btn" value="{{ getCoords('CH') }}" type="button"><i class="teal database icon"></i>Chemistry & Bio-Chemistry</button>
+              <div class="or"></div>
+              <button class="ui positive button" id="CH-direction">Direction</button>
+          </div>
+
+          <div class="ui two large attached buttons" id="GEOG">
+              <button class="ui button ddbuildings marker" id="GEOG-btn" value="{{ getCoords('GEOG') }}" type="button"><i class="teal database icon"></i>Geography</button>
+              <div class="or"></div>
+              <button class="ui positive button" id="GEOG-direction">Direction</button>
+          </div>
+
+          <div class="ui two large attached buttons" id="GS">
+              <button class="ui button ddbuildings marker" id="GS-btn" value="{{ getCoords('GS') }}" type="button"><i class="teal database icon"></i>Geological Sciences</button>
+              <div class="or"></div>
+              <button class="ui positive button" id="GS-direction">Direction</button>
+          </div>
+
+          <div class="ui two large attached buttons" id="HIST">
+              <button class="ui button ddbuildings marker" id="HIST-btn" value="{{ getCoords('HIST') }}" type="button"><i class="teal database icon"></i>History</button>
+              <div class="or"></div>
+              <button class="ui positive button" id="HIST-direction">Direction</button>
+          </div>
+
+          <div class="ui two large attached buttons" id="MA">
+              <button class="ui button ddbuildings marker" id="MA-btn" value="{{ getCoords('MA') }}" type="button"><i class="teal database icon"></i>Mathematics</button>
+              <div class="or"></div>
+              <button class="ui positive button" id="MA-direction">Direction</button>
+          </div>
+
+          <div class="ui two large attached buttons" id="PHIL">
+              <button class="ui button ddbuildings marker" id="PHIL-btn" value="{{ getCoords('PHIL') }}" type="button"><i class="teal database icon"></i>Philosophy</button>
+              <div class="or"></div>
+              <button class="ui positive button" id="PHIL-direction">Direction</button>
+          </div>
+
+          <div class="ui two large attached buttons" id="PHY">
+              <button class="ui button ddbuildings marker" id="PHY-btn" value="{{ getCoords('PHY') }}" type="button"><i class="teal database icon"></i>Physics</button>
+              <div class="or"></div>
+              <button class="ui positive button" id="PHY-direction">Direction</button>
+          </div>
+
+          <div class="ui two large attached buttons" id="PSYC">
+              <button class="ui button ddbuildings marker" id="PSYC-btn" value="{{ getCoords('PSYC') }}" type="button"><i class="teal database icon"></i>Psychology</button>
+              <div class="or"></div>
+              <button class="ui positive button" id="PSYC-direction">Direction</button>
+          </div>
+
+          <div class="ui two large attached buttons" id="SOCI">
+              <button class="ui button ddbuildings marker" id="SOCI-btn" value="{{ getCoords('SOCI') }}" type="button"><i class="teal database icon"></i>Sociology</button>
+              <div class="or"></div>
+              <button class="ui positive button" id="SOCI-direction">Direction</button>
+          </div>
+      </div>
+  </div>
+<!-- Added -->
   <div class="ui simple dropdown item">
       <i class="teal users icon"></i>
       <div class="ui checkbox fdbuildings">
@@ -680,14 +756,18 @@
           <div class="ui vertical divider"></div>
            <div class="column">
              <p>
+              <p><i class="teal database icon"></i><strong>Departments</strong></p><p>ANTH - Anthropology</p><p>BS - Biological Science</p><p> CH - Chemistry & Bio-Chemistry</p><p> GEOG - Geography</p><p>GS - Geological Sciences</p><p> HIST - History</p><p> MA - Mathematics </p><p> PHIL - Philosophy</p><p> PHY -  Physics</p><p> PSYC - Psychology</p>
+              <p> SOCI - Sociology </p>
+              <div class="ui fitted divider"></div>
+              <div class="ui fitted divider"></div>
               <p><i class="teal users icon"></i><strong>Food & Dining</strong><br></p><p>BE - Baja Fresh</p> <p> CJ - Carl's Jr</p> <p> GA - Gastronome</p> <p> JU - Juice It Up</p> <p> PEX - Panda Express</p> <p>MST - Mihaylo Starbucks </p> <p>PLST - Pollak Library Starbucks</p> <p> TSUST - TSU Starbucks</p> <p>CPT - College Park Togos</p> <p> TSUT - TSU Togos</p>
-             <div class="ui fitted divider"></div>
-             <div class="ui fitted divider"></div>
-             <p><i class="teal credit card icon"></i><strong>ATM & Bank</strong><br></p><p>BOFA - BOFA Bank ATM</p><p>CATM - Chase ATM</p><p>WATM - Wells Fargo ATM</p><p>USB - US Bank Branch</p>
            </p>
            </div>
            <div class="column">
              <p>
+               <p><i class="teal credit card icon"></i><strong>ATM & Bank</strong><br></p><p>BOFA - BOFA Bank ATM</p><p>CATM - Chase ATM</p><p>WATM - Wells Fargo ATM</p><p>USB - US Bank Branch</p>
+               <div class="ui fitted divider"></div>
+               <div class="ui fitted divider"></div>
                <p><i class="teal magnet icon"></i><strong>Landmarks</strong><br></p><p>BA - Becker Amphitheater</p> <p> ECSQ - ECS Quad</p> <p> Q - Quad</p> <p> TW - Titan Walk</p>
                <div class="ui fitted divider"></div>
                <div class="ui fitted divider"></div>
@@ -762,11 +842,11 @@
             lng: -117.885076
     };
 
-    var EducationBuilding = [PLSCoords, PLCoords, RGCCoords, UHCoords, LHCoords, MHCoords, DBHCoords, ECCoords, ECoords, HCoords, CCCoords, CSCoords, mihaylo, KHSCoords, CPCCoords];
+    var EducationBuilding = [PLSCoords, PLCoords, RGCCoords, UHCoords, LHCoords, MHCoords, DBHCoords, ECCoords, ECoords, HCoords, CCCoords, CSCoords, mihaylo, KHSCoords, CPCCoords, visualArts];
     var parkingStructures = [EastSideP, lotE, NutwoodP, lotR, DDownnsP, lotA, lotG, ArboP, lotI, lotF, CPFSParkingLot, lotS, lotCEast, lotCWest, lotC, lotH, StateCollegeParkingStructure, lotASouth];
 
-    
-    
+    //$('.ui.dropdown').dropdown('set selected', '');
+
     {% block saveLocation %}{% endblock %}
 
     if (navigator.geolocation) { // Call geolocation to get user's current position
@@ -800,6 +880,7 @@
     }
 
     function infoToggle() {
+
       $('.ui.card').transition('scale');
     }
 
@@ -810,7 +891,7 @@
         var latlng = button.value.split(',');
         var lat = parseFloat(latlng[0]);
         var lng = parseFloat(latlng[1]);
-       
+
         var marker = new google.maps.Marker({
             position: new google.maps.LatLng(lat, lng),
             icon: defaultIcon,
@@ -958,7 +1039,7 @@
 		            }
 		        }
 		    });
-             
+
 
 
               markers[i].addListener('click', function() {
@@ -985,7 +1066,7 @@
             });
         }
     }
-    
+
     var educationBuildingPlygon = new google.maps.Polygon({
       clickable: true,
       paths: EducationBuilding,
@@ -1001,7 +1082,7 @@
       strokeColor: '#000000',
       strokeOpacity: 0,
       strokeWeight: 2,
-      fillColor: '#239B56',
+      fillColor: '#117A65',
       fillOpacity: 1
     });
 
@@ -1013,9 +1094,10 @@
      strokeWeight: 10
    	});
 
-   	campusPath.setMap(map);
-	educationBuildingPlygon.setMap(map);
-	parkingPolygon.setMap(map);
+    campusPath.setMap(map);
+    educationBuildingPlygon.setMap(map);
+    parkingPolygon.setMap(map);
+
 
     // var addListenersOnPolygon = function(polygon) {
     //   google.maps.event.addListener(polygon, 'click', function (event) {
@@ -1025,7 +1107,7 @@
     // }
     //
     // addListenersOnPolygon(educationBuildingPlygon);
-    
+
     function initMap() { // displays map on page, sets up variables for the directions service for use later
         var travellingMode = "WALKING";
         directionsDisplay = new google.maps.DirectionsRenderer;
@@ -1040,7 +1122,7 @@
             };
         map = new google.maps.Map(document.getElementById('map'), mapOptions);
         directionsDisplay.setMap(map);
-        
+
         {% block maproute %} {% endblock %}
     }
 </script>
