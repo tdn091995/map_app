@@ -737,7 +737,7 @@
               <div class="or"></div>
               <button class="ui positive button" id="UP-direction">Direction</button>
           </div>
-      </div>
+      	</div>
 
   </div>
 </form>
@@ -836,16 +836,13 @@
     var dirButtons = document.getElementsByClassName('ui button positive');
     var originalColor;
     var flag;
+    var EducationBuilding = [PLSCoords, PLCoords, RGCCoords, UHCoords, LHCoords, MHCoords, DBHCoords, ECCoords, ECoords, HCoords, CCCoords, CSCoords, mihaylo, KHSCoords, CPCCoords, visualArts];
+    var parkingStructures = [EastSideP, lotE, NutwoodP, lotR, DDownnsP, lotA, lotG, ArboP, lotI, lotF, CPFSParkingLot, lotS, lotCEast, lotCWest, lotC, lotH, StateCollegeParkingStructure, lotASouth];
 
     const csufLocation = {
             lat: 33.880300,
             lng: -117.885076
     };
-
-    var EducationBuilding = [PLSCoords, PLCoords, RGCCoords, UHCoords, LHCoords, MHCoords, DBHCoords, ECCoords, ECoords, HCoords, CCCoords, CSCoords, mihaylo, KHSCoords, CPCCoords, visualArts];
-    var parkingStructures = [EastSideP, lotE, NutwoodP, lotR, DDownnsP, lotA, lotG, ArboP, lotI, lotF, CPFSParkingLot, lotS, lotCEast, lotCWest, lotC, lotH, StateCollegeParkingStructure, lotASouth];
-
-    //$('.ui.dropdown').dropdown('set selected', '');
 
     {% block saveLocation %}{% endblock %}
 
@@ -880,14 +877,13 @@
     }
 
     function infoToggle() {
-
       $('.ui.card').transition('scale');
     }
 
     initMap();
 
     for (let i = 0; i < markerButtons.length; i++) {
-        var button = markerButtons[i];
+        let button = markerButtons[i];
         var latlng = button.value.split(',');
         var lat = parseFloat(latlng[0]);
         var lng = parseFloat(latlng[1]);
@@ -920,39 +916,75 @@
         markers.push(marker);
         marker.setMap(map);
         marker.setVisible(false);
+
+        var bldid = button.id;
+        bldid = bldid.split("-");
+        var title = maindict[bldid[0]];
+        var image = pickImage(bldid[0], 200, 360);
+        contentString = '<h1 id="firstHeading" class="firstHeading">'+ title[0] +'</h1>';
+        contentString += fillContent(bldid[0], title[0], title[1], title[2], image);
+        contentString += '<button class="ui right floated green button" id="' + bldid[0] +
+                         '-direction" onclick="document.getElementById(this.id).click()">Direction</button>';
         var infoWindow = new SnazzyInfoWindow({
-	                marker: markers[i],
-	                content: contentString,
-            		closeOnMapClick: false,
-    		        padding: '20px',
-    		        backgroundColor: 'rgba(255, 255, 255, 1)',
-    		        border: true,
-    		        borderRadius: '10px',
-    		        shadow: true,
-    		        fontSize: '15px'
+            marker: markers[i],
+            content: contentString,
+    		closeOnMapClick: false,
+	        padding: '20px',
+	        backgroundColor: 'rgba(255, 255, 255, 1)',
+	        border: true,
+	        borderRadius: '10px',
+	        shadow: true,
+	        fontSize: '15px'
 		});
         button.addEventListener('click', function() {
+        	if (this.className == "ui button ebuildings marker") {
+              markers[i].setIcon(ebuildings);
+            }
+            else if (this.className == "ui button fdbuildings marker") {
+              markers[i].setIcon(fdbuildings);
+            }
+            else if (this.className == "ui button bbuildings marker") {
+              markers[i].setIcon(bbuildings);
+            }
+            else if (this.className == "ui button lm marker") {
+              markers[i].setIcon(lm);
+            }
+            else if (this.className == "ui button fbuildings marker") {
+              markers[i].setIcon(fbuildings);
+            }
+            else if (this.className == "ui button pbuildings marker") {
+              markers[i].setIcon(pbuildings);
+            }
+            else if (this.className == "ui button cy marker") {
+              markers[i].setIcon(cy);
+            }
+            else if (this.className == "ui button abuildings marker") {
+              markers[i].setIcon(abuildings);
+            }
+            else if (this.className == "ui button ssbuildings marker") {
+              markers[i].setIcon(ssbuildings);
+            }
+            else if (this.className == "ui button tbuildings marker") {
+              markers[i].setIcon(tbuildings);
+            }
+            else if (this.className == "ui button sbuildings marker") {
+              markers[i].setIcon(sbuildings);
+            }
+            else if (this.className == "ui button embuildings marker") {
+              markers[i].setIcon(embuildings);
+            }
+            else {
+              markers[i].setIcon(defaultIcon);
+            }
             if (this.value != "ON") {
+            	this.value="ON";
                 markers[i].setVisible(true);
-                this.value="ON";
-                var bldid = this.id;
-                bldid = bldid.split("-");
-                var title = maindict[bldid[0]];
-                var image = pickImage(bldid[0], 200, 360);
-                contentString = '<h1 id="firstHeading" class="firstHeading">'+ title[0] +'</h1>';
-                contentString += fillContent(bldid[0], title[0], title[1], title[2], image);
-                contentString += '<button class="ui right floated green button" id="' + bldid[0] +
-                                 '-direction" onclick="document.getElementById(this.id).click()">Direction</button>';
-				markers[i].addListener('click', function() {
-					//alert("Hi!");
-					infoWindow.open();
-				});
-				markers[i].setTitle(title[0]);
+                markers[i].setTitle(title[0]);
 				markers[i].setAnimation(google.maps.Animation.DROP);
             }
             else {
+            	this.value="OFF";
                 markers[i].setVisible(false);
-                this.value="OFF";
             }
         });
     }
@@ -1015,6 +1047,6 @@
 
         {% block maproute %} {% endblock %}
     }
-</script>
-<script type="text/javascript" src="{{ url_for('static', filename='scripts/extscripts.js') }}"></script>
+	</script>
+	<script type="text/javascript" src="{{ url_for('static', filename='scripts/extscripts.js') }}"></script>
 {% endblock %}
