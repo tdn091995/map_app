@@ -891,7 +891,6 @@
         var latlng = button.value.split(',');
         var lat = parseFloat(latlng[0]);
         var lng = parseFloat(latlng[1]);
-
         var marker = new google.maps.Marker({
             position: new google.maps.LatLng(lat, lng),
             icon: defaultIcon,
@@ -900,15 +899,13 @@
         // Two event listeners - one for mouseover, one for mouseout,
         // to change the colors back and forth.
         marker.addListener('mouseover', function() {
-         originalColor = this.getIcon();
-         this.setIcon(highlightedIcon);
-         this.setAnimation(google.maps.Animation.BOUNCE);
-       });
-
+			originalColor = this.getIcon();
+			this.setIcon(highlightedIcon);
+			this.setAnimation(google.maps.Animation.BOUNCE);
+       	});
 		marker.addListener('click', function() {
 			flag = "OK";
 		});
-
 		marker.addListener('mouseout', function() {
 		if (flag == "OK") {
 			this.setIcon(defaultIcon);
@@ -923,132 +920,35 @@
         markers.push(marker);
         marker.setMap(map);
         marker.setVisible(false);
-
-        button.addEventListener('click', function() {
-
-            if (this.className == "ui button ebuildings marker") {
-              markers[i].setIcon(ebuildings);
-            }
-            else if (this.className == "ui button fdbuildings marker") {
-              markers[i].setIcon(fdbuildings);
-            }
-            else if (this.className == "ui button bbuildings marker") {
-              markers[i].setIcon(bbuildings);
-            }
-            else if (this.className == "ui button lm marker") {
-              markers[i].setIcon(lm);
-            }
-            else if (this.className == "ui button fbuildings marker") {
-              markers[i].setIcon(fbuildings);
-            }
-            else if (this.className == "ui button pbuildings marker") {
-              markers[i].setIcon(pbuildings);
-            }
-            else if (this.className == "ui button cy marker") {
-              markers[i].setIcon(cy);
-            }
-            else if (this.className == "ui button abuildings marker") {
-              markers[i].setIcon(abuildings);
-            }
-            else if (this.className == "ui button ssbuildings marker") {
-              markers[i].setIcon(ssbuildings);
-            }
-            else if (this.className == "ui button tbuildings marker") {
-              markers[i].setIcon(tbuildings);
-            }
-            else if (this.className == "ui button sbuildings marker") {
-              markers[i].setIcon(sbuildings);
-            }
-            else if (this.className == "ui button embuildings marker") {
-              markers[i].setIcon(embuildings);
-            }
-            else {
-              markers[i].setIcon(defaultIcon);
-            }
-
-            if (this.value != "ON") {
-
-                markers[i].setVisible(true);
-                this.value="ON";
-                //Added here for Info-Window
-                var bldid = this.id;
-                //for getting abv
-                bldid = bldid.split("-");
-                var array = maindict[bldid[0]];
-                var image = pickImage(bldid[0], 200, 360);
-                contentString = '<h1 id="firstHeading" class="firstHeading">'+ array[0] +'</h1>';
-                contentString += fillContent(bldid[0], array[0], array[1], array[2], image);
-                contentString += '<button class="ui right floated green button" id="' + bldid[0] +
-                                 '-direction" onclick="document.getElementById(this.id).click()">Direction</button>';
-/*
-                var infoBubble = new infoBubble({
-                    content: contentString,
-                    autopanMargin: 10,
-                    maxWidth: 550,
-                    minWidth: 550,
-                    minHeight: 400,
-                    borderWidth: 2,
-                    borderColor: '#000000',
-                    padding: 20,
-                    shadowStyle: 1,
-                    //disableAutoPan: true,
-                    closeSrc: 'https://static.wixstatic.com/media/34b396_c3723d3c68e941229e546a46a69311eb~mv2.png/v1/fit/w_750,h_750/34b396_c3723d3c68e941229e546a46a69311eb~mv2.png'
-                });
-*/
-			var infoWindow = null;
-			var closeDelayed = false;
-    		var closeDelayHandler = function() {
-	        $(infoWindow.getWrapper()).removeClass('active');
-	        setTimeout(function() {
-		            closeDelayed = true;
-		            infoWindow.close();
-		        }, 300);
-	    	};
-              var infoWindow = new SnazzyInfoWindow({
-                marker: markers[i],
-                content: contentString,
-                wrapperClass: 'custom-window',
+        var infoWindow = new SnazzyInfoWindow({
+	                marker: markers[i],
+	                content: contentString,
             		closeOnMapClick: false,
     		        padding: '20px',
     		        backgroundColor: 'rgba(255, 255, 255, 1)',
     		        border: true,
     		        borderRadius: '10px',
     		        shadow: true,
-    		        fontSize: '15px',
-    		        callbacks: {
-		            open: function() {
-		                $(this.getWrapper()).addClass('open');
-		            },
-		            afterOpen: function() {
-		                var wrapper = $(this.getWrapper());
-		                wrapper.addClass('active');
-		                wrapper.find('.custom-close').on('click', closeDelayHandler);
-		            },
-		            beforeClose: function() {
-		                if (!closeDelayed) {
-		                    closeDelayHandler();
-		                    return false;
-		                }
-		                return true;
-		            },
-		            afterClose: function() {
-		                var wrapper = $(this.getWrapper());
-		                wrapper.find('.custom-close').off();
-		                wrapper.removeClass('open');
-		                closeDelayed = false;
-		            }
-		        }
-		    });
-
-
-
-              markers[i].addListener('click', function() {
-              //infoBubble.open(map, markers[i]);
-                infoWindow.open();
-              });
-              // Till here Info-Window
-              markers[i].setTitle(array[0]);
-              markers[i].setAnimation(google.maps.Animation.DROP);
+    		        fontSize: '15px'
+		});
+        button.addEventListener('click', function() {
+            if (this.value != "ON") {
+                markers[i].setVisible(true);
+                this.value="ON";
+                var bldid = this.id;
+                bldid = bldid.split("-");
+                var title = maindict[bldid[0]];
+                var image = pickImage(bldid[0], 200, 360);
+                contentString = '<h1 id="firstHeading" class="firstHeading">'+ title[0] +'</h1>';
+                contentString += fillContent(bldid[0], title[0], title[1], title[2], image);
+                contentString += '<button class="ui right floated green button" id="' + bldid[0] +
+                                 '-direction" onclick="document.getElementById(this.id).click()">Direction</button>';
+				markers[i].addListener('click', function() {
+					//alert("Hi!");
+					infoWindow.open();
+				});
+				markers[i].setTitle(title[0]);
+				markers[i].setAnimation(google.maps.Animation.DROP);
             }
             else {
                 markers[i].setVisible(false);
@@ -1097,16 +997,6 @@
     campusPath.setMap(map);
     educationBuildingPlygon.setMap(map);
     parkingPolygon.setMap(map);
-
-
-    // var addListenersOnPolygon = function(polygon) {
-    //   google.maps.event.addListener(polygon, 'click', function (event) {
-    //
-    //     alert("polygon");
-    //   });
-    // }
-    //
-    // addListenersOnPolygon(educationBuildingPlygon);
 
     function initMap() { // displays map on page, sets up variables for the directions service for use later
         var travellingMode = "WALKING";
