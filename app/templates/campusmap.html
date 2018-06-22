@@ -920,6 +920,7 @@
         var bldid = button.id;
         bldid = bldid.split("-");
         var title = maindict[bldid[0]];
+        markers[i].setTitle(title[0]);
         var image = pickImage(bldid[0], 200, 360);
         contentString = '<h1 id="firstHeading" class="firstHeading">'+ title[0] +'</h1>';
         contentString += fillContent(bldid[0], title[0], title[1], title[2], image);
@@ -979,7 +980,7 @@
             if (this.value != "ON") {
             	this.value="ON";
                 markers[i].setVisible(true);
-                markers[i].setTitle(title[0]);
+                
 				markers[i].setAnimation(google.maps.Animation.DROP);
             }
             else {
